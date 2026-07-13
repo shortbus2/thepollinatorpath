@@ -15,7 +15,7 @@ window.PLANTS = [
     "water": "Low to moderate",
     "story": "A cheerful Colorado native that brings a little wild-meadow energy to the garden without asking permission first.",
     "slug": "aspen-daisy",
-    "image": "images/plants/2.jpg",
+    "image": "images/plants/2/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -39,7 +39,7 @@ window.PLANTS = [
     "water": "Low to moderate",
     "story": "A pollinator gathering place. When it blooms, the garden gets noticeably busier.",
     "slug": "bee-balm",
-    "image": "images/plants/4.jpg",
+    "image": "images/plants/4/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -61,7 +61,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Tall, architectural, and absolutely not interested in being background filler.",
     "slug": "big-bluestem",
-    "image": "images/plants/5.jpg",
+    "image": "images/plants/5/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -84,7 +84,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "One of the plants that made the rabbit hole unavoidable. It is rarely without a visitor, and Brenda the leafcutter bee became a repeat customer.",
     "slug": "blanket-flower",
-    "image": "images/plants/8.jpg",
+    "image": "images/plants/8/hero.jpg",
     "observed": [
       "Honey bee",
       "Leafcutter bee “Brenda”",
@@ -113,7 +113,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Tiny eyelash-shaped seed heads, big prairie personality.",
     "slug": "blue-grama-grass",
-    "image": "images/plants/9.jpg",
+    "image": "images/plants/9/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -136,7 +136,7 @@ window.PLANTS = [
     "water": "Low to moderate",
     "story": "Delicate-looking, tougher than it appears, and proof that native gardens do not have to shout all the time.",
     "slug": "harebell",
-    "image": "images/plants/10.jpg",
+    "image": "images/plants/10/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -159,7 +159,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "A milkweed with traffic-cone flowers—in the best possible way.",
     "slug": "butterfly-weed",
-    "image": "images/plants/11.jpg",
+    "image": "images/plants/11/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -182,7 +182,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Evergreen structure, early flowers, and the quiet confidence of a plant that knows it looks good all year.",
     "slug": "chieftain-manzanita",
-    "image": "images/plants/12.jpg",
+    "image": "images/plants/12/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -205,7 +205,7 @@ window.PLANTS = [
     "water": "Low to moderate",
     "story": "Tucked beneath the oak, doing the glamorous but underappreciated work of being useful in shade.",
     "slug": "creeping-oregon-grape",
-    "image": "images/plants/15.jpg",
+    "image": "images/plants/15/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -229,7 +229,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Late-season yellow fireworks when the rest of the garden is starting to think about pajamas.",
     "slug": "dwarf-blue-rabbitbrush",
-    "image": "images/plants/17.jpg",
+    "image": "images/plants/17/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -252,7 +252,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "A low, tough pollinator buffet that looks completely at home beside stone.",
     "slug": "sulphur-flower-buckwheat",
-    "image": "images/plants/19.jpg",
+    "image": "images/plants/19/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -275,7 +275,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "A hardworking ground-hugging shrub with excellent fall drama and no need for a spotlight.",
     "slug": "gro-low-fragrant-sumac",
-    "image": "images/plants/20.jpg",
+    "image": "images/plants/20/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -297,7 +297,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "One of the plants that helped bring the hummingbirds close enough to make all the work feel worth it.",
     "slug": "hummingbird-trumpet",
-    "image": "images/plants/21.jpg",
+    "image": "images/plants/21/hero.jpg",
     "observed": [
       "Probable female Broad-tailed Hummingbird"
     ],
@@ -321,7 +321,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Soft movement, coppery seed heads, and enough height to make the garden feel layered rather than flat.",
     "slug": "indiangrass",
-    "image": "images/plants/22.jpg",
+    "image": "images/plants/22/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -344,7 +344,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "Flowers and berries are useful; the winter-red stems are the encore.",
     "slug": "isanti-red-twig-dogwood",
-    "image": "images/plants/23.jpg",
+    "image": "images/plants/23/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -367,7 +367,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "All the red-twig charm in a smaller package that behaves itself near the path.",
     "slug": "kelsey-s-dwarf-red-twig-dogwood",
-    "image": "images/plants/24.jpg",
+    "image": "images/plants/24/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -390,7 +390,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Silvery foliage and purple flower spikes make this prairie shrub look far fancier than its water bill.",
     "slug": "leadplant",
-    "image": "images/plants/25.jpg",
+    "image": "images/plants/25/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -412,7 +412,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "A season-long texture machine that ends the year glowing copper and pink.",
     "slug": "little-bluestem",
-    "image": "images/plants/26.jpg",
+    "image": "images/plants/26/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -435,7 +435,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Evergreen, low-water, and not remotely impressed by winter.",
     "slug": "panchito-manzanita",
-    "image": "images/plants/28.jpg",
+    "image": "images/plants/28/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -458,7 +458,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Sky-blue flowers arriving late in the season, because apparently the garden needed one more reason to keep watching.",
     "slug": "pitcher-sage",
-    "image": "images/plants/29.jpg",
+    "image": "images/plants/29/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -481,7 +481,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Magenta cups sprawled over stone like the plant has absolutely no respect for tidy boundaries.",
     "slug": "prairie-winecups",
-    "image": "images/plants/30.jpg",
+    "image": "images/plants/30/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -504,7 +504,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Purple bottlebrush flowers that feed pollinators and improve the soil. Overachiever.",
     "slug": "purple-prairie-clover",
-    "image": "images/plants/31.jpg",
+    "image": "images/plants/31/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -527,7 +527,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Soft little groundcover, host plant, and living proof that cute can still be ecologically useful.",
     "slug": "pussytoes",
-    "image": "images/plants/32.jpg",
+    "image": "images/plants/32/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -550,7 +550,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "The flowers look like tiny red birds, and real hummingbirds approve. Subtle foliage, ridiculous payoff.",
     "slug": "red-birds-in-a-tree",
-    "image": "images/plants/33.jpg",
+    "image": "images/plants/33/hero.jpg",
     "observed": [
       "Paper wasp",
       "Hummingbirds"
@@ -577,7 +577,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "A vertical purple beacon with a well-earned reputation for attracting monarchs.",
     "slug": "rocky-mountain-blazing-star",
-    "image": "images/plants/34.jpg",
+    "image": "images/plants/34/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -601,7 +601,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "Colorado's state flower, tucked into the cooler parts of the garden like a tiny piece of mountain shade.",
     "slug": "rocky-mountain-columbine",
-    "image": "images/plants/35.jpg",
+    "image": "images/plants/35/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -624,7 +624,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "A late-season lifeline for pollinators and a very good reason not to declare the garden finished in July.",
     "slug": "smooth-aster",
-    "image": "images/plants/37.jpg",
+    "image": "images/plants/37/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -647,7 +647,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "Big, unapologetic flower heads for a garden that occasionally enjoys being extra.",
     "slug": "spotted-joe-pye-weed",
-    "image": "images/plants/38.jpg",
+    "image": "images/plants/38/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -669,7 +669,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Bright pink native geranium flowers with a name that sounds less glamorous than the plant deserves.",
     "slug": "sticky-geranium",
-    "image": "images/plants/39.jpg",
+    "image": "images/plants/39/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -692,7 +692,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Late-season gold, excellent seed heads, and not the cause of your hay fever. Ragweed has been framing it for years.",
     "slug": "stiff-goldenrod",
-    "image": "images/plants/40.jpg",
+    "image": "images/plants/40/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -715,7 +715,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Orange-pink flowers, fragrant foliage, hummingbirds, and no interest in being boring.",
     "slug": "sunset-hyssop",
-    "image": "images/plants/41.jpg",
+    "image": "images/plants/41/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -737,7 +737,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "A soft, airy grass for the cooler pocket beneath the oak.",
     "slug": "tufted-hairgrass",
-    "image": "images/plants/44.jpg",
+    "image": "images/plants/44/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -759,7 +759,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "A tiny blue-flowered carpet that makes the rocks look deliberately styled instead of merely heavy.",
     "slug": "turkish-speedwell",
-    "image": "images/plants/47.jpg",
+    "image": "images/plants/47/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -782,7 +782,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "The hummingbird plant. The one that made your husband spot the proof from the office window that the habitat was working.",
     "slug": "vermillion-bluffs",
-    "image": "images/plants/49.jpg",
+    "image": "images/plants/49/hero.jpg",
     "observed": [
       "Probable female Broad-tailed Hummingbird",
       "Bees"
@@ -809,7 +809,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Large fuzzy pink flower clusters, monarch habitat, and a reminder that leaves with holes can be a sign of success.",
     "slug": "showy-milkweed",
-    "image": "images/plants/50.jpg",
+    "image": "images/plants/50/hero.jpg",
     "observed": [
       "Monarch habitat"
     ],
@@ -834,7 +834,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Each flower lasts briefly; the plant keeps making more. A daily lesson in not being dramatic about endings.",
     "slug": "blue-flax",
-    "image": "images/plants/51.jpg",
+    "image": "images/plants/51/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -856,7 +856,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "Meet Sassy Pants. She had a dramatic first Colorado summer and remains fully committed to having opinions.",
     "slug": "honeycrisp-apple",
-    "image": "images/plants/58.jpg",
+    "image": "images/plants/58/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, bloom records, fruit updates, and seasonal notes will grow alongside the garden."
@@ -878,7 +878,7 @@ window.PLANTS = [
     "water": "Low to moderate",
     "story": "The garden's Holiday Inn: shelter, perches, and constant bird traffic.",
     "slug": "bacheri-blue-spruce",
-    "image": "images/plants/59.jpg",
+    "image": "images/plants/59/hero.jpg",
     "observed": [
       "Frequent bird shelter"
     ],
@@ -903,7 +903,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "Spring flowers for bees, fruit for birds, and a small tree with four-season responsibilities.",
     "slug": "firebird-crabapple",
-    "image": "images/plants/60.jpg",
+    "image": "images/plants/60/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -927,7 +927,7 @@ window.PLANTS = [
     "water": "Moderate",
     "story": "A memorial tree and the ecological anchor of the garden. Oaks support entire food webs, not just acorns.",
     "slug": "heritage-oak",
-    "image": "images/plants/61.jpg",
+    "image": "images/plants/61/hero.jpg",
     "observed": [
       "Birds",
       "Caterpillars and other insects"
@@ -953,7 +953,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Fine evergreen foliage and bright tubular flowers: tiny plant, excellent hummingbird credentials.",
     "slug": "pineleaf-penstemon",
-    "image": "images/plants/62.jpg",
+    "image": "images/plants/62/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -975,7 +975,7 @@ window.PLANTS = [
     "water": "Low",
     "story": "Silvery foliage and white flowers providing contrast among the bolder native personalities.",
     "slug": "snow-in-summer",
-    "image": "images/plants/63.jpg",
+    "image": "images/plants/63/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
@@ -998,7 +998,7 @@ window.PLANTS = [
     "water": "Very low",
     "story": "Smells like chocolate in the morning. This is not a drill.",
     "slug": "chocolate-flower",
-    "image": "images/plants/71.jpg",
+    "image": "images/plants/71/hero.jpg",
     "observed": [
       "Bees",
       "Butterflies"
@@ -1024,11 +1024,71 @@ window.PLANTS = [
     "water": "Very low",
     "story": "One of the earliest red invitations sent to returning hummingbirds.",
     "slug": "firecracker-penstemon",
-    "image": "images/plants/72.jpg",
+    "image": "images/plants/72/hero.jpg",
     "observed": [],
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
     ],
     "mapZone": "West Garden"
+  }
+];
+
+
+window.VISITORS = [
+  {
+    "slug": "brenda",
+    "name": "Brenda",
+    "species": "Leafcutter bee · Family Megachilidae",
+    "icon": "🐝",
+    "status": "Repeat garden visitor",
+    "hero": "images/wildlife/brenda/hero.jpg",
+    "summary": "A returning leafcutter bee who quickly achieved celebrity status by visiting Blanket Flower day after day.",
+    "story": "Brenda was first noticed working the blanket flowers and returned for several consecutive days. Her persistence helped turn a single bee sighting into a lesson about how individual insects use a garden over time.",
+    "firstSeen": "July 2026",
+    "locations": ["Blanket Flower", "Harebells"],
+    "observations": ["Collected pollen", "Returned on consecutive days", "Shared flowers with another leafcutter bee"],
+    "relatedPlants": [8, 10]
+  },
+  {
+    "slug": "big-booty-judy",
+    "name": "Big Booty Judy",
+    "species": "Resident toad",
+    "icon": "🐸",
+    "status": "Garden resident",
+    "hero": "images/wildlife/big-booty-judy/hero.jpg",
+    "summary": "Resident toad and unofficial habitat-quality inspector.",
+    "story": "Big Booty Judy is part of the garden's quieter night shift. Her presence is a reminder that water, shelter, leaf litter, shade, and insect life support far more than pollinators alone.",
+    "firstSeen": "2026 garden season",
+    "locations": ["Patio", "Mulch beds", "Toad shelter"],
+    "observations": ["Regular nighttime signs", "Uses protected garden spaces", "Proof that habitat features matter"],
+    "relatedPlants": []
+  },
+  {
+    "slug": "broad-tailed-hummingbird",
+    "name": "Probable Female Broad-tailed Hummingbird",
+    "species": "Selasphorus platycercus · probable identification",
+    "icon": "🐦",
+    "status": "Observed visitor",
+    "hero": "images/wildlife/broad-tailed-hummingbird/hero.jpg",
+    "summary": "Observed feeding from Vermillion Bluffs and Hummingbird Trumpet before disappearing into the oak canopy.",
+    "story": "This visit became a milestone because it was visible proof that the plants chosen for wildlife were doing exactly what they were meant to do.",
+    "firstSeen": "July 2026",
+    "locations": ["Vermillion Bluffs", "Hummingbird Trumpet", "Oak canopy"],
+    "observations": ["Nectar feeding", "Repeated garden visits", "Possible use of oak canopy"],
+    "relatedPlants": []
+  },
+  {
+    "slug": "white-lined-sphinx",
+    "name": "White-lined Sphinx",
+    "species": "Hyles lineata",
+    "icon": "🦋",
+    "status": "Night visitor",
+    "hero": "images/wildlife/white-lined-sphinx/hero.jpg",
+    "summary": "A dramatic nighttime visitor doing part of the garden's pollination work after dark.",
+    "story": "The white-lined sphinx expanded the garden story beyond daytime bees and birds, revealing that the habitat remains active after people head inside.",
+    "firstSeen": "July 2026",
+    "locations": ["Front garden at night"],
+    "observations": ["Recorded on video", "Active after dark"],
+    "relatedPlants": []
   }
 ];

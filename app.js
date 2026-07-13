@@ -43,6 +43,30 @@
     });
   }
 
+
+  function autoGallery(folder, label, icon, count = 12) {
+    return Array.from({ length: count }, (_, index) => {
+      const number = String(index + 1).padStart(2, "0");
+      return `
+        <figure class="media-tile auto-media" hidden>
+          <img src="${folder}/photo-${number}.jpg" alt="${label} gallery photo ${index + 1}" loading="lazy">
+        </figure>
+      `;
+    }).join("");
+  }
+
+  function activateAutoGalleries(parent = document) {
+    $$(".auto-media", parent).forEach((tile) => {
+      const image = $("img", tile);
+      image.addEventListener("load", () => { tile.hidden = false; }, { once: true });
+      image.addEventListener("error", () => tile.remove(), { once: true });
+      if (image.complete) {
+        if (image.naturalWidth > 0) tile.hidden = false;
+        else tile.remove();
+      }
+    });
+  }
+
   function statusLinks(status) {
     const lower = status.toLowerCase();
     const links = [];
@@ -254,16 +278,10 @@
 
             <section class="panel">
               <h2>Photo gallery</h2>
-              <div class="gallery">
-                <div class="gallery-item gallery-photo image-shell">
-                  <img class="plant-image" src="${plant.image}" alt="${plant.common}">
-                  <div class="image-fallback" aria-hidden="true"><span class="fallback-icon">${iconFor(plant)}</span><span class="fallback-label">Plant portrait</span></div>
-                </div>
-                <div class="gallery-item"><span>🌱</span><small>Emerging</small></div>
-                <div class="gallery-item"><span>🌸</span><small>In bloom</small></div>
-                <div class="gallery-item"><span>🐝</span><small>Garden visitors</small></div>
+              <div class="media-gallery auto-gallery">
+                ${autoGallery(`images/plants/${plant.number}`, plant.common, iconFor(plant))}
               </div>
-              <p><small>Photos and seasonal views will grow alongside the garden.</small></p>
+              <div class="gallery-empty-note">Add photos named <code>photo-01.jpg</code>, <code>photo-02.jpg</code>, and so on inside <code>images/plants/${plant.number}/</code>. They appear here automatically.</div>
             </section>
 
             <section class="panel">
@@ -294,6 +312,84 @@
       </div>
     `;
     activateImageFallbacks(plantPage);
+    activateAutoGalleries(plantPage);
+  }
+
+
+  const visitorGrid = $("#visitor-grid");
+  if (visitorGrid && window.VISITORS) {
+    visitorGrid.innerHTML = VISITORS.map((visitor) => `
+      <article class="visitor-card">
+        <a href="wildlife.html?id=${visitor.slug}" class="visitor-card-link">
+          <div class="visitor-photo image-shell">
+            <img class="plant-image" src="${visitor.hero}" alt="${visitor.name}" loading="lazy">
+            <div class="image-fallback" aria-hidden="true">
+              <span class="fallback-icon">${visitor.icon}</span>
+              <span class="fallback-label">Portrait coming soon</span>
+            </div>
+          </div>
+          <div class="visitor-card-copy">
+            <div class="eyebrow">${visitor.status}</div>
+            <h2>${visitor.name}</h2>
+            <div class="botanical">${visitor.species}</div>
+            <p>${visitor.summary}</p>
+            <strong>Meet this visitor →</strong>
+          </div>
+        </a>
+      </article>
+    `).join("");
+    activateImageFallbacks(visitorGrid);
+  }
+
+  const wildlifePage = $("#wildlife-page");
+  if (wildlifePage && window.VISITORS) {
+    const slug = new URLSearchParams(window.location.search).get("id");
+    const visitor = VISITORS.find((item) => item.slug === slug) || VISITORS[0];
+    document.title = `${visitor.name} · The Pollinator Path`;
+    const plantLinks = visitor.relatedPlants.length
+      ? visitor.relatedPlants.map((number) => {
+          const plant = PLANTS.find((item) => Number(item.number) === Number(number));
+          return plant ? `<a class="chip chip-link" href="plant.html?id=${plant.number}">${plant.common} ↗</a>` : "";
+        }).join("")
+      : '<span class="chip">Plant links coming as observations grow</span>';
+
+    wildlifePage.innerHTML = `
+      <div class="wildlife-layout">
+        <div class="wildlife-hero image-shell">
+          <img class="plant-image" src="${visitor.hero}" alt="${visitor.name}">
+          <div class="image-fallback" aria-hidden="true">
+            <span class="fallback-icon">${visitor.icon}</span>
+            <span class="fallback-label">Portrait coming soon</span>
+          </div>
+        </div>
+        <header class="wildlife-heading">
+          <div class="eyebrow">${visitor.status}</div>
+          <h1>${visitor.name}</h1>
+          <div class="botanical">${visitor.species}</div>
+          <p class="wildlife-summary">${visitor.summary}</p>
+        </header>
+        <div class="content-grid wildlife-content">
+          <div>
+            <section class="panel"><h2>Its garden story</h2><p>${visitor.story}</p></section>
+            <section class="panel">
+              <h2>Photo journal</h2>
+              <div class="media-gallery auto-gallery">
+                ${autoGallery(`images/wildlife/${visitor.slug}`, visitor.name, visitor.icon)}
+              </div>
+              <div class="gallery-empty-note">Add photos named <code>photo-01.jpg</code>, <code>photo-02.jpg</code>, and so on inside <code>images/wildlife/${visitor.slug}/</code>. They appear here automatically.</div>
+            </section>
+          </div>
+          <aside>
+            <section class="panel"><h2>First documented</h2><p>${visitor.firstSeen}</p></section>
+            <section class="panel"><h2>Seen around</h2><ul>${visitor.locations.map((item) => `<li>${item}</li>`).join("")}</ul></section>
+            <section class="panel"><h2>Observed behavior</h2><ul>${visitor.observations.map((item) => `<li>${item}</li>`).join("")}</ul></section>
+            <section class="panel"><h2>Connected plants</h2><div class="chips">${plantLinks}</div></section>
+          </aside>
+        </div>
+      </div>
+    `;
+    activateImageFallbacks(wildlifePage);
+    activateAutoGalleries(wildlifePage);
   }
 
   const map = $("#garden-map");

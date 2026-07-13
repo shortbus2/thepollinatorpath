@@ -1,0 +1,18 @@
+THE POLLINATOR PATH PHOTO SYSTEM
+
+PLANTS
+images/plants/PLANT-NUMBER/hero.jpg
+images/plants/PLANT-NUMBER/photo-01.jpg ... photo-12.jpg
+
+WILDLIFE
+images/wildlife/visitor-name/hero.jpg
+images/wildlife/visitor-name/photo-01.jpg ... photo-12.jpg
+
+The site tests these filenames automatically. Missing files stay hidden, so no HTML editing is required.
+Use lowercase .jpg filenames exactly.
+
+Examples
+images/plants/8/hero.jpg
+images/plants/8/photo-01.jpg
+images/wildlife/brenda/hero.jpg
+images/wildlife/brenda/photo-01.jpg

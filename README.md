@@ -39,13 +39,21 @@ Important fields:
 The directory, profile page, search, and map all update from that one record.
 
 ## Add plant photos
-Put a JPG at:
-`images/plants/PLANTNUMBER.jpg`
+Plant photos are organized by plant number. No HTML editing is required.
 
-Example:
-`images/plants/8.jpg`
+- `images/plants/8/hero.jpg` — main portrait for Plant #8
+- `images/plants/8/photo-01.jpg` through `photo-12.jpg` — automatic gallery
 
-The current starter design uses botanical placeholders. The next upgrade is wiring the real image into each card and gallery, after your photos are selected and cropped consistently.
+Missing photos remain as intentional placeholders. Gallery filenames that do not exist are quietly hidden.
+
+## Add wildlife photos
+Wildlife photos are organized by profile name.
+
+- `images/wildlife/brenda/hero.jpg`
+- `images/wildlife/brenda/photo-01.jpg` through `photo-12.jpg`
+- `images/wildlife/big-booty-judy/hero.jpg`
+
+The same pattern is already prepared for the hummingbird and white-lined sphinx.
 
 ## Refine the map
 Open `app.js` and find:
@@ -93,3 +101,18 @@ Added:
 Plant images are optional. The site now shows a designed placeholder whenever a
 file is absent, so plant cards and profiles remain fully visible from day one.
 Add photos later to `images/plants/` using the plant number, such as `8.jpg`.
+
+## Adding photographs without editing code
+
+Plant photos are organized by plant number:
+
+- `images/plants/8/hero.jpg` — main Blanket Flower portrait
+- `images/plants/8/photo-01.jpg` through `photo-12.jpg` — automatic gallery
+
+Wildlife photos are organized by profile slug:
+
+- `images/wildlife/brenda/hero.jpg`
+- `images/wildlife/brenda/photo-01.jpg` through `photo-12.jpg`
+- `images/wildlife/big-booty-judy/hero.jpg`
+
+The site quietly hides missing gallery files. Add or replace the correctly named JPG, commit, and push; no HTML edits are needed.
