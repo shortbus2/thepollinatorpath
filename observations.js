@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjv4ib9",
+    "id": "2026-07-13-mrjv66aa",
     "date": "2026-07-13",
-    "title": "#4 · Bee Balm · First bloom",
+    "title": "#21 · Hummingbird Trumpet · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "4"
+      "id": "21"
     },
     "plants": [
-      4
+      21
     ],
     "visitors": [],
     "objects": [],
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjv4ib9/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjv66aa/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
