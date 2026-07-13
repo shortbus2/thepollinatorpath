@@ -1,30 +1,30 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvahjq",
+    "id": "2026-07-13-mrjvkfnx",
     "date": "2026-07-13",
-    "title": "#8 · Blanket Flower · First bloom",
+    "title": "#27 · Little Bluestem · New growth",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "8"
+      "id": "27"
     },
     "plants": [
-      8
+      27
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "First bloom"
+      "New growth"
     ],
     "stage": "",
     "confidence": "confirmed",
-    "public": false,
+    "public": true,
     "featured": false,
     "notes": "",
-    "setHero": false,
+    "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvahjq/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvkfnx/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
