@@ -1,0 +1,9 @@
+name = "pollinator-field-notebook"
+main = "src/worker.js"
+compatibility_date = "2026-07-01"
+
+[vars]
+GITHUB_OWNER = "shortbus2"
+GITHUB_REPO = "thepollinatorpath"
+GITHUB_BRANCH = "main"
+ALLOWED_ORIGIN = "https://thepollinatorpath.co"

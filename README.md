@@ -116,3 +116,16 @@ Wildlife photos are organized by profile slug:
 - `images/wildlife/big-booty-judy/hero.jpg`
 
 The site quietly hides missing gallery files. Add or replace the correctly named JPG, commit, and push; no HTML edits are needed.
+
+## Local photo uploader
+
+Open `uploader.html` in Microsoft Edge or Google Chrome on Windows.
+
+1. Choose the cloned repository folder (the folder containing `data.js` and `images`).
+2. Choose Plant or Wildlife and select the subject.
+3. Drop in JPG, PNG, WebP, HEIC, or HEIF photographs.
+4. Optionally make the first image the page portrait.
+5. Click **Prepare and file photos**.
+6. Commit and push the resulting changes in GitHub Desktop.
+
+The uploader creates web-sized JPG copies (maximum 1600 px long edge), files them in the correct subject folder, and rewrites `image-manifest.js`. Your original photographs are not changed.

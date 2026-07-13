@@ -107,3 +107,6 @@ linear-gradient(135deg,#234f2d,#668459)}
 .wildlife-content{padding-top:.5rem}
 @media(max-width:800px){.visitor-grid{grid-template-columns:1fr}.visitor-card-link{grid-template-columns:36% 64%}.visitor-photo{min-height:260px}.media-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.visitor-card-link{grid-template-columns:1fr}.visitor-photo{min-height:250px}.media-gallery{display:flex;overflow:auto}.media-tile{min-width:78%}.wildlife-hero{min-height:290px}}
+
+/* Field notebook journals */
+.journal-list{display:grid;gap:16px}.journal-entry{border-top:1px solid #d8d3c7;padding-top:16px}.journal-entry:first-child{border-top:0;padding-top:0}.journal-date{font-size:.86rem;text-transform:uppercase;letter-spacing:.06em;color:#66705f;font-weight:800}.journal-entry h3{margin:.3rem 0}.journal-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}.journal-photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px}.field-notebook-link{position:fixed;right:16px;bottom:16px;z-index:40;background:#42583f;color:white;padding:12px 16px;border-radius:999px;text-decoration:none;font-weight:800}@media(max-width:640px){.journal-photos{grid-template-columns:1fr 1fr}}

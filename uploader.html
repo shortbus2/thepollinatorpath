@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photo Uploader · The Pollinator Path</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body{background:#f4f1e9}.upload-wrap{max-width:980px;margin:0 auto;padding:32px 20px 64px}.upload-card{background:#fff;border:1px solid #d8d3c7;border-radius:22px;padding:24px;margin-top:18px}.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.upload-field{display:flex;flex-direction:column;gap:7px}.upload-field label{font-weight:700}.upload-field select,.upload-field input,.upload-field textarea{font:inherit;padding:12px;border:1px solid #aaa;border-radius:10px;background:#fff}.drop-zone{border:2px dashed #7e8c72;border-radius:18px;padding:30px;text-align:center;background:#f8faf5;cursor:pointer}.drop-zone.drag{background:#edf5e8}.file-list{display:grid;gap:8px;margin-top:15px}.file-row{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;background:#f6f4ef;border-radius:10px}.upload-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.status{margin-top:16px;padding:12px;border-radius:10px;background:#f2f5ef;white-space:pre-wrap}.small{font-size:.9rem;color:#5d625a}.hero-choice{display:flex;gap:8px;align-items:center;margin-top:12px}@media(max-width:700px){.upload-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="upload-wrap">
+    <p class="eyebrow">Local maintenance tool</p>
+    <h1>The Pollinator Path Photo Uploader</h1>
+    <p>This runs on your computer. It prepares web-sized JPGs, files them under the correct plant or visitor, and updates the gallery manifest. Nothing is uploaded anywhere until you commit and push with GitHub Desktop.</p>
+
+    <section class="upload-card">
+      <div class="upload-grid">
+        <div class="upload-field">
+          <label for="kind">What are these photos of?</label>
+          <select id="kind"><option value="plants">Plant</option><option value="wildlife">Wildlife visitor</option></select>
+        </div>
+        <div class="upload-field">
+          <label for="subject">Choose the subject</label>
+          <select id="subject"></select>
+        </div>
+        <div class="upload-field">
+          <label for="date">Photo date</label>
+          <input id="date" type="date">
+        </div>
+        <div class="upload-field">
+          <label for="caption">Caption (optional)</label>
+          <input id="caption" type="text" placeholder="Collecting pollen on blanket flower">
+        </div>
+      </div>
+
+      <div id="drop" class="drop-zone" tabindex="0" role="button" aria-label="Choose photographs">
+        <strong>Drop photographs here</strong><br>
+        <span class="small">or click to choose JPG, PNG, WebP, HEIC, or HEIF files</span>
+        <input id="files" type="file" accept="image/*,.heic,.heif" multiple hidden>
+      </div>
+      <label class="hero-choice"><input id="makeHero" type="checkbox"> Use the first selected image as the page portrait (hero.jpg)</label>
+      <div id="fileList" class="file-list"></div>
+
+      <div class="upload-actions">
+        <button id="chooseRepo" class="btn btn-outline" type="button">1. Choose repository folder</button>
+        <button id="process" class="btn btn-green" type="button" disabled>2. Prepare and file photos</button>
+      </div>
+      <div id="status" class="status" aria-live="polite">Choose the cloned <strong>thepollinatorpath</strong> repository folder first.</div>
+    </section>
+
+    <section class="upload-card">
+      <h2>What the tool does</h2>
+      <p>HEIC/HEIF files are converted to JPG. Every image is resized to a maximum of 1600 pixels on its longest side and saved at web-friendly quality. Gallery files receive descriptive date-based names. The tool then rewrites <code>image-manifest.js</code>, which tells the website exactly which images belong on each page.</p>
+      <p class="small">Use Microsoft Edge or Google Chrome on Windows. Keep your full-resolution originals in Apple Photos; these are optimized website copies.</p>
+    </section>
+  </main>
+  <script src="vendor/heic2any.min.js"></script>
+  <script src="data.js"></script>
+  <script>
+  (() => {
+    const kind = document.querySelector('#kind');
+    const subject = document.querySelector('#subject');
+    const date = document.querySelector('#date');
+    const caption = document.querySelector('#caption');
+    const input = document.querySelector('#files');
+    const drop = document.querySelector('#drop');
+    const list = document.querySelector('#fileList');
+    const chooseRepo = document.querySelector('#chooseRepo');
+    const processBtn = document.querySelector('#process');
+    const status = document.querySelector('#status');
+    const makeHero = document.querySelector('#makeHero');
+    let repoHandle = null;
+    let selectedFiles = [];
+
+    date.value = new Date().toISOString().slice(0,10);
+
+    function fillSubjects(){
+      const items = kind.value === 'plants'
+        ? window.PLANTS.map(p => ({value:String(p.number), label:`#${p.number} · ${p.common} (${p.botanical})`}))
+        : window.VISITORS.map(v => ({value:v.slug, label:`${v.name} · ${v.species}`}));
+      subject.innerHTML = items.map(i => `<option value="${i.value}">${i.label}</option>`).join('');
+    }
+    fillSubjects();
+    kind.addEventListener('change', fillSubjects);
+
+    function showFiles(files){
+      selectedFiles = [...files];
+      list.innerHTML = selectedFiles.map((f,i)=>`<div class="file-row"><span>${i===0 && makeHero.checked ? 'Portrait · ' : ''}${f.name}</span><span>${(f.size/1024/1024).toFixed(1)} MB</span></div>`).join('');
+      processBtn.disabled = !(repoHandle && selectedFiles.length);
+    }
+    input.addEventListener('change', e => showFiles(e.target.files));
+    makeHero.addEventListener('change', () => showFiles(selectedFiles));
+    drop.addEventListener('click', () => input.click());
+    drop.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();input.click();} });
+    ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
+    ['dragleave','drop'].forEach(ev => drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')}));
+    drop.addEventListener('drop', e => showFiles([...e.dataTransfer.files].filter(f => f.type.startsWith('image/') || /\.(heic|heif)$/i.test(f.name))));
+
+    chooseRepo.addEventListener('click', async () => {
+      if(!window.showDirectoryPicker){ status.textContent='This browser does not support direct folder access. Open this page in Microsoft Edge or Google Chrome.'; return; }
+      try {
+        repoHandle = await window.showDirectoryPicker({mode:'readwrite'});
+        const names=[]; for await (const [name] of repoHandle.entries()) names.push(name);
+        if(!names.includes('data.js') || !names.includes('images')) throw new Error('That does not look like the website repository folder. Choose the folder containing data.js and images.');
+        status.textContent=`Repository connected: ${repoHandle.name}`;
+        processBtn.disabled = !selectedFiles.length;
+      } catch(err){ if(err.name!=='AbortError') status.textContent=err.message; }
+    });
+
+    async function getDir(parent, name){ return parent.getDirectoryHandle(name,{create:true}); }
+    async function writeBlob(dir,name,blob){ const h=await dir.getFileHandle(name,{create:true}); const w=await h.createWritable(); await w.write(blob); await w.close(); }
+    async function writeText(root,name,text){ const h=await root.getFileHandle(name,{create:true}); const w=await h.createWritable(); await w.write(text); await w.close(); }
+
+    async function toJpeg(file){
+      let blob=file;
+      if(/\.(heic|heif)$/i.test(file.name) || /heic|heif/i.test(file.type)){
+        const converted=await heic2any({blob:file,toType:'image/jpeg',quality:.92});
+        blob=Array.isArray(converted)?converted[0]:converted;
+      }
+      const bitmap=await createImageBitmap(blob,{imageOrientation:'from-image'});
+      const scale=Math.min(1,1600/Math.max(bitmap.width,bitmap.height));
+      const canvas=document.createElement('canvas');
+      canvas.width=Math.round(bitmap.width*scale); canvas.height=Math.round(bitmap.height*scale);
+      canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);
+      bitmap.close();
+      return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Could not create JPG')),'image/jpeg',.84));
+    }
+
+    async function scanManifest(){
+      const manifest={plants:{},wildlife:{}};
+      const images=await getDir(repoHandle,'images');
+      for(const group of ['plants','wildlife']){
+        const groupDir=await getDir(images,group);
+        for await(const [key,handle] of groupDir.entries()){
+          if(handle.kind!=='directory') continue;
+          const gallery=[]; let hero=null;
+          for await(const [name,item] of handle.entries()){
+            if(item.kind!=='file' || !/\.(jpg|jpeg|png|webp)$/i.test(name)) continue;
+            const src=`images/${group}/${key}/${name}`;
+            if(name.toLowerCase()==='hero.jpg') hero=src;
+            else if(name.toLowerCase()!=='readme.txt') gallery.push({src,caption:''});
+          }
+          gallery.sort((a,b)=>a.src.localeCompare(b.src));
+          if(hero || gallery.length) manifest[group][key]={hero,gallery};
+        }
+      }
+      return manifest;
+    }
+
+    processBtn.addEventListener('click', async () => {
+      if(!repoHandle || !selectedFiles.length) return;
+      processBtn.disabled=true;
+      try{
+        const images=await getDir(repoHandle,'images');
+        const groupDir=await getDir(images,kind.value);
+        const target=await getDir(groupDir,subject.value);
+        const day=date.value || new Date().toISOString().slice(0,10);
+        let sequence=1;
+        const existing=[]; for await(const [name] of target.entries()) existing.push(name);
+        while(existing.some(n=>n.startsWith(`${day}-${String(sequence).padStart(2,'0')}`))) sequence++;
+        const written=[];
+        for(let i=0;i<selectedFiles.length;i++){
+          status.textContent=`Processing ${i+1} of ${selectedFiles.length}: ${selectedFiles[i].name}`;
+          const jpg=await toJpeg(selectedFiles[i]);
+          let name;
+          if(i===0 && makeHero.checked) name='hero.jpg';
+          else { name=`${day}-${String(sequence).padStart(2,'0')}.jpg`; sequence++; }
+          await writeBlob(target,name,jpg); written.push(name);
+        }
+        const manifest=await scanManifest();
+        const cap=caption.value.trim();
+        if(cap){
+          const entry=manifest[kind.value][subject.value];
+          if(entry){
+            for(const item of entry.gallery){ if(written.some(n=>item.src.endsWith('/'+n))) item.caption=cap; }
+          }
+        }
+        await writeText(repoHandle,'image-manifest.js','window.IMAGE_MANIFEST = '+JSON.stringify(manifest,null,2)+';\n');
+        status.textContent=`Done. Added ${written.length} web-ready image${written.length===1?'':'s'}:\n${written.join('\n')}\n\nOpen GitHub Desktop, commit, and push.`;
+        selectedFiles=[]; input.value=''; list.innerHTML='';
+      }catch(err){ status.textContent='Could not finish: '+err.message; }
+      finally{processBtn.disabled=!(repoHandle && selectedFiles.length);}
+    });
+  })();
+  </script>
+</body>
+</html>

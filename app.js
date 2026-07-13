@@ -45,6 +45,24 @@
 
 
   function autoGallery(folder, label, icon, count = 12) {
+    const parts = folder.split("/");
+    const group = parts[1] === "plants" ? "plants" : "wildlife";
+    const key = parts[2];
+    const manifestItems = window.IMAGE_MANIFEST?.[group]?.[key]?.gallery || [];
+
+    if (manifestItems.length) {
+      return manifestItems.map((item, index) => {
+        const src = typeof item === "string" ? item : item.src;
+        const caption = typeof item === "string" ? "" : (item.caption || "");
+        return `
+          <figure class="media-tile">
+            <img src="${src}" alt="${label} gallery photo ${index + 1}" loading="lazy">
+            ${caption ? `<figcaption>${caption}</figcaption>` : ""}
+          </figure>
+        `;
+      }).join("");
+    }
+
     return Array.from({ length: count }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return `
@@ -65,6 +83,25 @@
         else tile.remove();
       }
     });
+  }
+
+
+  function observationsForPlant(number) {
+    return (window.OBSERVATIONS || []).filter(o => o.public !== false && (o.plants || []).map(Number).includes(Number(number)));
+  }
+  function observationsForVisitor(slug) {
+    return (window.OBSERVATIONS || []).filter(o => o.public !== false && (o.visitors || []).includes(slug));
+  }
+  function observationJournal(items) {
+    if (!items.length) return '<p class="empty">No dated journal entries yet. The garden is still writing this page.</p>';
+    return items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(o => `
+      <article class="journal-entry">
+        <div class="journal-date">${new Date((o.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div>
+        <h3>${o.title || 'Garden observation'}</h3>
+        ${(o.photos||[]).length ? `<div class="journal-photos">${o.photos.map((src,i)=>`<img src="${src}" alt="${o.title||'Observation'} photo ${i+1}" loading="lazy">`).join('')}</div>` : ''}
+        ${o.notes ? `<p>${o.notes}</p>` : ''}
+        <div class="chips">${(o.behaviors||[]).map(x=>`<span class="chip">${x}</span>`).join('')}${o.confidence && o.confidence!=='confirmed'?`<span class="chip">${o.confidence} ID</span>`:''}</div>
+      </article>`).join('');
   }
 
   function statusLinks(status) {
@@ -285,6 +322,10 @@
             </section>
 
             <section class="panel">
+              <h2>Living plant journal</h2>
+              <div class="journal-list">${observationJournal(observationsForPlant(plant.number))}</div>
+            </section>
+            <section class="panel">
               <h2>My garden notes</h2>
               <ul>${plant.notes.map((note) => `<li>${note}</li>`).join("")}</ul>
             </section>
@@ -372,11 +413,14 @@
           <div>
             <section class="panel"><h2>Its garden story</h2><p>${visitor.story}</p></section>
             <section class="panel">
-              <h2>Photo journal</h2>
+              <h2>Photo gallery</h2>
               <div class="media-gallery auto-gallery">
                 ${autoGallery(`images/wildlife/${visitor.slug}`, visitor.name, visitor.icon)}
               </div>
-              <div class="gallery-empty-note">Add photos named <code>photo-01.jpg</code>, <code>photo-02.jpg</code>, and so on inside <code>images/wildlife/${visitor.slug}/</code>. They appear here automatically.</div>
+            </section>
+            <section class="panel">
+              <h2>Living visitor journal</h2>
+              <div class="journal-list">${observationJournal(observationsForVisitor(visitor.slug))}</div>
             </section>
           </div>
           <aside>
