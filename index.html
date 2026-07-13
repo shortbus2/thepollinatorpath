@@ -1,228 +1,35 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Pollinator Path — a Colorado garden designed for bees, butterflies, birds, and people.">
-  <title>The Pollinator Path</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Explore The Pollinator Path, a real Colorado front-yard habitat for bees, butterflies, birds and people."><title>The Pollinator Path</title><link rel="stylesheet" href="styles.css"></head><body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html"><span class="brand-mark">❧</span><span><strong>The <span style="color:#8166a4">Pollinator</span> Path</strong><small>A Colorado native garden</small></span></a>
+    <button class="menu-btn" aria-label="Open menu">☰</button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="plants.html">Plants</a><a href="map.html">Garden Map</a><a href="index.html#wildlife">Wildlife</a><a href="index.html#journal">Garden Journal</a>
+    </nav>
+  </div>
+</header>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#home" aria-label="The Pollinator Path home">
-        <span class="brand-mark" aria-hidden="true">✤</span>
-        <span>The Pollinator Path</span>
-      </a>
-      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#plants">Plants</a>
-        <a href="#calendar">Bloom Calendar</a>
-        <a href="#wildlife">Wildlife</a>
-        <a href="#habitat">Habitat</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section id="home" class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Mead, Colorado · Zone 5b</p>
-        <h1>A garden designed for bees, butterflies, birds, and people.</h1>
-        <p class="hero-text">
-          This small front-yard habitat is planted with Colorado natives and regionally adapted plants
-          to provide food, shelter, water, and nesting space through every season.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#plants">Meet the plants</a>
-          <a class="button button-secondary" href="#wildlife">See who has visited</a>
-        </div>
-      </div>
-
-      <div class="hero-art" aria-label="Decorative garden illustration">
-        <div class="sun"></div>
-        <div class="ridge ridge-back"></div>
-        <div class="ridge ridge-front"></div>
-        <div class="flower flower-one"><span></span></div>
-        <div class="flower flower-two"><span></span></div>
-        <div class="flower flower-three"><span></span></div>
-        <div class="bee" aria-hidden="true">✦</div>
-      </div>
-    </section>
-
-    <section id="about" class="section two-column">
-      <div>
-        <p class="eyebrow">Why this garden exists</p>
-        <h2>More than a pretty yard</h2>
-      </div>
-      <div class="prose">
-        <p>
-          The Pollinator Path began as a home landscape and grew into a living ecosystem.
-          Every plant, stone, bare-soil patch, seed head, and water source has a job.
-        </p>
-        <p>
-          The goal is not perfection. It is connection: between native plants and native insects,
-          between birds and the insects they depend on, and between neighbors and the small lives
-          unfolding just outside the front door.
-        </p>
-      </div>
-    </section>
-
-    <section class="stats-strip" aria-label="Garden highlights">
-      <div><strong>50+</strong><span>plant varieties</span></div>
-      <div><strong>4 seasons</strong><span>of habitat value</span></div>
-      <div><strong>0</strong><span>weed barrier sheets</span></div>
-      <div><strong>Many</strong><span>tiny garden residents</span></div>
-    </section>
-
-    <section id="plants" class="section section-tinted">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Plant directory</p>
-          <h2>Meet the plants</h2>
-        </div>
-        <p>Search by common name, scientific name, bloom color, or visitor.</p>
-      </div>
-
-      <div class="plant-tools">
-        <label class="search-box">
-          <span class="sr-only">Search plants</span>
-          <input id="plant-search" type="search" placeholder="Search plants…">
-        </label>
-        <div class="filter-row" aria-label="Plant filters">
-          <button class="filter-button active" data-filter="all">All</button>
-          <button class="filter-button" data-filter="native">Native</button>
-          <button class="filter-button" data-filter="plant-select">Plant Select</button>
-          <button class="filter-button" data-filter="hummingbird">Hummingbirds</button>
-          <button class="filter-button" data-filter="bee">Bees</button>
-        </div>
-      </div>
-
-      <div id="plant-grid" class="card-grid" aria-live="polite"></div>
-    </section>
-
-    <section id="calendar" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Seasonal rhythm</p>
-          <h2>Bloom calendar</h2>
-        </div>
-        <p>A simplified view of when some favorite plants are usually in flower.</p>
-      </div>
-
-      <div class="calendar-wrap">
-        <div class="calendar-legend">
-          <span><i class="dot early"></i> Early season</span>
-          <span><i class="dot mid"></i> Midseason</span>
-          <span><i class="dot late"></i> Late season</span>
-        </div>
-        <div class="bloom-chart" role="img" aria-label="Bloom periods from March through October">
-          <div class="month-row">
-            <span></span><b>Mar</b><b>Apr</b><b>May</b><b>Jun</b><b>Jul</b><b>Aug</b><b>Sep</b><b>Oct</b>
-          </div>
-          <div class="bloom-row"><span>Prairie smoke</span><i style="--start:2;--span:3" class="bar early"></i></div>
-          <div class="bloom-row"><span>Blue flax</span><i style="--start:3;--span:3" class="bar early"></i></div>
-          <div class="bloom-row"><span>Blanket flower</span><i style="--start:4;--span:5" class="bar mid"></i></div>
-          <div class="bloom-row"><span>Bee balm</span><i style="--start:5;--span:3" class="bar mid"></i></div>
-          <div class="bloom-row"><span>Hummingbird trumpet</span><i style="--start:6;--span:3" class="bar late"></i></div>
-          <div class="bloom-row"><span>Smooth aster</span><i style="--start:7;--span:3" class="bar late"></i></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="wildlife" class="section section-dark">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Garden sightings</p>
-          <h2>Who has visited?</h2>
-        </div>
-        <p>Documented visitors, repeat guests, and a few residents with names.</p>
-      </div>
-
-      <div class="sighting-grid">
-        <article class="sighting-card">
-          <span class="sighting-icon">◉</span>
-          <p class="tag">Bird</p>
-          <h3>Broad-tailed hummingbird</h3>
-          <p>Probable adult female seen using Vermillion Bluffs and hummingbird trumpet in July 2026.</p>
-        </article>
-        <article class="sighting-card">
-          <span class="sighting-icon">✦</span>
-          <p class="tag">Native bee</p>
-          <h3>Leafcutter bee “Brenda”</h3>
-          <p>A repeat visitor to blanket flower, returning for several consecutive days.</p>
-        </article>
-        <article class="sighting-card">
-          <span class="sighting-icon">●</span>
-          <p class="tag">Amphibian</p>
-          <h3>Big Booty Judy</h3>
-          <p>Resident toad and unofficial habitat quality inspector.</p>
-        </article>
-        <article class="sighting-card">
-          <span class="sighting-icon">✺</span>
-          <p class="tag">Moth</p>
-          <h3>White-lined sphinx</h3>
-          <p>Probable nighttime visitor, helping pollinate flowers after dark.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="habitat" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Habitat in practice</p>
-          <h2>Small features, big impact</h2>
-        </div>
-      </div>
-
-      <div class="feature-grid">
-        <article>
-          <span class="feature-number">01</span>
-          <h3>Bare soil</h3>
-          <p>Open patches provide nesting space for ground-nesting native bees.</p>
-        </article>
-        <article>
-          <span class="feature-number">02</span>
-          <h3>Water</h3>
-          <p>Shallow, moving water and landing stones offer safer access for birds and insects.</p>
-        </article>
-        <article>
-          <span class="feature-number">03</span>
-          <h3>Winter stems</h3>
-          <p>Seed heads and hollow stems remain standing to provide food and shelter.</p>
-        </article>
-        <article>
-          <span class="feature-number">04</span>
-          <h3>Leaf litter & shelter</h3>
-          <p>Logs, rocks, leaves, and protected pockets create places to hide, rest, and overwinter.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section visit-section">
-      <div>
-        <p class="eyebrow">Welcome</p>
-        <h2>Please enjoy the garden.</h2>
-        <p>Please help protect this habitat by staying on the path.</p>
-      </div>
-      <div class="qr-placeholder" aria-label="QR code placeholder">
-        <span>QR</span>
-        <small>Add your final website link here</small>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>Made with care in Mead, Colorado.</p>
-    <p>© <span id="year"></span> The Pollinator Path</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<main id="main">
+<section class="hero"><div class="hero-inner"><div class="eyebrow">Mead, Colorado · Zone 5b</div><h1>Welcome to<br>The Pollinator Path</h1><p>A real front-yard habitat supporting bees, butterflies, birds, and people—and a rabbit hole you are warmly invited to fall down.</p><div class="button-row"><a class="btn btn-primary" href="map.html">🗺 Explore the Garden</a><a class="btn btn-secondary" href="plants.html">🌼 Browse Plants</a></div></div></section>
+<section class="section"><div class="eyebrow">Choose your own adventure</div><h2>How would you like to explore?</h2><p class="intro">Start with a plant. Follow its pollinators. Learn why leafcutter bees cut perfect circles and why some bees nest in dirt. Suddenly it is midnight and you have opinions about bare soil. Welcome.</p>
+<div class="explore-grid">
+<a class="explore-card" href="map.html"><span class="icon">🗺️</span><div><h3>Garden Map</h3><p>See the whole yard and tap numbered plants—even when the tag is too far away.</p></div><b>→</b></a>
+<a class="explore-card" href="plants.html"><span class="icon">🌼</span><div><h3>Browse Plants</h3><p>Search by name, number, bloom season, plant type, or visitor.</p></div><b>→</b></a>
+<a class="explore-card" href="#wildlife"><span class="icon">🐝</span><div><h3>Meet the Wildlife</h3><p>Repeat guests, tiny architects, and a resident toad with a magnificent name.</p></div><b>→</b></a>
+<a class="explore-card" href="#blooming"><span class="icon">📅</span><div><h3>What's Blooming?</h3><p>Follow the garden's seasonal rhythm from spring flowers to winter seed heads.</p></div><b>→</b></a>
+<a class="explore-card" href="#journal"><span class="icon">📖</span><div><h3>Garden Journal</h3><p>The projects, discoveries, mistakes, victories, and occasional mulch-related profanity.</p></div><b>→</b></a>
+</div></section>
+<section class="story-band"><div class="section"><div><div class="eyebrow">Why this exists</div><p class="quote">“I started with a plant. Then I asked what it supported. Then I found out some bees nest in the dirt.”</p></div><div><h2>More than a pretty yard</h2><p>Every plant, stone, seed head, bare-soil patch, and water source has a job. The goal is not perfection. It is connection—and helping people notice the small lives unfolding outside the front door.</p><p><strong>Also: zero weed-barrier sheets. We have standards.</strong></p></div></div></section>
+<section class="section" id="wildlife"><div class="eyebrow">Observed here</div><h2>Meet a few garden residents</h2><div class="explore-grid">
+<div class="explore-card"><span class="icon">🐦</span><div><h3>Broad-tailed Hummingbird</h3><p>A probable female used Vermillion Bluffs and Hummingbird Trumpet before disappearing into the oak.</p></div></div>
+<div class="explore-card"><span class="icon">🐝</span><div><h3>Brenda</h3><p>A repeat leafcutter-bee visitor to Blanket Flower. Celebrity status achieved almost immediately.</p></div></div>
+<div class="explore-card"><span class="icon">🐸</span><div><h3>Big Booty Judy</h3><p>Resident toad and unofficial habitat quality inspector.</p></div></div>
+<div class="explore-card"><span class="icon">🦋</span><div><h3>White-lined Sphinx</h3><p>A probable nighttime visitor doing the pollination night shift.</p></div></div>
+</div></section>
+<section class="section" id="blooming"><div class="eyebrow">Seasonal rhythm</div><h2>There is always something happening</h2><p class="intro">Spring begins with manzanita, columbine, penstemon and fruit-tree flowers. Summer belongs to the bee restaurants. Fall brings asters, goldenrod, rabbitbrush, grasses and seed-eating birds. Winter is not “dead”—it is shelter, food and structure.</p></section>
+<section class="section" id="journal"><div class="eyebrow">Garden journal</div><h2>Field notes from the rabbit hole</h2><div class="panel"><h3>July 2026 · The hummingbird proof</h3><p>My husband spotted a hummingbird from the office window using the plants we chose for her. That moment was proof that the garden was not just decoration. It was working.</p></div><div class="panel"><h3>July 2026 · Brenda returns</h3><p>A leafcutter bee returned to Blanket Flower for several consecutive days. Naturally, she received a name and a fan club.</p></div></section>
+</main>
+<footer class="footer"><p><strong>The Pollinator Path</strong></p><p>A front-yard habitat in Mead, Colorado. Please admire enthusiastically and stay on the path.</p></footer>
+<a class="floating-search" href="plants.html">⌕ Search Plants</a>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>

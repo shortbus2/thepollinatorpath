@@ -1,30 +1,60 @@
-# The Pollinator Path — Starter Website
+# The Pollinator Path — static GitHub Pages site
 
-This is a simple static website. No database, paid software, or coding framework is required.
+## What is included
+- Mobile-first entrance-QR home page
+- Searchable and filterable front-yard plant directory
+- One reusable plant profile page powered by `data.js`
+- Interactive schematic garden map with clickable numbered pins
+- Personal notes, humor, observed-wildlife sections, photo placeholders
+- No database, build system, or paid hosting required
 
-## Files
+## Publish on GitHub Pages
+1. Download and unzip the package.
+2. Upload the contents—not the outer folder—to the root of your existing GitHub Pages repository.
+3. Replace the existing files when GitHub asks.
+4. Commit the changes.
+5. GitHub Pages will publish the update.
 
-- `index.html` — page content and structure
-- `styles.css` — colors, layout, typography, and mobile styling
-- `script.js` — plant search, filters, mobile menu, and sample plant data
+Keep a copy of your current `index.html` before replacing it.
 
-## Open it
+## Add or edit a plant
+Open `data.js`. Each plant is one object inside `window.PLANTS`.
 
-Double-click `index.html` to preview the website in a browser.
+Important fields:
+- `number`
+- `common`
+- `botanical`
+- `location`
+- `status`
+- `pollinators`
+- `bloom`
+- `type`
+- `sun`
+- `water`
+- `story`
+- `observed`
+- `notes`
+- `mapZone`
 
-## Edit the plant list
+The directory, profile page, search, and map all update from that one record.
 
-Open `script.js` in any text editor. The plant directory is the `plants` list at the top.
-Copy an existing plant entry, paste it below, and replace the text.
+## Add plant photos
+Put a JPG at:
+`images/plants/PLANTNUMBER.jpg`
 
-## Add photos later
+Example:
+`images/plants/8.jpg`
 
-A simple next step is to add an `images` folder and place garden photos inside it. The decorative header currently uses CSS artwork, so the starter works without any image files.
+The current starter design uses botanical placeholders. The next upgrade is wiring the real image into each card and gallery, after your photos are selected and cropped consistently.
 
-## Publish it free
+## Refine the map
+Open `app.js` and find:
+`const zones = { ... }`
 
-This folder can be published using GitHub Pages, Netlify, or Cloudflare Pages. It can also be used as the design/content blueprint for Squarespace, Wix, or WordPress.
+Those percentages place the center of each garden zone. Plants are automatically arranged around their zone. For an exact map, the next step is to add `mapX` and `mapY` percentages to each plant in `data.js` using the numbered planting plan.
 
-## QR code
-
-After publishing, create a QR code that points to the final website address and replace the placeholder box near the bottom of the page.
+## Content accuracy notes
+- Only plants listed in front-yard-related locations were included: Front yard, Shed garden, Garage wall, and Trash-can planter.
+- Plants with blank locations or only Back yard were omitted.
+- Botanical capitalization, hybrid symbols, and several common names were standardized.
+- Bloom windows are practical garden ranges and can be adjusted to your actual observations.
