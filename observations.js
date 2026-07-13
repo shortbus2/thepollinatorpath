@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjv1r5e",
+    "id": "2026-07-13-mrjv4ib9",
     "date": "2026-07-13",
-    "title": "#62 · Pineleaf Penstemon · First bloom",
+    "title": "#4 · Bee Balm · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "62"
+      "id": "4"
     },
     "plants": [
-      62
+      4
     ],
     "visitors": [],
     "objects": [],
@@ -22,9 +22,9 @@ window.OBSERVATIONS = [
     "public": true,
     "featured": false,
     "notes": "",
-    "setHero": false,
+    "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjv1r5e/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjv4ib9/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
