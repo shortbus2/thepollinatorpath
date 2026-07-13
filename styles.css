@@ -39,3 +39,20 @@ linear-gradient(135deg,#234f2d,#668459)}
   .welcome-card h2{font-size:2rem}
   .why-grid{grid-template-columns:1fr}
 }
+
+
+.chip-link{text-decoration:none;font-weight:700;transition:.15s background,.15s transform}
+.chip-link:hover,.chip-link:focus{background:#ddd2ea;transform:translateY(-1px)}
+.text-link{color:var(--purple);font-weight:800;text-decoration-thickness:2px;text-underline-offset:3px}
+.rabbit-layout{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;padding-top:1rem}
+.rabbit-box{background:#f3edf8;border:1px solid #d9cae7;border-radius:18px;padding:1.2rem;margin:1rem 0;font-size:1.05rem}
+.resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.resource-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:1.3rem}
+.resource-card h2{font-family:Georgia,serif;font-weight:500;font-size:1.8rem;margin:.4rem 0}
+.resource-icon{font-size:2rem}
+.start-small{max-width:780px;margin:2rem auto}
+.start-small li{margin:.6rem 0}
+@media(max-width:650px){
+ .rabbit-layout,.resource-grid{grid-template-columns:1fr}
+ .resource-card .btn{width:100%}
+}

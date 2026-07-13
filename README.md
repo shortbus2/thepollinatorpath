@@ -68,3 +68,13 @@ This version adds:
 - “Curiosity is encouraged”
 - A new “Why This Garden Exists” section
 - Updated navigation linking directly to that story
+
+## Rabbit-hole update
+Added:
+- Clickable Native, Native Cultivar, Cultivar, and Plant Select badges
+- Native explainer page
+- Native-cultivar explainer page
+- Plant Select feature page with official links
+- Colorado starter-resources page featuring Resource Central, CSU Extension, Plant Select, and CoNPS
+- A sixth home-page exploration card for starting a garden
+- Removal of the duplicate purple “why this exists” section
