@@ -1,28 +1,26 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-brenda-blanket-flower",
+    "id": "2026-07-13-mrjubzhc",
     "date": "2026-07-13",
-    "time": "",
-    "title": "Brenda on Blanket Flower",
-    "type": "wildlife",
-    "plants": [
-      8
-    ],
+    "title": "Brenda",
+    "type": "observation",
+    "primary": {
+      "kind": "visitor",
+      "id": "brenda"
+    },
+    "plants": [],
     "visitors": [
       "brenda"
     ],
-    "areas": [
-      "Front Path"
-    ],
-    "behaviors": [
-      "Collecting pollen"
-    ],
-    "stage": "Full bloom",
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
     "confidence": "probable",
-    "public": true,
-    "featured": true,
-    "notes": "Repeat leafcutter bee visit to blanket flower.",
-    "privateNotes": "",
+    "public": false,
+    "featured": false,
+    "notes": "Testing",
+    "setHero": false,
     "photos": []
   }
 ];
