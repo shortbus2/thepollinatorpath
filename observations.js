@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjv66aa",
+    "id": "2026-07-13-mrjvahjq",
     "date": "2026-07-13",
-    "title": "#21 · Hummingbird Trumpet · First bloom",
+    "title": "#8 · Blanket Flower · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "21"
+      "id": "8"
     },
     "plants": [
-      21
+      8
     ],
     "visitors": [],
     "objects": [],
@@ -19,12 +19,12 @@ window.OBSERVATIONS = [
     ],
     "stage": "",
     "confidence": "confirmed",
-    "public": true,
+    "public": false,
     "featured": false,
     "notes": "",
-    "setHero": true,
+    "setHero": false,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjv66aa/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvahjq/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
