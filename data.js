@@ -1,5 +1,23 @@
 window.PLANTS = [
   {
+    "number": 27,
+    "common": "Little Bluestem",
+    "botanical": "Schizachyrium scoparium",
+    "location": "Front Garden",
+    "status": "Native",
+    "pollinators": ["Birds", "Native insects"],
+    "bloom": "August–October",
+    "type": "Grass",
+    "sun": "Full sun",
+    "water": "Low",
+    "story": "Fine blue-green blades, copper fall color, and winter structure that keeps working after bloom season ends.",
+    "slug": "little-bluestem",
+    "image": "images/plants/27/hero.jpg",
+    "observed": [],
+    "notes": ["Three plants are positioned near the prairie wine cups in the west front bed."],
+    "mapZone": "West Garden"
+  },
+  {
     "number": 2,
     "common": "Aspen Daisy",
     "botanical": "Erigeron speciosus",

@@ -1,0 +1,1 @@
+(()=>{const g=document.querySelector('#object-grid');g.innerHTML=GARDEN_BRAIN.objects.filter(o=>o.public).map(o=>`<article class="object-card"><span class="object-type">${o.type}</span><h2>${o.name}</h2><p>${o.species||GARDEN_BRAIN.areas.find(a=>a.id===o.area)?.name||''}</p><a href="object.html?id=${o.id}">Open living page →</a></article>`).join('')})();
