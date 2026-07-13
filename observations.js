@@ -1,26 +1,30 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjubzhc",
+    "id": "2026-07-13-mrjuz62o",
     "date": "2026-07-13",
-    "title": "Brenda",
+    "title": "#62 · Pineleaf Penstemon · First bloom",
     "type": "observation",
     "primary": {
-      "kind": "visitor",
-      "id": "brenda"
+      "kind": "plant",
+      "id": "62"
     },
-    "plants": [],
-    "visitors": [
-      "brenda"
+    "plants": [
+      62
     ],
+    "visitors": [],
     "objects": [],
     "areas": [],
-    "behaviors": [],
+    "behaviors": [
+      "First bloom"
+    ],
     "stage": "",
-    "confidence": "probable",
-    "public": false,
+    "confidence": "confirmed",
+    "public": true,
     "featured": false,
-    "notes": "Testing",
+    "notes": "The little beautiful plant that could",
     "setHero": false,
-    "photos": []
+    "photos": [
+      "images/observations/2026/2026-07-13-mrjuz62o/2026-07-13-01-jpg.jpg"
+    ]
   }
 ];
