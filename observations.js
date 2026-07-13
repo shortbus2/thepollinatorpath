@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvrhu1",
+    "id": "2026-07-13-mrjvsbsd",
     "date": "2026-07-13",
-    "title": "#37 · Smooth Aster · First bloom",
+    "title": "#23 · Isanti Red-Twig Dogwood · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "37"
+      "id": "23"
     },
     "plants": [
-      37
+      23
     ],
     "visitors": [],
     "objects": [],
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvrhu1/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvsbsd/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
