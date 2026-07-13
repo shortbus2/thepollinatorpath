@@ -131,11 +131,18 @@ async function atomicCommit(env, files, message) {
 
 function parseWindowArray(text, variableName) {
   if (!text) return [];
-  const escaped = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = text.match(new RegExp(`window\\.${escaped}\\s*=\\s*([\\s\\S]*);\\s*$`));
+  const escaped = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\$&");
+  const match = text.match(new RegExp(`window\.${escaped}\s*=\s*([\s\S]*?);(?:\s|$)`));
   if (!match) return [];
-  const parsed = JSON.parse(match[1]);
-  return Array.isArray(parsed) ? parsed : [];
+  try {
+    const parsed = JSON.parse(match[1]);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    // Some legacy bridge files contain JavaScript expressions rather than JSON.
+    // They are valid in the browser, but the Worker must never fail the entire
+    // authenticated /garden response because one optional collection is legacy.
+    return [];
+  }
 }
 
 function serializeWindowArray(variableName, value, comment = "") {
@@ -218,7 +225,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/health" && request.method === "GET") {
-      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "3.0" }, 200, headers);
+      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "3.0.1" }, 200, headers);
     }
     if (!authenticated(request, env)) return json({ error: "Unauthorized" }, 401, headers);
 
