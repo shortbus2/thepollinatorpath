@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvtdph",
+    "id": "2026-07-13-mrjvut2e",
     "date": "2026-07-13",
-    "title": "#30 · Prairie Winecups · Full bloom",
+    "title": "#2 · Aspen Daisy · Full bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "30"
+      "id": "2"
     },
     "plants": [
-      30
+      2
     ],
     "visitors": [],
     "objects": [],
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvtdph/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvut2e/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
