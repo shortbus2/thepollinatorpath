@@ -1,21 +1,21 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvkfnx",
+    "id": "2026-07-13-mrjvlmsb",
     "date": "2026-07-13",
-    "title": "#27 · Little Bluestem · New growth",
+    "title": "#30 · Prairie Winecups · Full bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "27"
+      "id": "30"
     },
     "plants": [
-      27
+      30
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "New growth"
+      "Full bloom"
     ],
     "stage": "",
     "confidence": "confirmed",
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvkfnx/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvlmsb/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
