@@ -58,3 +58,13 @@ Those percentages place the center of each garden zone. Plants are automatically
 - Plants with blank locations or only Back yard were omitted.
 - Botanical capitalization, hybrid symbols, and several common names were standardized.
 - Bloom windows are practical garden ranges and can be adjusted to your actual observations.
+
+
+## Welcome-and-invitation update
+This version adds:
+- A prominent “You’re Welcome Here” invitation immediately below the hero
+- Explicit permission to walk the front paths, take photos, linger, and say hello
+- A stepping-stone request explained through habitat rather than rules
+- “Curiosity is encouraged”
+- A new “Why This Garden Exists” section
+- Updated navigation linking directly to that story
