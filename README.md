@@ -87,3 +87,9 @@ Added:
 - Honeycrisp Apple (#58) is restored as a Front Garden plant based on the actual west-side map.
 - Native, Native Cultivar/Cultivar, and Plant Select badges are clickable on cards and profile pages.
 - JavaScript syntax and plant-data loading were validated before packaging.
+
+## Plant photos
+
+Plant images are optional. The site now shows a designed placeholder whenever a
+file is absent, so plant cards and profiles remain fully visible from day one.
+Add photos later to `images/plants/` using the plant number, such as `8.jpg`.

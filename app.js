@@ -24,6 +24,25 @@
     return "🌼";
   }
 
+
+  function activateImageFallbacks(parent = document) {
+    $$(".image-shell", parent).forEach((shell) => {
+      const image = $(".plant-image", shell);
+      if (!image || image.dataset.fallbackReady === "true") return;
+
+      image.dataset.fallbackReady = "true";
+      const showFallback = () => shell.classList.add("image-missing");
+      const showImage = () => shell.classList.remove("image-missing");
+
+      image.addEventListener("error", showFallback, { once: true });
+      image.addEventListener("load", showImage, { once: true });
+
+      if (image.complete) {
+        image.naturalWidth > 0 ? showImage() : showFallback();
+      }
+    });
+  }
+
   function statusLinks(status) {
     const lower = status.toLowerCase();
     const links = [];
@@ -61,9 +80,13 @@
     return `
       <article class="plant-card">
         <a class="plant-card-main" href="plant.html?id=${plant.number}">
-          <div class="plant-photo">
+          <div class="plant-photo image-shell">
+            <img class="plant-image" src="${plant.image}" alt="${plant.common}" loading="lazy">
+            <div class="image-fallback" aria-hidden="true">
+              <span class="fallback-icon">${iconFor(plant)}</span>
+              <span class="fallback-label">Photo coming soon</span>
+            </div>
             <span class="plant-number">#${plant.number}</span>
-            <span aria-hidden="true">${iconFor(plant)}</span>
           </div>
           <div class="plant-content">
             <h3>${plant.common}</h3>
@@ -147,6 +170,7 @@
         : '<p class="empty">No plants found. The bees have not stolen them; try another filter.</p>';
 
       count.textContent = `Showing ${visible.length} of ${PLANTS.length} plants.`;
+      activateImageFallbacks(grid);
     }
 
     search.addEventListener("input", renderPlants);
@@ -184,9 +208,13 @@
 
     plantPage.innerHTML = `
       <div class="plant-layout">
-        <div class="plant-hero-image">
+        <div class="plant-hero-image image-shell">
+          <img class="plant-image" src="${plant.image}" alt="${plant.common}">
+          <div class="image-fallback" aria-hidden="true">
+            <span class="fallback-icon">${iconFor(plant)}</span>
+            <span class="fallback-label">Photo coming soon</span>
+          </div>
           <span class="plant-number">Plant #${plant.number}</span>
-          <span aria-hidden="true">${iconFor(plant)}</span>
         </div>
 
         <div class="plant-header">
@@ -227,10 +255,13 @@
             <section class="panel">
               <h2>Photo gallery</h2>
               <div class="gallery">
-                <div class="gallery-item">🌱</div>
-                <div class="gallery-item">🌸</div>
-                <div class="gallery-item">🐝</div>
-                <div class="gallery-item">🌾</div>
+                <div class="gallery-item gallery-photo image-shell">
+                  <img class="plant-image" src="${plant.image}" alt="${plant.common}">
+                  <div class="image-fallback" aria-hidden="true"><span class="fallback-icon">${iconFor(plant)}</span><span class="fallback-label">Plant portrait</span></div>
+                </div>
+                <div class="gallery-item"><span>🌱</span><small>Emerging</small></div>
+                <div class="gallery-item"><span>🌸</span><small>In bloom</small></div>
+                <div class="gallery-item"><span>🐝</span><small>Garden visitors</small></div>
               </div>
               <p><small>Photos and seasonal views will grow alongside the garden.</small></p>
             </section>
@@ -262,6 +293,7 @@
         </div>
       </div>
     `;
+    activateImageFallbacks(plantPage);
   }
 
   const map = $("#garden-map");
