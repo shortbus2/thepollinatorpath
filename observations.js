@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvut2e",
+    "id": "2026-07-13-mrjvwl2h",
     "date": "2026-07-13",
-    "title": "#2 · Aspen Daisy · Full bloom",
+    "title": "#49 · Vermillion Bluffs · Full bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "2"
+      "id": "49"
     },
     "plants": [
-      2
+      49
     ],
     "visitors": [],
     "objects": [],
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvut2e/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvwl2h/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
