@@ -1,21 +1,21 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvpi34",
+    "id": "2026-07-13-mrjvrhu1",
     "date": "2026-07-13",
-    "title": "#25 · Leadplant · New growth",
+    "title": "#37 · Smooth Aster · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "25"
+      "id": "37"
     },
     "plants": [
-      25
+      37
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "New growth"
+      "First bloom"
     ],
     "stage": "",
     "confidence": "confirmed",
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvpi34/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvrhu1/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
