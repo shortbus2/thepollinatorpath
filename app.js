@@ -6,15 +6,15 @@
  function statusLinks(status){
    const s=status.toLowerCase();
    const links=[];
-   if(s.includes('native') && !s.includes('non-native')) links.push(`<a class="chip chip-link" href="native.html">Native</a>`);
-   if(s.includes('cultivar')) links.push(`<a class="chip chip-link" href="native-cultivar.html">${s.includes('native cultivar')?'Native cultivar':'Cultivar'}</a>`);
-   if(s.includes('plant select')) links.push(`<a class="chip chip-link" href="plant-select.html">Plant Select</a>`);
+   if(s.includes('native') && !s.includes('non-native')) links.push(`<a class="chip chip-link" href="native.html" aria-label="What Native means" title="What Native means">Native</a>`);
+   if(s.includes('cultivar')) links.push(`<a class="chip chip-link" href="native-cultivar.html" aria-label="What a native cultivar means" title="What a native cultivar means">${s.includes('native cultivar')?'Native cultivar':'Cultivar'}</a>`);
+   if(s.includes('plant select')) links.push(`<a class="chip chip-link" href="plant-select.html" aria-label="What Plant Select means" title="What Plant Select means">Plant Select</a>`);
    if(s.includes('non-native')) links.push(`<span class="chip">Non-native</span>`);
    return links.length?links.join(''):`<span class="chip">${status}</span>`;
  }
 
  function iconFor(p){if(p.type==='Tree')return'🌳';if(p.type==='Grass')return'🌾';if(p.type==='Shrub')return'🌿';if(p.type==='Vine')return'🌱';return'🌼'}
- function card(p){return `<a class="plant-card" href="plant.html?id=${p.number}"><div class="plant-photo"><span class="plant-number">#${p.number}</span><span>${iconFor(p)}</span></div><div class="plant-content"><h3>${p.common}</h3><div class="botanical">${p.botanical}</div><div class="meta">${p.bloom}</div><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span></div><div class="card-link">View plant →</div></div></a>`}
+ function card(p){return `<article class="plant-card"><a class="plant-card-main" href="plant.html?id=${p.number}"><div class="plant-photo"><span class="plant-number">#${p.number}</span><span>${iconFor(p)}</span></div><div class="plant-content"><h3>${p.common}</h3><div class="botanical">${p.botanical}</div><div class="meta">${p.bloom}</div></a><div class="plant-card-actions"><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span></div><a class="card-link" href="plant.html?id=${p.number}">View plant →</a></div></article>`}
  const grid=$('#plant-grid');
  if(grid){
    const search=$('#search'), type=$('#type'), status=$('#status'), bloom=$('#bloom');
@@ -30,7 +30,7 @@
    const id=Number(new URLSearchParams(location.search).get('id')); const p=PLANTS.find(x=>x.number===id)||PLANTS[0];
    document.title=`${p.common} · The Pollinator Path`;
    const visitors=(p.observed.length?p.observed:['Visitor records coming soon']).map(v=>`<div class="visitor"><div class="visitor-icon">${/humming/i.test(v)?'🐦':/butter|monarch/i.test(v)?'🦋':/bird/i.test(v)?'🐦':'🐝'}</div><small>${v}</small></div>`).join('');
-   page.innerHTML=`<div class="plant-layout"><div class="plant-hero-image"><span class="plant-number">Plant #${p.number}</span>${iconFor(p)}</div><div class="plant-header"><div class="standing">📍 You’re standing in front of this plant—or you found it from the map while avoiding eye contact with a spiderweb.</div><h1>${p.common}</h1><div class="botanical" style="font-size:1.25rem">${p.botanical}</div><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span>${p.pollinators.map(x=>`<span class="chip">${x}</span>`).join('')}</div><div class="quick-grid"><div class="quick">☀️ <strong>Light</strong><small>${p.sun}</small></div><div class="quick">💧 <strong>Water</strong><small>${p.water}</small></div><div class="quick">🌸 <strong>Blooms</strong><small>${p.bloom}</small></div><div class="quick">📍 <strong>Find it</strong><small>${p.mapZone}</small></div></div></div>
+   page.innerHTML=`<div class="plant-layout"><div class="plant-hero-image"><span class="plant-number">Plant #${p.number}</span>${iconFor(p)}</div><div class="plant-header"><div class="standing">📍 You’re standing in front of this plant—or you found it from the map while avoiding eye contact with a spiderweb.</div><h1>${p.common}</h1><div class="botanical" style="font-size:1.25rem">${p.botanical}</div><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span>${p.pollinators.map(x=>`<span class="chip">${x}</span>`).join(\'\')}</div><div class="quick-grid"><div class="quick">☀️ <strong>Light</strong><small>${p.sun}</small></div><div class="quick">💧 <strong>Water</strong><small>${p.water}</small></div><div class="quick">🌸 <strong>Blooms</strong><small>${p.bloom}</small></div><div class="quick">📍 <strong>Find it</strong><small>${p.mapZone}</small></div></div></div>
    <div class="content-grid"><div>
    <section class="panel"><h2>Why I love it</h2><p>${p.story}</p></section>
    <section class="panel"><h2>Observed in my garden</h2><div class="visitor-list">${visitors}</div><p><small>These are actual garden observations where available—not a generic “may attract” list.</small></p></section>

@@ -78,3 +78,11 @@ Added:
 - Colorado starter-resources page featuring Resource Central, CSU Extension, Plant Select, and CoNPS
 - A sixth home-page exploration card for starting a garden
 - Removal of the duplicate purple “why this exists” section
+
+
+## Clickable badge and future backyard update
+- Plant status badges on cards and profile pages are now true links.
+- Native opens `native.html`.
+- Native Cultivar/Cultivar opens `native-cultivar.html`.
+- Plant Select opens `plant-select.html`.
+- A home-page teaser introduces a future “There’s More Hiding” section for the future areas without treating those spaces as part of the public front-yard route.

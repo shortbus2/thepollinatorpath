@@ -56,3 +56,18 @@ linear-gradient(135deg,#234f2d,#668459)}
  .rabbit-layout,.resource-grid{grid-template-columns:1fr}
  .resource-card .btn{width:100%}
 }
+
+
+.plant-card{display:flex;flex-direction:column}
+.plant-card-main{display:block;text-decoration:none;color:inherit}
+.plant-card-actions{padding:0 1rem 1rem}
+.plant-card-actions .chips{margin-top:0}
+.chip-link{cursor:pointer;position:relative;z-index:2}
+.chip-link::after{content:" ↗";font-size:.72em}
+@media(max-width:650px){
+  .plant-card{display:grid;grid-template-columns:38% 62%;grid-template-rows:auto auto}
+  .plant-card-main{display:contents}
+  .plant-photo{grid-column:1;grid-row:1 / span 2}
+  .plant-content{grid-column:2;grid-row:1;padding-bottom:.3rem}
+  .plant-card-actions{grid-column:2;grid-row:2;padding:.2rem 1rem 1rem}
+}
