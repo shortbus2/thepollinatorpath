@@ -179,14 +179,21 @@ async function publishObservation(env, entry) {
     if (!raw) continue;
     if (raw.length > MAX_BASE64_CHARS) throw new Error("A prepared photo is too large");
     const primary = entry.primary || {};
-    let folder = `images/observations/${String(entry.date).slice(0, 4)}/${safeSlug(entry.id)}`;
-    if (photo.hero && primary.kind === "plant") folder = `images/plants/${safeSlug(primary.id)}`;
-    if (photo.hero && primary.kind === "visitor") folder = `images/wildlife/${safeSlug(primary.id)}`;
-    if (photo.hero && primary.kind === "object") folder = `images/objects/${safeSlug(primary.id)}`;
-    const filename = photo.hero ? "hero.jpg" : safeSlug(photo.name || `${entry.date}-${index + 1}.jpg`, `${index + 1}.jpg`);
-    const path = `${folder}/${filename.endsWith(".jpg") ? filename : `${filename}.jpg`}`;
-    files.push({ path, content: raw, encoding: "base64" });
-    photoPaths.push(path);
+    const journalFolder = `images/observations/${String(entry.date).slice(0, 4)}/${safeSlug(entry.id)}`;
+    const filename = safeSlug(photo.name || `${entry.date}-${index + 1}.jpg`, `${index + 1}.jpg`);
+    const journalPath = `${journalFolder}/${filename.endsWith(".jpg") ? filename : `${filename}.jpg`}`;
+    files.push({ path: journalPath, content: raw, encoding: "base64" });
+    photoPaths.push(journalPath);
+
+    // A master portrait is an additional copy. The dated journal image remains,
+    // so replacing a portrait never erases the observation history.
+    if (photo.hero) {
+      let heroFolder = "";
+      if (primary.kind === "plant") heroFolder = `images/plants/${safeSlug(primary.id)}`;
+      if (primary.kind === "visitor") heroFolder = `images/wildlife/${safeSlug(primary.id)}`;
+      if (primary.kind === "object") heroFolder = `images/objects/${safeSlug(primary.id)}`;
+      if (heroFolder) files.push({ path: `${heroFolder}/hero.jpg`, content: raw, encoding: "base64" });
+    }
   }
 
   const current = await getTextFile(env, "observations.js");
@@ -211,7 +218,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/health" && request.method === "GET") {
-      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "2.2" }, 200, headers);
+      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "3.0" }, 200, headers);
     }
     if (!authenticated(request, env)) return json({ error: "Unauthorized" }, 401, headers);
 
