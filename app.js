@@ -1,50 +1,347 @@
 
-(function(){
- const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>[...p.querySelectorAll(s)];
- const menu=$('.menu-btn'), links=$('.nav-links'); if(menu) menu.addEventListener('click',()=>links.classList.toggle('open'));
+(function () {
+  "use strict";
 
- function statusLinks(status){
-   const s=status.toLowerCase();
-   const links=[];
-   if(s.includes('native') && !s.includes('non-native')) links.push(`<a class="chip chip-link" href="native.html" aria-label="What Native means" title="What Native means">Native</a>`);
-   if(s.includes('cultivar')) links.push(`<a class="chip chip-link" href="native-cultivar.html" aria-label="What a native cultivar means" title="What a native cultivar means">${s.includes('native cultivar')?'Native cultivar':'Cultivar'}</a>`);
-   if(s.includes('plant select')) links.push(`<a class="chip chip-link" href="plant-select.html" aria-label="What Plant Select means" title="What Plant Select means">Plant Select</a>`);
-   if(s.includes('non-native')) links.push(`<span class="chip">Non-native</span>`);
-   return links.length?links.join(''):`<span class="chip">${status}</span>`;
- }
+  const $ = (selector, parent = document) => parent.querySelector(selector);
+  const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
 
- function iconFor(p){if(p.type==='Tree')return'🌳';if(p.type==='Grass')return'🌾';if(p.type==='Shrub')return'🌿';if(p.type==='Vine')return'🌱';return'🌼'}
- function card(p){return `<article class="plant-card"><a class="plant-card-main" href="plant.html?id=${p.number}"><div class="plant-photo"><span class="plant-number">#${p.number}</span><span>${iconFor(p)}</span></div><div class="plant-content"><h3>${p.common}</h3><div class="botanical">${p.botanical}</div><div class="meta">${p.bloom}</div></a><div class="plant-card-actions"><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span></div><a class="card-link" href="plant.html?id=${p.number}">View plant →</a></div></article>`}
- const grid=$('#plant-grid');
- if(grid){
-   const search=$('#search'), type=$('#type'), status=$('#status'), bloom=$('#bloom');
-   [...new Set(PLANTS.map(p=>p.type))].sort().forEach(v=>type.insertAdjacentHTML('beforeend',`<option>${v}</option>`));
-   [...new Set(PLANTS.map(p=>p.status))].sort().forEach(v=>status.insertAdjacentHTML('beforeend',`<option>${v}</option>`));
-   ['Spring','Summer','Fall','Long season'].forEach(v=>bloom.insertAdjacentHTML('beforeend',`<option>${v}</option>`));
-   function season(p,v){const b=p.bloom.toLowerCase(); if(!v)return true;if(v==='Spring')return /april|may/.test(b);if(v==='Summer')return /june|july|august/.test(b);if(v==='Fall')return /september|october/.test(b);return /may.*september|may.*october|june.*september|july.*october/.test(b)}
-   function render(){const q=search.value.trim().toLowerCase();const list=PLANTS.filter(p=>(!q||[p.number,p.common,p.botanical,p.location,p.status,p.pollinators.join(' ')].join(' ').toLowerCase().includes(q))&&(!type.value||p.type===type.value)&&(!status.value||p.status===status.value)&&season(p,bloom.value));grid.innerHTML=list.map(card).join('')||'<p class="empty">No plants found. The bees have not stolen them; try another filter.</p>';$('#result-count').textContent=`Showing ${list.length} of ${PLANTS.length} plants.`}
-   [search,type,status,bloom].forEach(el=>el.addEventListener(el.tagName==='INPUT'?'input':'change',render));render();
- }
- const page=$('#plant-page');
- if(page){
-   const id=Number(new URLSearchParams(location.search).get('id')); const p=PLANTS.find(x=>x.number===id)||PLANTS[0];
-   document.title=`${p.common} · The Pollinator Path`;
-   const visitors=(p.observed.length?p.observed:['Visitor records coming soon']).map(v=>`<div class="visitor"><div class="visitor-icon">${/humming/i.test(v)?'🐦':/butter|monarch/i.test(v)?'🦋':/bird/i.test(v)?'🐦':'🐝'}</div><small>${v}</small></div>`).join('');
-   page.innerHTML=`<div class="plant-layout"><div class="plant-hero-image"><span class="plant-number">Plant #${p.number}</span>${iconFor(p)}</div><div class="plant-header"><div class="standing">📍 You’re standing in front of this plant—or you found it from the map while avoiding eye contact with a spiderweb.</div><h1>${p.common}</h1><div class="botanical" style="font-size:1.25rem">${p.botanical}</div><div class="chips">${statusLinks(p.status)}<span class="chip">${p.type}</span>${p.pollinators.map(x=>`<span class="chip">${x}</span>`).join(\'\')}</div><div class="quick-grid"><div class="quick">☀️ <strong>Light</strong><small>${p.sun}</small></div><div class="quick">💧 <strong>Water</strong><small>${p.water}</small></div><div class="quick">🌸 <strong>Blooms</strong><small>${p.bloom}</small></div><div class="quick">📍 <strong>Find it</strong><small>${p.mapZone}</small></div></div></div>
-   <div class="content-grid"><div>
-   <section class="panel"><h2>Why I love it</h2><p>${p.story}</p></section>
-   <section class="panel"><h2>Observed in my garden</h2><div class="visitor-list">${visitors}</div><p><small>These are actual garden observations where available—not a generic “may attract” list.</small></p></section>
-   <section class="panel"><h2>Photo gallery</h2><div class="gallery"><div class="gallery-item">🌱</div><div class="gallery-item">🌸</div><div class="gallery-item">🐝</div><div class="gallery-item">🌾</div></div><p><small>Add your own images as <code>${p.image}</code> and expand this section over time.</small></p></section>
-   <section class="panel"><h2>My garden notes</h2><ul>${p.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section></div>
-   <aside><section class="panel"><h2>Where is this plant?</h2><p><strong>${p.mapZone}</strong><br>${p.location}</p><a class="btn btn-green" href="map.html?plant=${p.number}">View on map</a></section>
-   <section class="panel"><h2>Rabbit-hole starter</h2><p>${p.pollinators.includes('Native bees')||p.pollinators.includes('Bees')?'Many native bees are solitary. Some nest in hollow stems; others excavate tiny tunnels in bare ground. Yes, the dirt is habitat. No, it does not need to be “fixed.”':'Follow the visitor links as observations are added to see how this plant fits into the larger food web.'}</p></section></aside></div></div>`;
- }
- const map=$('#garden-map');
- if(map){
-   const zones={ "West Garden":[20,24], "Boulder Garden":[20,68], "Oak Garden":[61,26], "Front Path":[64,72], "Shed Garden":[86,76], "Planter":[80,16], "Garage Wall":[74,48] };
-   const grouped={}; PLANTS.forEach(p=>(grouped[p.mapZone]??=[]).push(p));
-   Object.entries(grouped).forEach(([z,list])=>{const base=zones[z]||[50,50];list.forEach((p,i)=>{const angle=i*2.399;const radius=3+Math.sqrt(i)*2.2;const x=Math.max(3,Math.min(97,base[0]+Math.cos(angle)*radius));const y=Math.max(4,Math.min(96,base[1]+Math.sin(angle)*radius));map.insertAdjacentHTML('beforeend',`<button class="pin" style="left:${x}%;top:${y}%" data-id="${p.number}" aria-label="Plant ${p.number}, ${p.common}">${p.number}</button>`);});});
-   const pop=$('#map-pop');$$('.pin',map).forEach(btn=>btn.addEventListener('click',()=>{const p=PLANTS.find(x=>x.number===Number(btn.dataset.id));pop.innerHTML=`<button style="float:right;border:0;background:none;font-size:1.3rem" aria-label="Close">×</button><strong>#${p.number} · ${p.common}</strong><div class="botanical">${p.botanical}</div><p>${p.mapZone} · ${p.bloom}</p><a class="btn btn-green" href="plant.html?id=${p.number}">Open plant profile</a>`;pop.classList.add('open');$('button',pop).addEventListener('click',()=>pop.classList.remove('open'));}));
-   const focus=Number(new URLSearchParams(location.search).get('plant'));if(focus){const b=$(`.pin[data-id="${focus}"]`,map);if(b){setTimeout(()=>b.click(),100);b.scrollIntoView({block:'center'});}}
- }
+  const menuButton = $(".menu-btn");
+  const navLinks = $(".nav-links");
+
+  if (menuButton && navLinks) {
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+
+  function iconFor(plant) {
+    if (plant.type === "Tree") return "🌳";
+    if (plant.type === "Grass") return "🌾";
+    if (plant.type === "Shrub") return "🌿";
+    if (plant.type === "Vine") return "🌱";
+    if (plant.type === "Groundcover") return "🍃";
+    return "🌼";
+  }
+
+  function statusLinks(status) {
+    const lower = status.toLowerCase();
+    const links = [];
+
+    if (lower.includes("native") && !lower.includes("non-native")) {
+      links.push(
+        '<a class="chip chip-link" href="native.html" aria-label="Learn what Native means">Native ↗</a>'
+      );
+    }
+
+    if (lower.includes("native cultivar")) {
+      links.push(
+        '<a class="chip chip-link" href="native-cultivar.html" aria-label="Learn what Native Cultivar means">Native cultivar ↗</a>'
+      );
+    } else if (lower.includes("cultivar") && !lower.includes("non-native")) {
+      links.push(
+        '<a class="chip chip-link" href="native-cultivar.html" aria-label="Learn what Cultivar means">Cultivar ↗</a>'
+      );
+    }
+
+    if (lower.includes("plant select")) {
+      links.push(
+        '<a class="chip chip-link" href="plant-select.html" aria-label="Learn what Plant Select means">Plant Select ↗</a>'
+      );
+    }
+
+    if (lower.includes("non-native")) {
+      links.push('<span class="chip">Non-native</span>');
+    }
+
+    return links.length ? links.join("") : `<span class="chip">${status}</span>`;
+  }
+
+  function plantCard(plant) {
+    return `
+      <article class="plant-card">
+        <a class="plant-card-main" href="plant.html?id=${plant.number}">
+          <div class="plant-photo">
+            <span class="plant-number">#${plant.number}</span>
+            <span aria-hidden="true">${iconFor(plant)}</span>
+          </div>
+          <div class="plant-content">
+            <h3>${plant.common}</h3>
+            <div class="botanical">${plant.botanical}</div>
+            <div class="meta">${plant.bloom}</div>
+          </div>
+        </a>
+        <div class="plant-card-actions">
+          <div class="chips">
+            ${statusLinks(plant.status)}
+            <span class="chip">${plant.type}</span>
+          </div>
+          <a class="card-link" href="plant.html?id=${plant.number}">View plant →</a>
+        </div>
+      </article>
+    `;
+  }
+
+  const grid = $("#plant-grid");
+
+  if (grid) {
+    const search = $("#search");
+    const type = $("#type");
+    const status = $("#status");
+    const bloom = $("#bloom");
+    const count = $("#result-count");
+
+    [...new Set(PLANTS.map((plant) => plant.type))]
+      .sort()
+      .forEach((value) => {
+        type.insertAdjacentHTML("beforeend", `<option value="${value}">${value}</option>`);
+      });
+
+    [...new Set(PLANTS.map((plant) => plant.status))]
+      .sort()
+      .forEach((value) => {
+        status.insertAdjacentHTML("beforeend", `<option value="${value}">${value}</option>`);
+      });
+
+    ["Spring", "Summer", "Fall", "Long season"].forEach((value) => {
+      bloom.insertAdjacentHTML("beforeend", `<option value="${value}">${value}</option>`);
+    });
+
+    function matchesSeason(plant, selected) {
+      if (!selected) return true;
+      const value = plant.bloom.toLowerCase();
+
+      if (selected === "Spring") return /april|may/.test(value);
+      if (selected === "Summer") return /june|july|august/.test(value);
+      if (selected === "Fall") return /september|october/.test(value);
+
+      return /may.*september|may.*october|june.*september|july.*october/.test(value);
+    }
+
+    function renderPlants() {
+      const query = search.value.trim().toLowerCase();
+
+      const visible = PLANTS.filter((plant) => {
+        const searchable = [
+          plant.number,
+          plant.common,
+          plant.botanical,
+          plant.location,
+          plant.status,
+          plant.type,
+          plant.pollinators.join(" ")
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return (
+          (!query || searchable.includes(query)) &&
+          (!type.value || plant.type === type.value) &&
+          (!status.value || plant.status === status.value) &&
+          matchesSeason(plant, bloom.value)
+        );
+      });
+
+      grid.innerHTML = visible.length
+        ? visible.map(plantCard).join("")
+        : '<p class="empty">No plants found. The bees have not stolen them; try another filter.</p>';
+
+      count.textContent = `Showing ${visible.length} of ${PLANTS.length} plants.`;
+    }
+
+    search.addEventListener("input", renderPlants);
+    type.addEventListener("change", renderPlants);
+    status.addEventListener("change", renderPlants);
+    bloom.addEventListener("change", renderPlants);
+    renderPlants();
+  }
+
+  const plantPage = $("#plant-page");
+
+  if (plantPage) {
+    const id = Number(new URLSearchParams(window.location.search).get("id"));
+    const plant = PLANTS.find((item) => Number(item.number) === id) || PLANTS[0];
+
+    document.title = `${plant.common} · The Pollinator Path`;
+
+    const visitors = (plant.observed.length
+      ? plant.observed
+      : ["Visitor records coming soon"]
+    )
+      .map((visitor) => {
+        let icon = "🐝";
+        if (/humming|bird/i.test(visitor)) icon = "🐦";
+        if (/butter|monarch/i.test(visitor)) icon = "🦋";
+
+        return `
+          <div class="visitor">
+            <div class="visitor-icon" aria-hidden="true">${icon}</div>
+            <small>${visitor}</small>
+          </div>
+        `;
+      })
+      .join("");
+
+    plantPage.innerHTML = `
+      <div class="plant-layout">
+        <div class="plant-hero-image">
+          <span class="plant-number">Plant #${plant.number}</span>
+          <span aria-hidden="true">${iconFor(plant)}</span>
+        </div>
+
+        <div class="plant-header">
+          <div class="standing">
+            📍 You’re standing in front of this plant—or you found it from the map while wisely avoiding a spiderweb.
+          </div>
+
+          <h1>${plant.common}</h1>
+          <div class="botanical" style="font-size:1.25rem">${plant.botanical}</div>
+
+          <div class="chips">
+            ${statusLinks(plant.status)}
+            <span class="chip">${plant.type}</span>
+            ${plant.pollinators.map((value) => `<span class="chip">${value}</span>`).join("")}
+          </div>
+
+          <div class="quick-grid">
+            <div class="quick">☀️ <strong>Light</strong><small>${plant.sun}</small></div>
+            <div class="quick">💧 <strong>Water</strong><small>${plant.water}</small></div>
+            <div class="quick">🌸 <strong>Blooms</strong><small>${plant.bloom}</small></div>
+            <div class="quick">📍 <strong>Find it</strong><small>${plant.mapZone}</small></div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div>
+            <section class="panel">
+              <h2>Why I love it</h2>
+              <p>${plant.story}</p>
+            </section>
+
+            <section class="panel">
+              <h2>Observed in my garden</h2>
+              <div class="visitor-list">${visitors}</div>
+              <p><small>Actual garden observations appear here when available—not a generic “may attract” list.</small></p>
+            </section>
+
+            <section class="panel">
+              <h2>Photo gallery</h2>
+              <div class="gallery">
+                <div class="gallery-item">🌱</div>
+                <div class="gallery-item">🌸</div>
+                <div class="gallery-item">🐝</div>
+                <div class="gallery-item">🌾</div>
+              </div>
+              <p><small>Photos and seasonal views will grow alongside the garden.</small></p>
+            </section>
+
+            <section class="panel">
+              <h2>My garden notes</h2>
+              <ul>${plant.notes.map((note) => `<li>${note}</li>`).join("")}</ul>
+            </section>
+          </div>
+
+          <aside>
+            <section class="panel">
+              <h2>Where is this plant?</h2>
+              <p><strong>${plant.mapZone}</strong><br>${plant.location}</p>
+              <a class="btn btn-green" href="map.html?plant=${plant.number}">View on map</a>
+            </section>
+
+            <section class="panel">
+              <h2>Rabbit-hole starter</h2>
+              <p>
+                ${
+                  plant.pollinators.includes("Native bees") || plant.pollinators.includes("Bees")
+                    ? "Many native bees are solitary. Some nest in hollow stems; others excavate tiny tunnels in bare ground. Yes, the dirt is habitat. No, it does not need to be “fixed.”"
+                    : "Follow the visitor links as observations are added to see how this plant fits into the larger food web."
+                }
+              </p>
+            </section>
+          </aside>
+        </div>
+      </div>
+    `;
+  }
+
+  const map = $("#garden-map");
+
+  if (map) {
+    const zoneCenters = {
+      "West Garden": [20, 24],
+      "Boulder Garden": [20, 68],
+      "Oak Garden": [61, 26],
+      "Front Path": [64, 72],
+      "Front Garden": [48, 48],
+      "Front Garden · West Side": [16, 52],
+      "Front Garden / Garage Wall Garden": [78, 48],
+      "Garage Wall Garden": [79, 55],
+      "The Screen Garden": [82, 16]
+    };
+
+    const grouped = {};
+
+    PLANTS.forEach((plant) => {
+      const zone = plant.mapZone || "Front Garden";
+      if (!grouped[zone]) grouped[zone] = [];
+      grouped[zone].push(plant);
+    });
+
+    Object.entries(grouped).forEach(([zone, list]) => {
+      const center = zoneCenters[zone] || [50, 50];
+
+      list.forEach((plant, index) => {
+        const angle = index * 2.399;
+        const radius = 3 + Math.sqrt(index) * 2.2;
+        const x = Math.max(3, Math.min(97, center[0] + Math.cos(angle) * radius));
+        const y = Math.max(4, Math.min(96, center[1] + Math.sin(angle) * radius));
+
+        map.insertAdjacentHTML(
+          "beforeend",
+          `<button
+             class="pin"
+             style="left:${x}%;top:${y}%"
+             data-id="${plant.number}"
+             aria-label="Plant ${plant.number}, ${plant.common}">
+             ${plant.number}
+           </button>`
+        );
+      });
+    });
+
+    const popup = $("#map-pop");
+
+    $$(".pin", map).forEach((button) => {
+      button.addEventListener("click", () => {
+        const plant = PLANTS.find(
+          (item) => Number(item.number) === Number(button.dataset.id)
+        );
+
+        popup.innerHTML = `
+          <button class="map-close" aria-label="Close">×</button>
+          <strong>#${plant.number} · ${plant.common}</strong>
+          <div class="botanical">${plant.botanical}</div>
+          <p>${plant.mapZone} · ${plant.bloom}</p>
+          <a class="btn btn-green" href="plant.html?id=${plant.number}">Open plant profile</a>
+        `;
+
+        popup.classList.add("open");
+        $(".map-close", popup).addEventListener("click", () =>
+          popup.classList.remove("open")
+        );
+      });
+    });
+
+    const focusPlant = Number(
+      new URLSearchParams(window.location.search).get("plant")
+    );
+
+    if (focusPlant) {
+      const target = $(`.pin[data-id="${focusPlant}"]`, map);
+      if (target) {
+        window.setTimeout(() => target.click(), 100);
+        target.scrollIntoView({ block: "center" });
+      }
+    }
+  }
 })();

@@ -3,7 +3,7 @@ window.PLANTS = [
     "number": 2,
     "common": "Aspen Daisy",
     "botanical": "Erigeron speciosus",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -26,7 +26,7 @@ window.PLANTS = [
     "number": 4,
     "common": "Bee Balm",
     "botanical": "Monarda fistulosa",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -50,7 +50,7 @@ window.PLANTS = [
     "number": 5,
     "common": "Big Bluestem",
     "botanical": "Andropogon gerardii",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Birds"
@@ -72,7 +72,7 @@ window.PLANTS = [
     "number": 8,
     "common": "Blanket Flower",
     "botanical": "Gaillardia aristata",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Bees",
@@ -101,7 +101,7 @@ window.PLANTS = [
     "number": 9,
     "common": "Blue Grama Grass",
     "botanical": "Bouteloua gracilis",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Birds",
@@ -124,7 +124,7 @@ window.PLANTS = [
     "number": 10,
     "common": "Harebell",
     "botanical": "Campanula rotundifolia",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -147,7 +147,7 @@ window.PLANTS = [
     "number": 11,
     "common": "Butterfly Weed",
     "botanical": "Asclepias tuberosa",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Butterflies",
@@ -170,7 +170,7 @@ window.PLANTS = [
     "number": 12,
     "common": "Chieftain Manzanita",
     "botanical": "Arctostaphylos × coloradoensis 'Chieftain'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Plant Select",
     "pollinators": [
       "Bees",
@@ -193,7 +193,7 @@ window.PLANTS = [
     "number": 15,
     "common": "Creeping Oregon Grape",
     "botanical": "Mahonia repens",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -216,7 +216,7 @@ window.PLANTS = [
     "number": 17,
     "common": "Dwarf Blue Rabbitbrush",
     "botanical": "Ericameria nauseosa",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -240,7 +240,7 @@ window.PLANTS = [
     "number": 19,
     "common": "Sulphur Flower Buckwheat",
     "botanical": "Eriogonum umbellatum",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -263,7 +263,7 @@ window.PLANTS = [
     "number": 20,
     "common": "Gro-Low Fragrant Sumac",
     "botanical": "Rhus aromatica 'Gro-Low'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native cultivar",
     "pollinators": [
       "Bees",
@@ -286,7 +286,7 @@ window.PLANTS = [
     "number": 21,
     "common": "Hummingbird Trumpet",
     "botanical": "Epilobium canum subsp. garrettii 'Orange Carpet'",
-    "location": "Front yard and garage wall",
+    "location": "Front Garden and Garage Wall Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Hummingbirds"
@@ -304,13 +304,13 @@ window.PLANTS = [
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
     ],
-    "mapZone": "Garage Wall"
+    "mapZone": "Front Garden / Garage Wall Garden"
   },
   {
     "number": 22,
     "common": "Indiangrass",
     "botanical": "Sorghastrum nutans",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Birds"
@@ -332,7 +332,7 @@ window.PLANTS = [
     "number": 23,
     "common": "Isanti Red-Twig Dogwood",
     "botanical": "Cornus sericea 'Isanti'",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native cultivar",
     "pollinators": [
       "Bees",
@@ -355,7 +355,7 @@ window.PLANTS = [
     "number": 24,
     "common": "Kelsey's Dwarf Red-Twig Dogwood",
     "botanical": "Cornus sericea 'Kelseyi'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native cultivar",
     "pollinators": [
       "Bees",
@@ -378,7 +378,7 @@ window.PLANTS = [
     "number": 25,
     "common": "Leadplant",
     "botanical": "Amorpha canescens",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -401,7 +401,7 @@ window.PLANTS = [
     "number": 26,
     "common": "Little Bluestem",
     "botanical": "Schizachyrium scoparium",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Birds"
@@ -423,7 +423,7 @@ window.PLANTS = [
     "number": 28,
     "common": "Panchito Manzanita",
     "botanical": "Arctostaphylos × coloradoensis 'Panchito'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Plant Select",
     "pollinators": [
       "Bees",
@@ -446,7 +446,7 @@ window.PLANTS = [
     "number": 29,
     "common": "Pitcher Sage",
     "botanical": "Salvia azurea",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -469,7 +469,7 @@ window.PLANTS = [
     "number": 30,
     "common": "Prairie Winecups",
     "botanical": "Callirhoe involucrata",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -492,7 +492,7 @@ window.PLANTS = [
     "number": 31,
     "common": "Purple Prairie Clover",
     "botanical": "Dalea purpurea",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -515,7 +515,7 @@ window.PLANTS = [
     "number": 32,
     "common": "Pussytoes",
     "botanical": "Antennaria parvifolia",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -538,7 +538,7 @@ window.PLANTS = [
     "number": 33,
     "common": "Red Birds in a Tree",
     "botanical": "Scrophularia macrantha",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Hummingbirds",
@@ -564,7 +564,7 @@ window.PLANTS = [
     "number": 34,
     "common": "Rocky Mountain Blazing Star",
     "botanical": "Liatris ligulistylis",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Monarchs",
@@ -588,7 +588,7 @@ window.PLANTS = [
     "number": 35,
     "common": "Rocky Mountain Columbine",
     "botanical": "Aquilegia coerulea",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Hummingbirds",
@@ -609,33 +609,10 @@ window.PLANTS = [
     "mapZone": "Oak Garden"
   },
   {
-    "number": 36,
-    "common": "Rocky Mountain Penstemon",
-    "botanical": "Penstemon strictus",
-    "location": "Shed garden",
-    "status": "Native",
-    "pollinators": [
-      "Bees",
-      "Hummingbirds"
-    ],
-    "bloom": "June–July",
-    "type": "Perennial",
-    "sun": "Full sun",
-    "water": "Low",
-    "story": "Blue-violet flower spikes and a bumblebee-approved landing strip.",
-    "slug": "rocky-mountain-penstemon",
-    "image": "images/plants/36.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
     "number": 37,
     "common": "Smooth Aster",
     "botanical": "Symphyotrichum laeve",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -658,7 +635,7 @@ window.PLANTS = [
     "number": 38,
     "common": "Spotted Joe-Pye Weed",
     "botanical": "Eutrochium maculatum",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Butterflies",
@@ -681,7 +658,7 @@ window.PLANTS = [
     "number": 39,
     "common": "Sticky Geranium",
     "botanical": "Geranium viscosissimum",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees"
@@ -703,7 +680,7 @@ window.PLANTS = [
     "number": 40,
     "common": "Stiff Goldenrod",
     "botanical": "Solidago rigida",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -726,7 +703,7 @@ window.PLANTS = [
     "number": 41,
     "common": "Sunset Hyssop",
     "botanical": "Agastache rupestris",
-    "location": "Front yard and garage wall",
+    "location": "Front Garden and Garage Wall Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Hummingbirds",
@@ -743,13 +720,13 @@ window.PLANTS = [
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
     ],
-    "mapZone": "Garage Wall"
+    "mapZone": "Front Garden / Garage Wall Garden"
   },
   {
     "number": 44,
     "common": "Tufted Hairgrass",
     "botanical": "Deschampsia cespitosa",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Birds"
@@ -771,7 +748,7 @@ window.PLANTS = [
     "number": 47,
     "common": "Turkish Speedwell",
     "botanical": "Veronica liwanensis",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Plant Select",
     "pollinators": [
       "Bees"
@@ -793,7 +770,7 @@ window.PLANTS = [
     "number": 49,
     "common": "Vermillion Bluffs",
     "botanical": "Salvia darcyi 'Pscarl'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Plant Select",
     "pollinators": [
       "Hummingbirds",
@@ -819,7 +796,7 @@ window.PLANTS = [
     "number": 50,
     "common": "Showy Milkweed",
     "botanical": "Asclepias speciosa",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Monarchs",
@@ -845,7 +822,7 @@ window.PLANTS = [
     "number": 51,
     "common": "Blue Flax",
     "botanical": "Linum lewisii",
-    "location": "Front yard and back yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Bees",
@@ -865,10 +842,32 @@ window.PLANTS = [
     "mapZone": "Boulder Garden"
   },
   {
+    "number": 58,
+    "common": "Honeycrisp Apple",
+    "botanical": "Malus domestica 'Honeycrisp'",
+    "location": "Front Garden",
+    "status": "Cultivar",
+    "pollinators": [
+      "Bees"
+    ],
+    "bloom": "April–May",
+    "type": "Tree",
+    "sun": "Full sun",
+    "water": "Moderate",
+    "story": "Meet Sassy Pants. She had a dramatic first Colorado summer and remains fully committed to having opinions.",
+    "slug": "honeycrisp-apple",
+    "image": "images/plants/58.jpg",
+    "observed": [],
+    "notes": [
+      "Photos, bloom records, fruit updates, and seasonal notes will grow alongside the garden."
+    ],
+    "mapZone": "Front Garden · West Side"
+  },
+  {
     "number": 59,
     "common": "Bacheri Blue Spruce",
     "botanical": "Picea pungens 'Bacheri'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Colorado native cultivar",
     "pollinators": [
       "Bird habitat"
@@ -892,7 +891,7 @@ window.PLANTS = [
     "number": 60,
     "common": "Firebird Crabapple",
     "botanical": "Malus sargentii 'Select A'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Plant Select",
     "pollinators": [
       "Bees",
@@ -915,7 +914,7 @@ window.PLANTS = [
     "number": 61,
     "common": "Heritage Oak",
     "botanical": "Quercus × macdanielii 'Clemons'",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Cultivar",
     "pollinators": [
       "Caterpillars",
@@ -942,7 +941,7 @@ window.PLANTS = [
     "number": 62,
     "common": "Pineleaf Penstemon",
     "botanical": "Penstemon pinifolius",
-    "location": "Trash-can planter",
+    "location": "The Screen Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Hummingbirds",
@@ -959,13 +958,13 @@ window.PLANTS = [
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
     ],
-    "mapZone": "Planter"
+    "mapZone": "The Screen Garden"
   },
   {
     "number": 63,
     "common": "Snow-in-Summer",
     "botanical": "Cerastium tomentosum",
-    "location": "Trash-can planter and front yard",
+    "location": "The Screen Garden and Front Garden",
     "status": "Non-native",
     "pollinators": [
       "Bees"
@@ -981,174 +980,13 @@ window.PLANTS = [
     "notes": [
       "Photos, visitor records, and seasonal notes will grow alongside the garden."
     ],
-    "mapZone": "Planter"
-  },
-  {
-    "number": 64,
-    "common": "Kintzley's Ghost Honeysuckle",
-    "botanical": "Lonicera reticulata 'Kintzley's Ghost'",
-    "location": "Shed garden",
-    "status": "Plant Select",
-    "pollinators": [
-      "Hummingbirds",
-      "Bees",
-      "Birds"
-    ],
-    "bloom": "May–June",
-    "type": "Vine",
-    "sun": "Full sun to part shade",
-    "water": "Low",
-    "story": "A Colorado heirloom vine with silver bracts, climbing the custom trellis that absolutely had to be centered.",
-    "slug": "kintzley-s-ghost-honeysuckle",
-    "image": "images/plants/64.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 65,
-    "common": "Moonbeam Coreopsis",
-    "botanical": "Coreopsis verticillata 'Moonbeam'",
-    "location": "Shed garden",
-    "status": "Cultivar",
-    "pollinators": [
-      "Bees",
-      "Butterflies"
-    ],
-    "bloom": "June–September",
-    "type": "Perennial",
-    "sun": "Full sun",
-    "water": "Low",
-    "story": "Soft yellow flowers that keep the shed garden bright without starting an argument with everything else.",
-    "slug": "moonbeam-coreopsis",
-    "image": "images/plants/65.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 66,
-    "common": "Magnus Coneflower",
-    "botanical": "Echinacea purpurea 'Magnus'",
-    "location": "Shed garden",
-    "status": "Cultivar",
-    "pollinators": [
-      "Bees",
-      "Butterflies",
-      "Birds"
-    ],
-    "bloom": "July–September",
-    "type": "Perennial",
-    "sun": "Full sun",
-    "water": "Low to moderate",
-    "story": "Big pink flowers, busy pollinator traffic, and seed heads worth leaving for the birds.",
-    "slug": "magnus-coneflower",
-    "image": "images/plants/66.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 67,
-    "common": "Walker's Low Catmint",
-    "botanical": "Nepeta × faassenii 'Walker's Low'",
-    "location": "Shed garden",
-    "status": "Plant Select",
-    "pollinators": [
-      "Bees"
-    ],
-    "bloom": "May–September",
-    "type": "Perennial",
-    "sun": "Full sun",
-    "water": "Low",
-    "story": "A long-blooming bee magnet with a name that lies about its height.",
-    "slug": "walker-s-low-catmint",
-    "image": "images/plants/67.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 68,
-    "common": "Rozanne Geranium",
-    "botanical": "Geranium 'Rozanne'",
-    "location": "Shed garden",
-    "status": "Non-native cultivar",
-    "pollinators": [
-      "Bees",
-      "Butterflies"
-    ],
-    "bloom": "June–October",
-    "type": "Perennial",
-    "sun": "Full sun to part shade",
-    "water": "Moderate",
-    "story": "A long-blooming backyard-style favorite allowed into the front because ecological value and joy are not mutually exclusive.",
-    "slug": "rozanne-geranium",
-    "image": "images/plants/68.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 69,
-    "common": "Karl Foerster Feather Reed Grass",
-    "botanical": "Calamagrostis × acutiflora 'Karl Foerster'",
-    "location": "Shed garden",
-    "status": "Non-native cultivar",
-    "pollinators": [
-      "Bird shelter"
-    ],
-    "bloom": "June–August",
-    "type": "Grass",
-    "sun": "Full sun",
-    "water": "Moderate",
-    "story": "Vertical punctuation beside the shed, because every sentence needs structure.",
-    "slug": "karl-foerster-feather-reed-grass",
-    "image": "images/plants/69.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
-  },
-  {
-    "number": 70,
-    "common": "May Night Salvia",
-    "botanical": "Salvia nemorosa 'May Night'",
-    "location": "Shed garden",
-    "status": "Non-native cultivar",
-    "pollinators": [
-      "Bees",
-      "Butterflies"
-    ],
-    "bloom": "May–August",
-    "type": "Perennial",
-    "sun": "Full sun",
-    "water": "Low",
-    "story": "Deep blue flower spikes and enough bee traffic to justify its passport.",
-    "slug": "may-night-salvia",
-    "image": "images/plants/70.jpg",
-    "observed": [],
-    "notes": [
-      "Photos, visitor records, and seasonal notes will grow alongside the garden."
-    ],
-    "mapZone": "Shed Garden"
+    "mapZone": "The Screen Garden"
   },
   {
     "number": 71,
     "common": "Chocolate Flower",
     "botanical": "Berlandiera lyrata",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native / Plant Select",
     "pollinators": [
       "Bees",
@@ -1174,7 +1012,7 @@ window.PLANTS = [
     "number": 72,
     "common": "Firecracker Penstemon",
     "botanical": "Penstemon eatonii",
-    "location": "Front yard",
+    "location": "Front Garden",
     "status": "Native",
     "pollinators": [
       "Hummingbirds",

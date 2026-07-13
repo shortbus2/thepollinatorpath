@@ -62,12 +62,13 @@ linear-gradient(135deg,#234f2d,#668459)}
 .plant-card-main{display:block;text-decoration:none;color:inherit}
 .plant-card-actions{padding:0 1rem 1rem}
 .plant-card-actions .chips{margin-top:0}
-.chip-link{cursor:pointer;position:relative;z-index:2}
-.chip-link::after{content:" ↗";font-size:.72em}
+.chip-link{cursor:pointer;font-weight:750;text-decoration:none}
+.chip-link:hover,.chip-link:focus{background:#ddd2ea;outline:2px solid var(--purple);outline-offset:2px}
+.map-close{float:right;border:0;background:none;font-size:1.3rem;cursor:pointer}
 @media(max-width:650px){
   .plant-card{display:grid;grid-template-columns:38% 62%;grid-template-rows:auto auto}
   .plant-card-main{display:contents}
   .plant-photo{grid-column:1;grid-row:1 / span 2}
-  .plant-content{grid-column:2;grid-row:1;padding-bottom:.3rem}
-  .plant-card-actions{grid-column:2;grid-row:2;padding:.2rem 1rem 1rem}
+  .plant-content{grid-column:2;grid-row:1;padding-bottom:.25rem}
+  .plant-card-actions{grid-column:2;grid-row:2;padding:.15rem 1rem 1rem}
 }
