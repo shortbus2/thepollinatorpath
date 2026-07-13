@@ -1,69 +1,63 @@
-# Garden Brain 2.1 — One-time automation setup
+# Garden Brain 2.2 — one-time deployment
 
-This connects the private iPhone Field Notebook and Map Editor to GitHub through a Cloudflare Worker. Never place the GitHub token in `field-config.js` or any public repository file.
+You are currently at Cloudflare's **Create a Worker** screen, but this project is deployed from PowerShell so Cloudflare receives the complete Garden Brain code rather than a starter template.
 
-## You need
-- Your GitHub account
-- A free Cloudflare account
-- Node.js installed on the Windows computer
-- Windows PowerShell or Terminal
+## 1. Put 2.2 in the repository
 
-## 1. Create a fine-grained GitHub token
-Create a fine-grained personal access token limited to the `shortbus2/thepollinatorpath` repository.
-Repository permission required: **Contents — Read and write**.
-Copy the token temporarily. Do not paste it into chat.
+Extract the ZIP and replace the files in the cloned `thepollinatorpath` repository. Commit and push with:
 
-## 2. Open Terminal in the worker folder
-In File Explorer, open the repository's `worker` folder. Right-click an empty area and choose **Open in Terminal**.
+    Install Garden Brain Server 2.2
+
+## 2. Open PowerShell in the Worker folder
+
+In GitHub Desktop choose **Repository → Show in Explorer**. Open the `worker` folder. Click the File Explorer address bar, type `powershell`, and press Enter.
 
 Run:
 
     npm install
     npx wrangler login
 
-A browser opens. Approve Cloudflare access.
+Approve the Cloudflare authorization page that opens.
 
-## 3. Add encrypted secrets
+## 3. Create a fine-grained GitHub token
+
+Create a fine-grained personal access token restricted to `shortbus2/thepollinatorpath`, with repository permission **Contents: Read and write**. Never paste the token into chat or a repository file.
+
+## 4. Store both secrets in Cloudflare
+
 Run:
 
     npx wrangler secret put GITHUB_TOKEN
 
 Paste the GitHub token when prompted.
 
-Create a long private notebook key (a password you will type on your iPhone), then run:
+Choose a long private Garden Brain password, then run:
 
     npx wrangler secret put NOTEBOOK_KEY
 
-Paste that private key when prompted.
+Paste that password when prompted.
 
-## 4. Deploy
+## 5. Deploy
+
 Run:
 
     npm run deploy
 
-Cloudflare prints a URL ending in `.workers.dev`. Copy it.
+Wrangler will print a URL ending in `.workers.dev`.
 
-## 5. Connect the website
-Open `field-config.js` in Notepad and change it to:
+## 6. Connect the public site
+
+Open `field-config.js` and set:
 
     window.FIELD_NOTEBOOK_CONFIG = {
       apiUrl: "https://YOUR-WORKER.workers.dev",
       mode: "cloud"
     };
 
-Save. In GitHub Desktop, commit and push the changed file.
+Commit and push only this non-secret Worker URL.
 
-## 6. Test
-Open:
+## 7. Test safely
 
-- `https://thepollinatorpath.co/field-notebook.html`
-- `https://thepollinatorpath.co/garden-map-editor.html`
+First visit the Worker URL followed by `/health`. It should report Garden Brain version 2.2. Then open the live Map Editor and publish one harmless marker adjustment. Finally create one observation without a photograph.
 
-Enter the same private notebook key you stored in Cloudflare.
-First test with a harmless map marker or a simple observation without a photo.
-
-## Security notes
-- The GitHub token is stored only as an encrypted Cloudflare secret.
-- The browser stores your notebook key locally only if you enter it.
-- Private notes are intentionally removed before public observation data is written.
-- Keep JSON exports as occasional backups even after automation is enabled.
+Keep JSON export available as an occasional backup, not as the normal workflow.

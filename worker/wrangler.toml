@@ -1,4 +1,4 @@
-name = "pollinator-field-notebook"
+name = "pollinator-path-garden-brain"
 main = "src/worker.js"
 compatibility_date = "2026-07-01"
 
@@ -6,4 +6,4 @@ compatibility_date = "2026-07-01"
 GITHUB_OWNER = "shortbus2"
 GITHUB_REPO = "thepollinatorpath"
 GITHUB_BRANCH = "main"
-ALLOWED_ORIGIN = "https://thepollinatorpath.co"
+ALLOWED_ORIGIN = "https://thepollinatorpath.co,https://www.thepollinatorpath.co"

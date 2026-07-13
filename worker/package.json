@@ -1,6 +1,8 @@
 {
-  "name": "pollinator-field-notebook-worker",
+  "name": "pollinator-path-garden-brain-worker",
+  "version": "2.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"

@@ -1,17 +1,279 @@
-const json=(x,s=200,h={})=>new Response(JSON.stringify(x),{status:s,headers:{'content-type':'application/json',...h}});
-function cors(env,req){const origin=req.headers.get('origin')||'';const allowed=(env.ALLOWED_ORIGIN||'').split(',').map(x=>x.trim()).filter(Boolean);const ok=!origin||allowed.includes(origin);return {'access-control-allow-origin':ok?origin:(allowed[0]||'null'),'vary':'Origin','access-control-allow-headers':'authorization,content-type','access-control-allow-methods':'GET,POST,OPTIONS'};}
-async function gh(env,path,init={}){const r=await fetch(`https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`,{...init,headers:{accept:'application/vnd.github+json',authorization:`Bearer ${env.GITHUB_TOKEN}`,'x-github-api-version':'2022-11-28','user-agent':'pollinator-garden-brain',...(init.headers||{})}});if(!r.ok&&r.status!==404)throw Error(`GitHub ${r.status}: ${await r.text()}`);return r;}
-const b64utf8=s=>btoa(unescape(encodeURIComponent(s)));const utf8b64=s=>decodeURIComponent(escape(atob(s)));
-async function getFile(env,path){const r=await gh(env,path);if(r.status===404)return {sha:null,text:null};const j=await r.json();return {sha:j.sha,text:utf8b64(j.content.replace(/\n/g,''))};}
-async function putText(env,path,text,message){const old=await getFile(env,path);const body={message,content:b64utf8(text),branch:env.GITHUB_BRANCH||'main'};if(old.sha)body.sha=old.sha;const r=await gh(env,path,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)});return r.json();}
-async function putBase64(env,path,content,message){const old=await getFile(env,path);const body={message,content,branch:env.GITHUB_BRANCH||'main'};if(old.sha)body.sha=old.sha;const r=await gh(env,path,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(body)});return r.json();}
-function safe(x){return String(x||'entry').toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'entry';}
-function auth(req,env){return req.headers.get('authorization')===`Bearer ${env.NOTEBOOK_KEY}`;}
-function validatePlacements(p){if(!Array.isArray(p)||p.length>1000)throw Error('Invalid placements payload');for(const x of p){if(!x||!x.id||!['plant','object'].includes(x.kind)||!x.map||typeof x.x!=='number'||typeof x.y!=='number'||x.x<0||x.x>100||x.y<0||x.y>100)throw Error(`Invalid placement: ${x?.id||'unknown'}`);}}
-export default {async fetch(req,env){const h=cors(env,req);if(req.method==='OPTIONS')return new Response(null,{headers:h});const url=new URL(req.url);if(url.pathname==='/health'&&req.method==='GET')return json({ok:true,service:'Pollinator Path Garden Brain'},200,h);if(!auth(req,env))return json({error:'Unauthorized'},401,h);
-try{
-if(url.pathname==='/placements'&&req.method==='POST'){const body=await req.json();validatePlacements(body.placements);const text=`// Automatically published by the Garden Map Editor.\nwindow.GARDEN_PLACEMENTS = ${JSON.stringify(body.placements,null,2)};\nwindow.GARDEN_BRAIN.placements = window.GARDEN_PLACEMENTS;\n`;await putText(env,'placements.js',text,'Garden Brain: publish map placements');return json({ok:true,count:body.placements.length},200,h);}
-if(url.pathname==='/entry'&&req.method==='POST'){const e=await req.json();if(!e.id||!e.date)throw Error('Missing entry id or date');if((e.photos||[]).length>20)throw Error('Maximum 20 photos per entry');let files=0;const photoPaths=[];for(let i=0;i<(e.photos||[]).length;i++){const p=e.photos[i];const raw=String(p.data||'').split(',')[1];if(!raw)continue;if(raw.length>12_000_000)throw Error('A prepared photo is too large');const primary=e.primary||{};let folder=`images/observations/${e.date.slice(0,4)}/${safe(e.id)}`;if(p.hero&&primary.kind==='plant')folder=`images/plants/${safe(primary.id)}`;if(p.hero&&primary.kind==='visitor')folder=`images/wildlife/${safe(primary.id)}`;const name=p.hero?'hero.jpg':safe(p.name||`${e.date}-${i+1}.jpg`);const path=`${folder}/${name}`;await putBase64(env,path,raw,`Field notebook: add ${e.title||e.id}`);photoPaths.push(path);files++;}
-const current=await getFile(env,'observations.js');let arr=[];if(current.text){const match=current.text.match(/window\.OBSERVATIONS\s*=\s*([\s\S]*);\s*$/);if(match)arr=JSON.parse(match[1]);}const clean={...e,photos:photoPaths};delete clean.setHero;delete clean.privateNotes;arr=arr.filter(x=>x.id!==clean.id);arr.unshift(clean);await putText(env,'observations.js','window.OBSERVATIONS = '+JSON.stringify(arr,null,2)+';\n',`Field notebook: ${e.title||e.id}`);files++;return json({ok:true,files},200,h);}
-return json({error:'Not found'},404,h);
-}catch(err){return json({error:err.message},500,h);}}};
+const API_VERSION = "2026-03-10";
+const MAX_PHOTOS = 20;
+const MAX_BASE64_CHARS = 12_000_000;
+
+const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
+  status,
+  headers: { "content-type": "application/json; charset=utf-8", ...headers },
+});
+
+function cors(env, request) {
+  const origin = request.headers.get("origin") || "";
+  const allowed = String(env.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const accepted = !origin || allowed.includes(origin);
+  return {
+    "access-control-allow-origin": accepted ? origin : (allowed[0] || "null"),
+    "access-control-allow-headers": "authorization,content-type",
+    "access-control-allow-methods": "GET,POST,OPTIONS",
+    vary: "Origin",
+  };
+}
+
+function authenticated(request, env) {
+  return request.headers.get("authorization") === `Bearer ${env.NOTEBOOK_KEY}`;
+}
+
+function safeSlug(value, fallback = "entry") {
+  return String(value || fallback)
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 96) || fallback;
+}
+
+function base64FromUtf8(value) {
+  const bytes = new TextEncoder().encode(value);
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary);
+}
+
+function utf8FromBase64(value) {
+  const binary = atob(value.replace(/\n/g, ""));
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+async function github(env, path, init = {}) {
+  const response = await fetch(`https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}${path}`, {
+    ...init,
+    headers: {
+      accept: "application/vnd.github+json",
+      authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "x-github-api-version": API_VERSION,
+      "user-agent": "pollinator-path-garden-brain",
+      ...(init.headers || {}),
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`GitHub ${response.status}: ${await response.text()}`);
+  }
+  return response;
+}
+
+async function getBranchState(env) {
+  const branch = env.GITHUB_BRANCH || "main";
+  const ref = await (await github(env, `/git/ref/heads/${encodeURIComponent(branch)}`)).json();
+  const commitSha = ref.object.sha;
+  const commit = await (await github(env, `/git/commits/${commitSha}`)).json();
+  return { branch, commitSha, treeSha: commit.tree.sha };
+}
+
+async function getTextFile(env, path) {
+  const branch = env.GITHUB_BRANCH || "main";
+  const response = await fetch(`https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}?ref=${encodeURIComponent(branch)}`, {
+    headers: {
+      accept: "application/vnd.github+json",
+      authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      "x-github-api-version": API_VERSION,
+      "user-agent": "pollinator-path-garden-brain",
+    },
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error(`GitHub ${response.status}: ${await response.text()}`);
+  const file = await response.json();
+  return utf8FromBase64(file.content);
+}
+
+async function atomicCommit(env, files, message) {
+  if (!Array.isArray(files) || files.length === 0) throw new Error("No files supplied for commit");
+  const { branch, commitSha, treeSha } = await getBranchState(env);
+  const tree = files.map((file) => ({
+    path: file.path,
+    mode: "100644",
+    type: "blob",
+    content: file.encoding === "base64" ? undefined : file.content,
+  }));
+
+  // Git tree API cannot accept base64 via content, so create binary blobs first.
+  for (let index = 0; index < files.length; index += 1) {
+    if (files[index].encoding !== "base64") continue;
+    const blob = await (await github(env, "/git/blobs", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ content: files[index].content, encoding: "base64" }),
+    })).json();
+    tree[index] = { path: files[index].path, mode: "100644", type: "blob", sha: blob.sha };
+  }
+
+  const newTree = await (await github(env, "/git/trees", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ base_tree: treeSha, tree }),
+  })).json();
+
+  const newCommit = await (await github(env, "/git/commits", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ message, tree: newTree.sha, parents: [commitSha] }),
+  })).json();
+
+  await github(env, `/git/refs/heads/${encodeURIComponent(branch)}`, {
+    method: "PATCH",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ sha: newCommit.sha, force: false }),
+  });
+  return { commitSha: newCommit.sha, changedFiles: files.length };
+}
+
+function parseWindowArray(text, variableName) {
+  if (!text) return [];
+  const escaped = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = text.match(new RegExp(`window\\.${escaped}\\s*=\\s*([\\s\\S]*);\\s*$`));
+  if (!match) return [];
+  const parsed = JSON.parse(match[1]);
+  return Array.isArray(parsed) ? parsed : [];
+}
+
+function serializeWindowArray(variableName, value, comment = "") {
+  const heading = comment ? `// ${comment}\n` : "";
+  return `${heading}window.${variableName} = ${JSON.stringify(value, null, 2)};\n`;
+}
+
+function validatePlacements(placements) {
+  if (!Array.isArray(placements) || placements.length > 1000) throw new Error("Invalid placements payload");
+  const ids = new Set();
+  for (const placement of placements) {
+    if (!placement || !placement.id || !["plant", "object"].includes(placement.kind) || !placement.map) {
+      throw new Error(`Invalid placement: ${placement?.id || "unknown"}`);
+    }
+    if (ids.has(placement.id)) throw new Error(`Duplicate placement id: ${placement.id}`);
+    ids.add(placement.id);
+    if (typeof placement.x !== "number" || typeof placement.y !== "number" || placement.x < 0 || placement.x > 100 || placement.y < 0 || placement.y > 100) {
+      throw new Error(`Placement coordinates out of range: ${placement.id}`);
+    }
+  }
+}
+
+function cleanPublicEntry(entry, photoPaths) {
+  const clean = { ...entry, photos: photoPaths };
+  delete clean.privateNotes;
+  delete clean.notebookKey;
+  delete clean.rawPhotos;
+  return clean;
+}
+
+async function publishObservation(env, entry) {
+  if (!entry.id || !entry.date) throw new Error("Missing entry id or date");
+  const photos = Array.isArray(entry.photos) ? entry.photos : [];
+  if (photos.length > MAX_PHOTOS) throw new Error(`Maximum ${MAX_PHOTOS} photos per entry`);
+
+  const files = [];
+  const photoPaths = [];
+  for (let index = 0; index < photos.length; index += 1) {
+    const photo = photos[index];
+    const raw = String(photo.data || "").split(",")[1];
+    if (!raw) continue;
+    if (raw.length > MAX_BASE64_CHARS) throw new Error("A prepared photo is too large");
+    const primary = entry.primary || {};
+    let folder = `images/observations/${String(entry.date).slice(0, 4)}/${safeSlug(entry.id)}`;
+    if (photo.hero && primary.kind === "plant") folder = `images/plants/${safeSlug(primary.id)}`;
+    if (photo.hero && primary.kind === "visitor") folder = `images/wildlife/${safeSlug(primary.id)}`;
+    if (photo.hero && primary.kind === "object") folder = `images/objects/${safeSlug(primary.id)}`;
+    const filename = photo.hero ? "hero.jpg" : safeSlug(photo.name || `${entry.date}-${index + 1}.jpg`, `${index + 1}.jpg`);
+    const path = `${folder}/${filename.endsWith(".jpg") ? filename : `${filename}.jpg`}`;
+    files.push({ path, content: raw, encoding: "base64" });
+    photoPaths.push(path);
+  }
+
+  const current = await getTextFile(env, "observations.js");
+  let observations = parseWindowArray(current, "OBSERVATIONS");
+  const publicEntry = cleanPublicEntry(entry, photoPaths);
+  observations = observations.filter((item) => item.id !== publicEntry.id);
+  observations.unshift(publicEntry);
+  files.push({ path: "observations.js", content: serializeWindowArray("OBSERVATIONS", observations), encoding: "utf8" });
+
+  return atomicCommit(env, files, `Garden Brain: ${entry.title || entry.id}`);
+}
+
+async function publishArray(env, { path, variable, items, message, comment }) {
+  if (!Array.isArray(items)) throw new Error("Expected an array");
+  return atomicCommit(env, [{ path, content: serializeWindowArray(variable, items, comment), encoding: "utf8" }], message);
+}
+
+export default {
+  async fetch(request, env) {
+    const headers = cors(env, request);
+    if (request.method === "OPTIONS") return new Response(null, { headers });
+    const url = new URL(request.url);
+
+    if (url.pathname === "/health" && request.method === "GET") {
+      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "2.2" }, 200, headers);
+    }
+    if (!authenticated(request, env)) return json({ error: "Unauthorized" }, 401, headers);
+
+    try {
+      if (url.pathname === "/garden" && request.method === "GET") {
+        const [placements, observations, milestones] = await Promise.all([
+          getTextFile(env, "placements.js"),
+          getTextFile(env, "observations.js"),
+          getTextFile(env, "milestones.js"),
+        ]);
+        return json({
+          placements: parseWindowArray(placements, "GARDEN_PLACEMENTS"),
+          observations: parseWindowArray(observations, "OBSERVATIONS"),
+          milestones: parseWindowArray(milestones, "GARDEN_MILESTONES"),
+        }, 200, headers);
+      }
+
+      if ((url.pathname === "/entry" || url.pathname === "/observations") && request.method === "POST") {
+        const result = await publishObservation(env, await request.json());
+        return json({ ok: true, ...result }, 200, headers);
+      }
+
+      if (url.pathname === "/placements" && request.method === "POST") {
+        const body = await request.json();
+        validatePlacements(body.placements);
+        const result = await publishArray(env, {
+          path: "placements.js",
+          variable: "GARDEN_PLACEMENTS",
+          items: body.placements,
+          message: "Garden Brain: publish map placements",
+          comment: "Automatically published by the Garden Map Editor.",
+        });
+        return json({ ok: true, count: body.placements.length, ...result }, 200, headers);
+      }
+
+      if (url.pathname === "/milestones" && request.method === "POST") {
+        const body = await request.json();
+        const result = await publishArray(env, {
+          path: "milestones.js",
+          variable: "GARDEN_MILESTONES",
+          items: body.milestones,
+          message: "Garden Brain: update milestones",
+          comment: "Garden milestones and meaningful firsts.",
+        });
+        return json({ ok: true, count: body.milestones.length, ...result }, 200, headers);
+      }
+
+      if (url.pathname === "/objects" && request.method === "POST") {
+        const body = await request.json();
+        const result = await publishArray(env, {
+          path: "garden-objects.js",
+          variable: "GARDEN_OBJECTS",
+          items: body.objects,
+          message: "Garden Brain: update garden objects",
+          comment: "Named trees, boulders, habitat features, paths, and structures.",
+        });
+        return json({ ok: true, count: body.objects.length, ...result }, 200, headers);
+      }
+
+      return json({ error: "Not found" }, 404, headers);
+    } catch (error) {
+      return json({ error: error.message }, 500, headers);
+    }
+  },
+};
