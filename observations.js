@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvlmsb",
+    "id": "2026-07-13-mrjvnqpv",
     "date": "2026-07-13",
-    "title": "#30 · Prairie Winecups · Full bloom",
+    "title": "#33 · Red Birds in a Tree · Full bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "30"
+      "id": "33"
     },
     "plants": [
-      30
+      33
     ],
     "visitors": [],
     "objects": [],
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvlmsb/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvnqpv/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
