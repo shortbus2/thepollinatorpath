@@ -1,21 +1,21 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvsbsd",
+    "id": "2026-07-13-mrjvtdph",
     "date": "2026-07-13",
-    "title": "#23 · Isanti Red-Twig Dogwood · First bloom",
+    "title": "#30 · Prairie Winecups · Full bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "23"
+      "id": "30"
     },
     "plants": [
-      23
+      30
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "First bloom"
+      "Full bloom"
     ],
     "stage": "",
     "confidence": "confirmed",
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvsbsd/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvtdph/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
