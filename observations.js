@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvydb7",
+    "id": "2026-07-13-mrjvyyvm",
     "date": "2026-07-13",
-    "title": "#11 · Butterfly Weed · First bloom",
+    "title": "#8 · Blanket Flower · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "11"
+      "id": "8"
     },
     "plants": [
-      11
+      8
     ],
     "visitors": [],
     "objects": [],
@@ -19,12 +19,10 @@ window.OBSERVATIONS = [
     ],
     "stage": "",
     "confidence": "confirmed",
-    "public": true,
+    "public": false,
     "featured": false,
     "notes": "",
-    "setHero": true,
-    "photos": [
-      "images/observations/2026/2026-07-13-mrjvydb7/2026-07-13-01-jpg.jpg"
-    ]
+    "setHero": false,
+    "photos": []
   }
 ];
