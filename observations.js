@@ -1,6 +1,6 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-14-mrjy1kxl",
+    "id": "2026-07-14-mrjy2o1q",
     "date": "2026-07-14",
     "title": "#38 · Spotted Joe-Pye Weed · First bloom",
     "type": "observation",
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-14-mrjy1kxl/2026-07-14-01-jpg.jpg"
+      "images/observations/2026/2026-07-14-mrjy2o1q/2026-07-14-01-jpg.jpg"
     ]
   }
 ];
