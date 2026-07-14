@@ -1,21 +1,21 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvwl2h",
+    "id": "2026-07-13-mrjvydb7",
     "date": "2026-07-13",
-    "title": "#49 · Vermillion Bluffs · Full bloom",
+    "title": "#11 · Butterfly Weed · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "49"
+      "id": "11"
     },
     "plants": [
-      49
+      11
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "Full bloom"
+      "First bloom"
     ],
     "stage": "",
     "confidence": "confirmed",
@@ -24,7 +24,7 @@ window.OBSERVATIONS = [
     "notes": "",
     "setHero": true,
     "photos": [
-      "images/observations/2026/2026-07-13-mrjvwl2h/2026-07-13-01-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrjvydb7/2026-07-13-01-jpg.jpg"
     ]
   }
 ];
