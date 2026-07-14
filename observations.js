@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrjvyyvm",
-    "date": "2026-07-13",
-    "title": "#8 · Blanket Flower · First bloom",
+    "id": "2026-07-14-mrjy1kxl",
+    "date": "2026-07-14",
+    "title": "#38 · Spotted Joe-Pye Weed · First bloom",
     "type": "observation",
     "primary": {
       "kind": "plant",
-      "id": "8"
+      "id": "38"
     },
     "plants": [
-      8
+      38
     ],
     "visitors": [],
     "objects": [],
@@ -19,10 +19,12 @@ window.OBSERVATIONS = [
     ],
     "stage": "",
     "confidence": "confirmed",
-    "public": false,
+    "public": true,
     "featured": false,
     "notes": "",
-    "setHero": false,
-    "photos": []
+    "setHero": true,
+    "photos": [
+      "images/observations/2026/2026-07-14-mrjy1kxl/2026-07-14-01-jpg.jpg"
+    ]
   }
 ];
