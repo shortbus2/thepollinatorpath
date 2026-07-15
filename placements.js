@@ -31,5 +31,16 @@ window.GARDEN_PLACEMENTS = [
     "shape": "cluster",
     "precision": "confirmed",
     "status": "active"
+  },
+  {
+    "id": "p-1784152099895",
+    "kind": "object",
+    "map": "front-east",
+    "x": 57.69,
+    "y": 63.1,
+    "quantity": 1,
+    "precision": "approximate",
+    "status": "active",
+    "objectId": "boulder-showcase"
   }
 ];
