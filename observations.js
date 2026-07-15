@@ -1,35 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-14-mrmmbbfd",
-    "date": "2026-07-14",
-    "title": "Bird Bath · Other",
+    "id": "2026-07-13-mrmmemqj",
+    "date": "2026-07-13",
+    "title": "#8 · Blanket Flower · Pollinating",
     "type": "walk",
     "primary": {
-      "kind": "object",
-      "id": "feature-birdbath"
+      "kind": "plant",
+      "id": "8"
     },
-    "plants": [],
-    "visitors": [],
-    "objects": [
-      "feature-birdbath"
+    "plants": [
+      8
     ],
+    "visitors": [],
+    "objects": [],
     "areas": [],
     "behaviors": [
-      "Other"
+      "Pollinating"
     ],
     "stage": "",
-    "confidence": "reasonable",
+    "confidence": "confirmed",
     "public": true,
     "featured": false,
-    "notes": "Grabbing a sip on a hot day",
-    "setHero": true,
+    "notes": "Pollen pants! 😍",
+    "setHero": false,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-15T21:54:28.633Z"
+      "reviewedAt": "2026-07-15T21:57:03.259Z"
     },
     "photos": [
-      "images/observations/2026/2026-07-14-mrmmbbfd/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrmmemqj/photo-1-jpg.jpg"
     ]
   }
 ];
