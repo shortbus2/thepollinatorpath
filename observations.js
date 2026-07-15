@@ -1,35 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-mrmmemqj",
+    "id": "2026-07-13-mrmor2tk",
     "date": "2026-07-13",
-    "title": "#8 · Blanket Flower · Pollinating",
+    "title": "Front Garden · West Side · Progress update",
     "type": "walk",
     "primary": {
-      "kind": "plant",
-      "id": "8"
+      "kind": "habitat",
+      "id": "Front Garden · West Side"
     },
-    "plants": [
-      8
-    ],
+    "plants": [],
     "visitors": [],
     "objects": [],
-    "areas": [],
+    "areas": [
+      "Front Garden · West Side"
+    ],
     "behaviors": [
-      "Pollinating"
+      "Progress update"
     ],
     "stage": "",
     "confidence": "confirmed",
     "public": true,
-    "featured": false,
-    "notes": "Pollen pants! 😍",
+    "featured": true,
+    "notes": "",
     "setHero": false,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-15T21:57:03.259Z"
+      "reviewedAt": "2026-07-15T23:02:43.208Z"
     },
     "photos": [
-      "images/observations/2026/2026-07-13-mrmmemqj/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-13-mrmor2tk/photo-1-jpg.jpg"
     ]
   }
 ];
