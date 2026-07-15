@@ -1,28 +1,30 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-brenda-blanket-flower",
-    "date": "2026-07-13",
-    "time": "",
-    "title": "Brenda on Blanket Flower",
-    "type": "wildlife",
+    "id": "2026-07-14-mrjy8qzr",
+    "date": "2026-07-14",
+    "title": "#41 · Sunset Hyssop · First bloom",
+    "type": "observation",
+    "primary": {
+      "kind": "plant",
+      "id": "41"
+    },
     "plants": [
-      8
+      41
     ],
-    "visitors": [
-      "brenda"
-    ],
-    "areas": [
-      "Front Path"
-    ],
+    "visitors": [],
+    "objects": [],
+    "areas": [],
     "behaviors": [
-      "Collecting pollen"
+      "First bloom"
     ],
-    "stage": "Full bloom",
-    "confidence": "probable",
+    "stage": "",
+    "confidence": "confirmed",
     "public": true,
-    "featured": true,
-    "notes": "Repeat leafcutter bee visit to blanket flower.",
-    "privateNotes": "",
-    "photos": []
+    "featured": false,
+    "notes": "",
+    "setHero": true,
+    "photos": [
+      "images/observations/2026/2026-07-14-mrjy8qzr/2026-07-14-01-jpg.jpg"
+    ]
   }
 ];
