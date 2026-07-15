@@ -9,13 +9,45 @@
   const navLinks = $(".nav-links");
 
   if (menuButton && navLinks) {
-    menuButton.setAttribute('aria-expanded','false');
-    menuButton.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-controls', 'mobileNavigation');
+    navLinks.id = navLinks.id || 'mobileNavigation';
+
+    const backdrop = document.createElement('button');
+    backdrop.type = 'button';
+    backdrop.className = 'nav-backdrop';
+    backdrop.setAttribute('aria-label', 'Close navigation menu');
+    document.body.appendChild(backdrop);
+
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
+    };
+
+    const openMenu = () => {
+      navLinks.classList.add('open');
+      document.body.classList.add('nav-open');
+      menuButton.setAttribute('aria-expanded', 'true');
+      menuButton.setAttribute('aria-label', 'Close menu');
+      navLinks.querySelector('a')?.focus({ preventScroll: true });
+    };
+
+    menuButton.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeMenu() : openMenu();
     });
-    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}));
-    document.addEventListener('click',e=>{if(!navLinks.contains(e.target)&&!menuButton.contains(e.target)){navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}});
+    backdrop.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 650) closeMenu();
+    });
   }
 
   const carousel = document.querySelector('#heroCarousel');

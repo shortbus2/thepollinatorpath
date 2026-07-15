@@ -139,3 +139,60 @@ linear-gradient(135deg,#234f2d,#668459)}
 .ecology-card{padding:18px;border:1px solid var(--line);border-radius:16px;background:white}
 .wildlife-proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 @media(max-width:720px){.transformation-pair{grid-template-columns:1fr}.transformation-arrow{transform:rotate(90deg)}.transformation-photo{min-height:250px}}
+
+
+/* v3.2.1 mobile navigation hotfix: accessible right-side drawer. */
+.nav-backdrop{display:none}
+@media(max-width:650px){
+  .site-header{position:sticky!important;top:0;z-index:300!important}
+  .nav-wrap{position:relative;flex-wrap:nowrap!important}
+  .menu-btn{position:relative;z-index:322;display:block;min-width:44px;min-height:44px;cursor:pointer;color:var(--ink)}
+  .nav-links{
+    display:flex!important;
+    position:fixed!important;
+    top:0!important;
+    right:0!important;
+    bottom:0!important;
+    left:auto!important;
+    width:min(86vw,360px)!important;
+    height:100dvh;
+    padding:calc(5.8rem + env(safe-area-inset-top)) 1.25rem calc(1.5rem + env(safe-area-inset-bottom))!important;
+    flex-direction:column;
+    align-items:stretch;
+    gap:.3rem!important;
+    overflow-y:auto;
+    background:var(--paper);
+    border:0!important;
+    border-left:1px solid var(--line)!important;
+    border-radius:0!important;
+    box-shadow:-18px 0 45px rgba(13,35,20,.22)!important;
+    transform:translateX(105%);
+    visibility:hidden;
+    transition:transform .24s ease,visibility 0s linear .24s;
+    z-index:320!important;
+  }
+  .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .24s ease}
+  .nav-links a{width:100%;padding:.85rem .8rem!important;border-radius:10px;font-size:1.08rem!important}
+  .nav-links a:hover,.nav-links a:focus-visible{background:var(--sage);outline:none}
+  .nav-backdrop{
+    display:block;
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    padding:0;
+    border:0;
+    background:rgba(12,30,18,.42);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .24s ease,visibility 0s linear .24s;
+    z-index:310;
+  }
+  body.nav-open{overflow:hidden}
+  body.nav-open .nav-backdrop{opacity:1;visibility:visible;transition:opacity .24s ease}
+  body.nav-open .field-notebook-link,
+  body.nav-open .floating-search{opacity:0;visibility:hidden;pointer-events:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .nav-links,.nav-backdrop{transition:none!important}
+}

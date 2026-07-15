@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.2.2 — Mobile Navigation & Garden Brain UI Hotfix
+
+### Fixed
+- Replaced the oversized mobile menu with the approved right-side drawer and hid floating actions while it is open.
+- Fixed the Garden Brain hero call-to-action whose white label disappeared against its white button.
+- Retained the mutable-data cache refresh, homepage privacy checklist synchronization, and Publishing Passphrase wording from v3.2.1.
+
+## 3.2.1 — Mobile Navigation & Publishing Refresh Hotfix
+
+### Fixed
+- Replaced the oversized mobile navigation card with a right-side drawer.
+- Drawer closes on selection, backdrop tap, Escape, and desktop resize.
+- Floating Field Notebook and Search Plants controls hide while navigation is open.
+- Prevented stale service-worker copies of observations, placements, residents, and image manifests from masking new publishes.
+- Homepage-wide privacy approval now synchronizes the detailed checklist.
+
+### Changed
+- Renamed the map editor’s “Notebook key” to “Publishing passphrase.”
+
 All meaningful product changes are recorded here by release.
 
 ## [3.2.0] — 2026-07-15 — Ecological Storytelling
