@@ -1,35 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-14-mrmlqfvx",
+    "id": "2026-07-14-mrmmbbfd",
     "date": "2026-07-14",
-    "title": "#38 · Spotted Joe-Pye Weed · First bloom",
+    "title": "Bird Bath · Other",
     "type": "walk",
     "primary": {
-      "kind": "plant",
-      "id": "38"
+      "kind": "object",
+      "id": "feature-birdbath"
     },
-    "plants": [
-      38
-    ],
+    "plants": [],
     "visitors": [],
-    "objects": [],
+    "objects": [
+      "feature-birdbath"
+    ],
     "areas": [],
     "behaviors": [
-      "First bloom"
+      "Other"
     ],
     "stage": "",
-    "confidence": "confirmed",
+    "confidence": "reasonable",
     "public": true,
     "featured": false,
-    "notes": "Joe is ready to make his entrance!",
+    "notes": "Grabbing a sip on a hot day",
     "setHero": true,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-15T21:38:14.637Z"
+      "reviewedAt": "2026-07-15T21:54:28.633Z"
     },
     "photos": [
-      "images/observations/2026/2026-07-14-mrmlqfvx/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-14-mrmmbbfd/photo-1-jpg.jpg"
     ]
   }
 ];
