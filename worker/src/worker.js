@@ -1,10 +1,11 @@
 const API_VERSION = "2026-03-10";
+const WORKER_VERSION = "3.1.0-privacy-by-design";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
-  headers: { "content-type": "application/json; charset=utf-8", ...headers },
+  headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff", "referrer-policy": "no-referrer", ...headers },
 });
 
 function cors(env, request) {
@@ -170,11 +171,26 @@ function cleanPublicEntry(entry, photoPaths) {
   delete clean.privateNotes;
   delete clean.notebookKey;
   delete clean.rawPhotos;
+  delete clean.privacyReview;
+  delete clean.setHero;
   return clean;
+}
+
+function validatePublicEntry(entry) {
+  if (entry.public !== true) {
+    throw new Error("Private entries must not be sent to the public GitHub repository");
+  }
+  if (!entry.privacyReview || entry.privacyReview.completed !== true) {
+    throw new Error("Public-photo privacy review is required");
+  }
+  if (entry.featured === true && entry.privacyReview.safeHomepage !== true) {
+    throw new Error("Homepage features require Safe for Homepage approval");
+  }
 }
 
 async function publishObservation(env, entry) {
   if (!entry.id || !entry.date) throw new Error("Missing entry id or date");
+  validatePublicEntry(entry);
   const photos = Array.isArray(entry.photos) ? entry.photos : [];
   if (photos.length > MAX_PHOTOS) throw new Error(`Maximum ${MAX_PHOTOS} photos per entry`);
 
@@ -187,8 +203,9 @@ async function publishObservation(env, entry) {
     if (raw.length > MAX_BASE64_CHARS) throw new Error("A prepared photo is too large");
     const primary = entry.primary || {};
     const journalFolder = `images/observations/${String(entry.date).slice(0, 4)}/${safeSlug(entry.id)}`;
-    const filename = safeSlug(photo.name || `${entry.date}-${index + 1}.jpg`, `${index + 1}.jpg`);
-    const journalPath = `${journalFolder}/${filename.endsWith(".jpg") ? filename : `${filename}.jpg`}`;
+    // Never preserve the phone's original filename or timestamp sequence.
+    const randomName = crypto.randomUUID().replace(/-/g, "").slice(0, 20);
+    const journalPath = `${journalFolder}/garden-${randomName}.jpg`;
     files.push({ path: journalPath, content: raw, encoding: "base64" });
     photoPaths.push(journalPath);
 
@@ -225,21 +242,23 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/health" && request.method === "GET") {
-      return json({ ok: true, service: "Pollinator Path Garden Brain", version: "3.0.1" }, 200, headers);
+      return json({ ok: true, service: "Pollinator Path Garden Brain", version: WORKER_VERSION }, 200, headers);
     }
     if (!authenticated(request, env)) return json({ error: "Unauthorized" }, 401, headers);
 
     try {
       if (url.pathname === "/garden" && request.method === "GET") {
-        const [placements, observations, milestones] = await Promise.all([
+        const [placements, observations, milestones, residents] = await Promise.all([
           getTextFile(env, "placements.js"),
           getTextFile(env, "observations.js"),
           getTextFile(env, "milestones.js"),
+          getTextFile(env, "residents.js"),
         ]);
         return json({
           placements: parseWindowArray(placements, "GARDEN_PLACEMENTS"),
           observations: parseWindowArray(observations, "OBSERVATIONS"),
           milestones: parseWindowArray(milestones, "GARDEN_MILESTONES"),
+          residents: parseWindowArray(residents, "GARDEN_RESIDENTS"),
         }, 200, headers);
       }
 
@@ -271,6 +290,24 @@ export default {
           comment: "Garden milestones and meaningful firsts.",
         });
         return json({ ok: true, count: body.milestones.length, ...result }, 200, headers);
+      }
+
+      if (url.pathname === "/residents" && request.method === "POST") {
+        const body = await request.json();
+        if (!Array.isArray(body.residents) || body.residents.length > 250) {
+          throw new Error("Invalid residents payload");
+        }
+        for (const resident of body.residents) {
+          if (!resident || !resident.id || !resident.name) throw new Error("Each resident needs an id and name");
+        }
+        const result = await publishArray(env, {
+          path: "residents.js",
+          variable: "GARDEN_RESIDENTS",
+          items: body.residents,
+          message: "Garden Brain: update garden residents",
+          comment: "Named garden residents published from Garden Brain.",
+        });
+        return json({ ok: true, count: body.residents.length, ...result }, 200, headers);
       }
 
       if (url.pathname === "/objects" && request.method === "POST") {

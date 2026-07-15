@@ -14,12 +14,12 @@
   const obs=window.OBSERVATIONS||[];
   const plants=window.PLANTS||[];
   const placements=window.GARDEN_PLACEMENTS||window.GARDEN_BRAIN?.placements||[];
-  const portraits=plants.filter(p=>window.IMAGE_MANIFEST?.plants?.[p.number]?.hero).length;
+  const portraits=plants.filter(p=>(window.IMAGE_MANIFEST?.plants?.[p.number]?.hero || (p.image && !/placeholder|coming/i.test(p.image)))).length;
   document.querySelector('#summary').innerHTML=[
-    ['Plants',plants.length],['Portraits',`${portraits}/${plants.length}`],['Observations',obs.length],['Placements',placements.length]
-  ].map(([a,b])=>`<div class="metric-card"><span>${a}</span><strong>${b}</strong></div>`).join('');
+    ['Plants',plants.length,'plants.html'],['Portraits',`${portraits}/${plants.length}`,'garden-tasks.html?filter=portrait'],['Observations',obs.length,'field-notebook.html'],['Placements',placements.length,'garden-map-editor.html']
+  ].map(([a,b,href])=>`<a class="metric-card metric-link" href="${href}"><span>${a}</span><strong>${b}</strong></a>`).join('');
   const prompts=[];
-  plants.forEach(p=>{if(!window.IMAGE_MANIFEST?.plants?.[p.number]?.hero)prompts.push(`<a class="prompt" href="field-notebook.html?kind=plant&id=${p.number}">📷 ${p.common} still needs a master portrait.</a>`)});
+  plants.forEach(p=>{if(!(window.IMAGE_MANIFEST?.plants?.[p.number]?.hero || (p.image && !/placeholder|coming/i.test(p.image))))prompts.push(`<a class="prompt" href="field-notebook.html?kind=plant&id=${p.number}">📷 ${p.common} still needs a master portrait.</a>`)});
   if(!obs.length)prompts.unshift('<a class="prompt" href="field-notebook.html">🌼 Record the first live Garden Brain observation.</a>');
-  document.querySelector('#prompts').innerHTML=prompts.slice(0,8).join('')||'<div class="prompt">Everything current. Go enjoy the garden. 💚</div>';
+  document.querySelector('#prompts').innerHTML=prompts.slice(0,5).join('')||'<div class="prompt">Everything current. Go enjoy the garden. 💚</div>';
 })();

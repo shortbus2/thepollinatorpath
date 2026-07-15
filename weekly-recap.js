@@ -1,0 +1,10 @@
+(()=>{
+ const host=document.querySelector('#weeklyRecap'); if(!host)return;
+ const obs=(window.OBSERVATIONS||[]).filter(o=>o.public!==false), residents=window.GARDEN_RESIDENTS||[];
+ const today=new Date(); today.setHours(23,59,59,999); const start=new Date(today); start.setDate(start.getDate()-6); start.setHours(0,0,0,0);
+ const week=obs.filter(o=>{const d=new Date((o.date||'')+'T12:00:00');return d>=start&&d<=today});
+ const plantName=n=>(window.PLANTS||[]).find(p=>Number(p.number)===Number(n))?.common||`Plant #${n}`;
+ const visitorName=id=>residents.find(r=>r.id===id)?.name || (window.VISITORS||[]).find(v=>v.slug===id)?.name || id;
+ function sentence(){if(!week.length)return 'The garden is taking its time. New Garden Walks will gently gather here whenever something catches your eye.';const visitors=[...new Set(week.flatMap(o=>o.visitors||[]))], plants=[...new Set(week.flatMap(o=>o.plants||[]))], events=week.flatMap(o=>o.behaviors||[]);const bits=[];if(visitors.length){const names=visitors.slice(0,3).map(visitorName);bits.push(`${names.join(names.length>1?', ':'')} ${names.length===1?'was':'were'} among this week’s visitors`)}const progress=week.filter(o=>(o.behaviors||[]).some(b=>/progress|growth|bud|bloom|seed/i.test(b)));if(progress.length){const names=[...new Set(progress.flatMap(o=>o.plants||[]))].slice(0,3).map(plantName);if(names.length)bits.push(`${names.join(', ')} recorded visible seasonal progress`)}if(!bits.length&&plants.length)bits.push(`${plants.slice(0,3).map(plantName).join(', ')} drew attention during this week’s Garden Walks`);return bits.join('. ')+'.';}
+ host.innerHTML=`<div class="weekly-copy"><p>${sentence()}</p><div class="weekly-stats"><span><strong>${week.length}</strong> Garden Walk${week.length===1?'':'s'}</span><span><strong>${new Set(week.flatMap(o=>o.visitors||[])).size}</strong> visitor${new Set(week.flatMap(o=>o.visitors||[])).size===1?'':'s'}</span><span><strong>${new Set(week.flatMap(o=>o.plants||[])).size}</strong> plants noticed</span></div><a class="btn btn-green" href="field-notebook.html">Take a Garden Walk</a></div>`;
+})();

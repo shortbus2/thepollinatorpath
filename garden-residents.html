@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Garden Residents · Garden Brain</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="garden-brain.css">
+</head>
+<body class="gb-body">
+  <main class="brain-wrap">
+    <a href="garden-brain.html">← Garden Brain</a>
+    <section class="brain-hero">
+      <p class="eyebrow">Living neighbors</p>
+      <h1>Garden residents</h1>
+      <p>Add and edit the familiar individuals who make the garden feel like home. Published changes are saved to GitHub and appear on every device.</p>
+    </section>
+
+    <section class="resident-sync" aria-labelledby="residentSyncHeading">
+      <h2 id="residentSyncHeading">Shared garden data</h2>
+      <div class="editor-form">
+        <label class="wide">Garden Brain key
+          <input id="residentApiKey" type="password" autocomplete="current-password" placeholder="Enter your Garden Brain key">
+        </label>
+        <button id="loadResidents" class="button secondary" type="button">Load latest residents</button>
+      </div>
+      <p id="residentStatus" class="connection-note" aria-live="polite">Loading the latest resident list…</p>
+    </section>
+
+    <div id="residentList" class="resident-grid"></div>
+
+    <section class="resident-editor">
+      <h2 id="residentHeading">Add a resident</h2>
+      <div class="editor-form">
+        <input id="residentId" type="hidden">
+        <label>Name<input id="residentName"></label>
+        <label>Type<input id="residentType" placeholder="bee, bird, toad…"></label>
+        <label>Species / best identification<input id="residentSpecies"></label>
+        <label>Confidence
+          <select id="residentConfidence">
+            <option value="high">High</option>
+            <option value="reasonable" selected>Reasonable</option>
+            <option value="needs-more-evidence">Needs more evidence</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="residentStatusField">
+            <option value="active">Active</option>
+            <option value="occasional">Occasional</option>
+            <option value="historical">Historical</option>
+            <option value="missing">Not seen lately</option>
+          </select>
+        </label>
+        <label>Icon<input id="residentIcon" placeholder="🐝"></label>
+        <label class="wide">Photo path<input id="residentPhoto" placeholder="images/wildlife/beth/hero.jpg"></label>
+        <label class="wide">Notes<textarea id="residentNotes"></textarea></label>
+        <button id="saveResident" class="button" type="button">Publish resident</button>
+        <button id="newResident" class="button secondary" type="button">Clear form</button>
+      </div>
+      <p class="connection-note">Publishing updates <code>residents.js</code> through the secure Worker. GitHub remains the single source of truth for your phone, laptop, and public site.</p>
+    </section>
+  </main>
+  <script src="field-config.js"></script>
+  <script src="residents.js"></script>
+  <script src="garden-residents.js"></script>
+</body>
+</html>

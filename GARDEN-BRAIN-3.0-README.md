@@ -28,3 +28,8 @@ Open:
 - `/field-notebook.html`
 
 Enter the Garden Brain key and use **Test connection** before the first real entry.
+
+
+## Version 3.0.2 resident publishing
+
+Garden Residents now load from and publish to `residents.js` through the secure Worker. Deploy the updated Worker before using the resident editor. Phone edits become GitHub commits, so use **Fetch origin / Pull** in GitHub Desktop before editing the source on the laptop.
