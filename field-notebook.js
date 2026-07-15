@@ -25,7 +25,7 @@ function addFiles(list){files=[...files,...Array.from(list||[])];previews();sugg
 el.photos.addEventListener('change',()=>addFiles(el.photos.files));
 document.querySelector('#cameraPhotos')?.addEventListener('change',e=>{addFiles(e.target.files);e.target.value=''});
 document.querySelector('#libraryPhotos')?.addEventListener('change',e=>{addFiles(e.target.files);e.target.value=''});
-function setDefaultConfidence(){if(el.kind.value==='plant')el.confidence.value='high';else if(el.kind.value==='visitor'||el.kind.value==='resident')el.confidence.value='reasonable';}
+function setDefaultConfidence(){if(el.kind.value==='plant')el.confidence.value='confirmed';else if(el.kind.value==='visitor'||el.kind.value==='resident')el.confidence.value='reasonable';}
 el.kind.addEventListener('change',setDefaultConfidence);setDefaultConfidence();
 function suggestIdentity(){const box=$('#identificationAssist'), text=$('#identitySuggestion');if(!box||!files.length||!['visitor','resident'].includes(el.kind.value)){if(box)box.hidden=true;return;}box.hidden=false;const current=el.subject.selectedOptions[0]?.textContent||'wildlife visitor';const prior=(window.OBSERVATIONS||[]).filter(o=>(o.visitors||[]).includes(el.subject.value)).length;text.textContent=prior?`Consistent with ${current}, based on ${prior} earlier garden record${prior===1?'':'s'}. Keep “Reasonable confidence” unless the photo shows stronger diagnostic features.`:`Possible ${current}. Keep “Reasonable confidence” unless the available photographs support something stronger.`;}
 $('#acceptIdentity')?.addEventListener('click',()=>{el.confidence.value='reasonable';});

@@ -237,6 +237,8 @@
         );
       });
 
+      visible.sort((a, b) => a.common.localeCompare(b.common, undefined, { sensitivity: "base" }));
+
       grid.innerHTML = visible.length
         ? visible.map(plantCard).join("")
         : '<p class="empty">No plants found. The bees have not stolen them; try another filter.</p>';
@@ -300,6 +302,7 @@
           <div class="chips">
             ${statusLinks(plant.status)}
             <span class="chip">${plant.type}</span>
+            ${(plant.hostFor || []).length ? `<span class="chip host-chip">Host plant: ${(plant.hostFor || []).join(", ")}</span>` : ""}
             ${plant.pollinators.map((value) => `<span class="chip">${value}</span>`).join("")}
           </div>
 
@@ -316,6 +319,11 @@
             <section class="panel">
               <h2>Why I love it</h2>
               <p>${plant.story}</p>
+            </section>
+
+            <section class="panel look-for-panel">
+              <h2>What to look for</h2>
+              <p>${plant.whatToLookFor || `Watch how ${plant.common} changes through ${plant.bloom.toLowerCase()}, including new growth, flowers, visitors, seed heads, and winter structure.`}</p>
             </section>
 
             <section class="panel">

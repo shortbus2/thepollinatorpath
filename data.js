@@ -1110,3 +1110,21 @@ window.VISITORS = [
     "relatedPlants": []
   }
 ];
+
+
+// Site display metadata. Common names above are the owner's master names and remain authoritative.
+PLANTS.forEach((plant) => {
+  if (!plant.whatToLookFor) {
+    const cues = [];
+    if (/grass/i.test(plant.type)) cues.push("moving foliage, developing seed heads, bird use, and winter structure");
+    else if (/tree|shrub/i.test(plant.type)) cues.push("buds, flowers, fruit, nesting activity, seasonal color, and shelter use");
+    else cues.push("first buds, peak bloom, pollen collection, seed development, and overwintering stems");
+    plant.whatToLookFor = `Look for ${cues[0]} during ${plant.bloom.toLowerCase()}.`;
+  }
+});
+const hostPlantNotes = {
+  11: ["Monarch and other milkweed-feeding caterpillars"],
+  50: ["Monarch and other milkweed-feeding caterpillars"],
+  32: ["American lady butterfly caterpillars"]
+};
+PLANTS.forEach((plant) => { if (hostPlantNotes[plant.number]) plant.hostFor = hostPlantNotes[plant.number]; });

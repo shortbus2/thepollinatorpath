@@ -129,3 +129,18 @@ Open `uploader.html` in Microsoft Edge or Google Chrome on Windows.
 6. Commit and push the resulting changes in GitHub Desktop.
 
 The uploader creates web-sized JPG copies (maximum 1600 px long edge), files them in the correct subject folder, and rewrites `image-manifest.js`. Your original photographs are not changed.
+
+---
+
+## Project governance
+
+The current release and durable project record are maintained in:
+
+- `VERSION` — current release number
+- `RELEASE.md` — release purpose and status
+- `CHANGELOG.md` — what changed by version
+- `DECISIONS.md` — approved product and architecture decisions
+- `ROADMAP.md` — QC gate, polish queue, and future work
+- `IMPLEMENTED-AND-POLISH.md` — implementation audit for this build
+
+Conversation is an idea-generation workspace; the repository is the project source of truth.
