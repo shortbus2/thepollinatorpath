@@ -1,28 +1,33 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-brenda-blanket-flower",
-    "date": "2026-07-13",
-    "time": "",
-    "title": "Brenda on Blanket Flower",
-    "type": "wildlife",
-    "plants": [
-      8
-    ],
-    "visitors": [
-      "brenda"
-    ],
+    "id": "2026-07-16-mro0d6ue",
+    "date": "2026-07-16",
+    "title": "Oak Garden",
+    "type": "observation",
+    "primary": {
+      "kind": "habitat",
+      "id": "Oak Garden"
+    },
+    "plants": [],
+    "visitors": [],
+    "objects": [],
     "areas": [
-      "Front Path"
+      "Oak Garden"
     ],
-    "behaviors": [
-      "Collecting pollen"
-    ],
-    "stage": "Full bloom",
-    "confidence": "probable",
+    "behaviors": [],
+    "stage": "",
+    "confidence": "confirmed",
     "public": true,
     "featured": true,
-    "notes": "Repeat leafcutter bee visit to blanket flower.",
-    "privateNotes": "",
-    "photos": []
+    "notes": "",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T21:15:36.806Z"
+    },
+    "photos": [
+      "images/observations/2026/2026-07-16-mro0d6ue/photo-1-jpg.jpg"
+    ]
   }
 ];
