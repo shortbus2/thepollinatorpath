@@ -1,35 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-16-mrmunxz8",
+    "id": "2026-07-16-mrmuq2xt",
     "date": "2026-07-16",
-    "title": "#8 · Blanket Flower · Full bloom",
+    "title": "#28 · Panchito Manzanita · Progress update",
     "type": "walk",
     "primary": {
       "kind": "plant",
-      "id": "8"
+      "id": "28"
     },
     "plants": [
-      8
+      28
     ],
     "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "Full bloom"
+      "Progress update"
     ],
     "stage": "",
     "confidence": "confirmed",
     "public": true,
     "featured": false,
-    "notes": "This is our first season power house plant. The pollinators have been burgling pollen like gold rush days.",
+    "notes": "My husband always forgets this plants name. Bandito, Mr. Neeto, Pando. We’ll get there.",
     "setHero": true,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-16T01:48:14.660Z"
+      "reviewedAt": "2026-07-16T01:49:54.401Z"
     },
     "photos": [
-      "images/observations/2026/2026-07-16-mrmunxz8/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-16-mrmuq2xt/photo-1-jpg.jpg"
     ]
   }
 ];
