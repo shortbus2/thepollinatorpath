@@ -1,5 +1,41 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-16-73e33b00-1c90-4738-9cbb-4a2f9ba1bca7",
+    "date": "2026-07-16",
+    "title": "#8 · Blanket Flower · Progress update",
+    "type": "library",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Progress update"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T22:17:28.601Z"
+    },
+    "photos": [
+      "images/observations/2026/2026-07-16-73e33b00-1c90-4738-9cbb-4a2f9ba1bca7/garden-d5e74612-d02e-4830-adba-8a2a4f3094ce-1.jpg"
+    ]
+  },
+  {
     "id": "2026-07-16-d065984b-5f19-4f64-8ead-9f2b3f0b6bc5",
     "date": "2026-07-16",
     "title": "#27 · Little Bluestem · Collecting pollen",
