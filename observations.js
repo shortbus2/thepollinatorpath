@@ -1,28 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-13-brenda-blanket-flower",
-    "date": "2026-07-13",
-    "time": "",
-    "title": "Brenda on Blanket Flower",
-    "type": "wildlife",
+    "id": "2026-07-16-mrmvm6ld",
+    "date": "2026-07-16",
+    "title": "#9 · Blue Grama Grass · Progress update",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "9"
+    },
     "plants": [
-      8
+      9
     ],
-    "visitors": [
-      "brenda"
-    ],
-    "areas": [
-      "Front Path"
-    ],
+    "visitors": [],
+    "objects": [],
+    "areas": [],
     "behaviors": [
-      "Collecting pollen"
+      "Progress update"
     ],
-    "stage": "Full bloom",
-    "confidence": "probable",
+    "stage": "",
+    "confidence": "confirmed",
     "public": true,
-    "featured": true,
-    "notes": "Repeat leafcutter bee visit to blanket flower.",
-    "privateNotes": "",
-    "photos": []
+    "featured": false,
+    "notes": "",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T02:14:52.129Z"
+    },
+    "photos": [
+      "images/observations/2026/2026-07-16-mrmvm6ld/photo-1-jpg.jpg"
+    ]
   }
 ];
