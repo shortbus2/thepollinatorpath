@@ -1,5 +1,41 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-16-709f8a29-9426-45c7-8dee-0f9e37fabe01",
+    "date": "2026-07-16",
+    "title": "#8 · Blanket Flower · Progress update",
+    "type": "library",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Progress update"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T22:19:15.810Z"
+    },
+    "photos": [
+      "images/observations/2026/2026-07-16-709f8a29-9426-45c7-8dee-0f9e37fabe01/garden-2d146c57-0520-4551-a1f0-840af7cc3e5b-1.jpg"
+    ]
+  },
+  {
     "id": "2026-07-16-73e33b00-1c90-4738-9cbb-4a2f9ba1bca7",
     "date": "2026-07-16",
     "title": "#8 · Blanket Flower · Progress update",
