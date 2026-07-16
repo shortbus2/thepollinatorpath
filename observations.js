@@ -1,5 +1,42 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-16-b4dbde92-142d-4035-99d9-eb3d0c7e1100",
+    "date": "2026-07-16",
+    "title": "#27 · Little Bluestem · Collecting pollen",
+    "type": "observation",
+    "primary": {
+      "kind": "plant",
+      "id": "27"
+    },
+    "plants": [
+      27,
+      8
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Collecting pollen"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "These beautiful creatures were seen twinning and collecting pollen this morning!",
+    "originalNarrative": "These beautiful creatures were seen twinning and collecting pollen this morning!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T22:12:26.926Z"
+    },
+    "photos": [
+      "images/observations/2026/2026-07-16-b4dbde92-142d-4035-99d9-eb3d0c7e1100/garden-d3c29a89-a706-4f1e-b140-9cca917d2ecb-1.jpg"
+    ]
+  },
+  {
     "id": "2026-07-07-f428fb8b-b31e-430a-8f66-91d10b59b429",
     "date": "2026-07-07",
     "title": "Front Path · Progress update",
