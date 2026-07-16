@@ -9,21 +9,16 @@
   const navLinks = $(".nav-links");
 
   if (menuButton && navLinks) {
-    menuButton.setAttribute('aria-expanded','false');
+    const closeMenu=()=>{navLinks.classList.remove("open");menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open menu");};
+    menuButton.setAttribute("aria-expanded", "false");
     menuButton.addEventListener("click", () => {
       const isOpen = navLinks.classList.toggle("open");
       menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     });
-    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}));
-    document.addEventListener('click',e=>{if(!navLinks.contains(e.target)&&!menuButton.contains(e.target)){navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false')}});
-  }
-
-  const carousel = document.querySelector('#heroCarousel');
-  if (carousel) {
-    const featured=(window.OBSERVATIONS||[]).filter(o=>o.featured&&(o.photos||[]).length).flatMap(o=>o.photos.map(src=>({src,caption:o.title||''}))).slice(0,6);
-    const fallback=(window.IMAGE_MANIFEST?.hero||[]).map(x=>typeof x==='string'?{src:x,caption:''}:x);
-    const slides=[...featured,...fallback].filter((x,i,a)=>x.src&&a.findIndex(y=>y.src===x.src)===i).slice(0,6);
-    if(slides.length){const stage=carousel.querySelector('.hero-slides'), progress=carousel.querySelector('.hero-progress');stage.innerHTML=slides.map((x,i)=>`<div class="hero-slide ${i===0?'active':''}" style="background-image:url('${x.src}')"></div>`).join('');progress.innerHTML=slides.map((_,i)=>`<button type="button" aria-label="Show image ${i+1}" class="${i===0?'active':''}"></button>`).join('');let idx=0,timer;const show=n=>{idx=(n+slides.length)%slides.length;stage.querySelectorAll('.hero-slide').forEach((el,i)=>el.classList.toggle('active',i===idx));progress.querySelectorAll('button').forEach((el,i)=>el.classList.toggle('active',i===idx))};const play=()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;clearInterval(timer);timer=setInterval(()=>show(idx+1),9000)};progress.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{show(i);play()}));let x=0;carousel.addEventListener('touchstart',e=>x=e.changedTouches[0].clientX,{passive:true});carousel.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>45){show(idx+(dx<0?1:-1));play()}},{passive:true});play();}
+    navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu();});
+    addEventListener("resize",()=>{if(innerWidth>650)closeMenu();});
   }
 
   function iconFor(plant) {

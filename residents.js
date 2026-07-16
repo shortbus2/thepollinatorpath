@@ -1,6 +1,7 @@
+// Editable named garden residents. Published by Garden Brain.
 window.GARDEN_RESIDENTS = [
-  {"id":"beth","name":"Beth","type":"bird","species":"Probable female Broad-tailed Hummingbird","confidence":"reasonable","status":"active","icon":"🐦","notes":"Regular hummingbird visitor documented using Vermillion Bluffs and Hummingbird Trumpet. Individual identity is a garden nickname, not a scientific claim.","public":true,"photo":""},
-  {"id":"brenda","name":"Brenda","type":"bee","species":"Leafcutter bee (Megachile sp.)","confidence":"reasonable","status":"active","icon":"🐝","notes":"Repeat leafcutter-bee visitor associated with Blanket Flower. Exact individual identity remains uncertain.","public":true,"photo":""},
-  {"id":"little-head-todd","name":"Little Head Todd","type":"toad","species":"Toad","confidence":"high","status":"active","icon":"🐸","notes":"Named garden resident associated with the toad shelters.","public":true,"photo":""},
-  {"id":"big-booty-judy","name":"Big Booty Judy","type":"toad","species":"Toad","confidence":"high","status":"active","icon":"🐸","notes":"Resident toad and unofficial habitat quality inspector.","public":true,"photo":""}
+  {"id":"beth","name":"Beth","type":"Hummingbird","species":"Probable Broad-tailed Hummingbird","confidence":"reasonable","icon":"🐦","status":"active","notes":"Named hummingbird resident and repeat garden visitor.","public":true},
+  {"id":"brenda","name":"Brenda","type":"Leafcutter bee","species":"Megachile sp.","confidence":"reasonable","icon":"🐝","status":"active","notes":"Repeat leafcutter-bee visitor. Individual identity remains uncertain.","public":true},
+  {"id":"little-head-todd","name":"Little Head Todd","type":"Toad","species":"Toad species not yet firmly established","confidence":"reasonable","icon":"🐸","status":"active","notes":"Named garden resident toad.","public":true},
+  {"id":"big-booty-judy","name":"Big Booty Judy","type":"Toad","species":"Toad species not yet firmly established","confidence":"reasonable","icon":"🐸","status":"active","notes":"Original large resident toad.","public":true}
 ];

@@ -1,3 +1,7 @@
+# The Pollinator Path — Garden Brain 3.2.0 Stable Test
+
+See `STABLE-TEST-3.2.0.md` and `/docs`.
+
 # The Pollinator Path — static GitHub Pages site
 
 ## What is included
