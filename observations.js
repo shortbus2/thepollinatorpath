@@ -1,35 +1,35 @@
 window.OBSERVATIONS = [
   {
-    "id": "2025-07-24-mrmqszjt",
-    "date": "2025-07-24",
-    "title": "🐸 Big Booty Judy · Resting",
+    "id": "2026-07-16-mrmulvpf",
+    "date": "2026-07-16",
+    "title": "#15 · Creeping Oregon Grape · Progress update",
     "type": "walk",
     "primary": {
-      "kind": "resident",
-      "id": "big-booty-judy"
+      "kind": "plant",
+      "id": "15"
     },
-    "plants": [],
-    "visitors": [
-      "big-booty-judy"
+    "plants": [
+      15
     ],
+    "visitors": [],
     "objects": [],
     "areas": [],
     "behaviors": [
-      "Resting"
+      "Progress update"
     ],
     "stage": "",
-    "confidence": "high",
+    "confidence": "confirmed",
     "public": true,
     "featured": false,
     "notes": "",
-    "setHero": false,
+    "setHero": true,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-16T00:00:11.513Z"
+      "reviewedAt": "2026-07-16T01:46:38.403Z"
     },
     "photos": [
-      "images/observations/2025/2025-07-24-mrmqszjt/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-16-mrmulvpf/photo-1-jpg.jpg"
     ]
   }
 ];
