@@ -1,5 +1,40 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-16-d065984b-5f19-4f64-8ead-9f2b3f0b6bc5",
+    "date": "2026-07-16",
+    "title": "#27 · Little Bluestem · Collecting pollen",
+    "type": "observation",
+    "primary": {
+      "kind": "plant",
+      "id": "27"
+    },
+    "plants": [
+      27,
+      8
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Collecting pollen"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T22:14:17.317Z"
+    },
+    "photos": []
+  },
+  {
     "id": "2026-07-16-e1d273bc-f68b-4483-a228-71d53d403b39",
     "date": "2026-07-16",
     "title": "#27 · Little Bluestem · Collecting pollen",
