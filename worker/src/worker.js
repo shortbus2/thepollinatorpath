@@ -1,5 +1,5 @@
 const API_VERSION = "2026-03-10";
-const WORKER_VERSION = "3.1.0-privacy-by-design";
+const WORKER_VERSION = "3.1.1-testing-fixes";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
 
@@ -130,23 +130,43 @@ async function atomicCommit(env, files, message) {
   return { commitSha: newCommit.sha, changedFiles: files.length };
 }
 
-function parseWindowArray(text, variableName) {
-  if (!text) return [];
-  const escaped = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\$&");
-  const match = text.match(new RegExp(`window\.${escaped}\s*=\s*([\s\S]*?);(?:\s|$)`));
-  if (!match) return [];
+function parseWindowValue(text, variableName, fallback) {
+  if (!text) return fallback;
+  const escaped = variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`window\\.${escaped}\\s*=\\s*([\\s\\S]*?);(?:\\s|$)`);
+  const match = text.match(pattern);
+  if (!match) return fallback;
   try {
-    const parsed = JSON.parse(match[1]);
-    return Array.isArray(parsed) ? parsed : [];
+    return JSON.parse(match[1]);
   } catch {
-    // Some legacy bridge files contain JavaScript expressions rather than JSON.
-    // They are valid in the browser, but the Worker must never fail the entire
-    // authenticated /garden response because one optional collection is legacy.
-    return [];
+    // Older bridge files such as image-manifest.js used simple JavaScript object
+    // literals with unquoted property names. Normalize those property names and
+    // try JSON parsing once more; never execute repository content as code.
+    try {
+      const normalized = match[1].replace(/([{,]\s*)([A-Za-z_$][\w$]*)(\s*:)/g, '$1"$2"$3');
+      return JSON.parse(normalized);
+    } catch {
+      return fallback;
+    }
   }
 }
 
+function parseWindowArray(text, variableName) {
+  const value = parseWindowValue(text, variableName, []);
+  return Array.isArray(value) ? value : [];
+}
+
+function parseWindowObject(text, variableName) {
+  const value = parseWindowValue(text, variableName, {});
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+
 function serializeWindowArray(variableName, value, comment = "") {
+  const heading = comment ? `// ${comment}\n` : "";
+  return `${heading}window.${variableName} = ${JSON.stringify(value, null, 2)};\n`;
+}
+
+function serializeWindowObject(variableName, value, comment = "") {
   const heading = comment ? `// ${comment}\n` : "";
   return `${heading}window.${variableName} = ${JSON.stringify(value, null, 2)};\n`;
 }
@@ -196,6 +216,12 @@ async function publishObservation(env, entry) {
 
   const files = [];
   const photoPaths = [];
+  const manifestText = await getTextFile(env, "image-manifest.js");
+  const imageManifest = parseWindowObject(manifestText, "IMAGE_MANIFEST");
+  imageManifest.hero = Array.isArray(imageManifest.hero) ? imageManifest.hero : [];
+  imageManifest.plants = imageManifest.plants && typeof imageManifest.plants === "object" ? imageManifest.plants : {};
+  imageManifest.wildlife = imageManifest.wildlife && typeof imageManifest.wildlife === "object" ? imageManifest.wildlife : {};
+  let manifestChanged = false;
   for (let index = 0; index < photos.length; index += 1) {
     const photo = photos[index];
     const raw = String(photo.data || "").split(",")[1];
@@ -213,10 +239,31 @@ async function publishObservation(env, entry) {
     // so replacing a portrait never erases the observation history.
     if (photo.hero) {
       let heroFolder = "";
-      if (primary.kind === "plant") heroFolder = `images/plants/${safeSlug(primary.id)}`;
-      if (primary.kind === "visitor") heroFolder = `images/wildlife/${safeSlug(primary.id)}`;
+      let manifestGroup = "";
+      let manifestKey = "";
+      if (primary.kind === "plant") {
+        heroFolder = `images/plants/${safeSlug(primary.id)}`;
+        manifestGroup = "plants";
+        manifestKey = String(primary.id);
+      }
+      if (primary.kind === "visitor" || primary.kind === "resident") {
+        heroFolder = `images/wildlife/${safeSlug(primary.id)}`;
+        manifestGroup = "wildlife";
+        manifestKey = String(primary.id);
+      }
       if (primary.kind === "object") heroFolder = `images/objects/${safeSlug(primary.id)}`;
-      if (heroFolder) files.push({ path: `${heroFolder}/hero.jpg`, content: raw, encoding: "base64" });
+      if (heroFolder) {
+        const heroPath = `${heroFolder}/hero.jpg`;
+        files.push({ path: heroPath, content: raw, encoding: "base64" });
+        if (manifestGroup && manifestKey) {
+          const currentItem = imageManifest[manifestGroup][manifestKey];
+          imageManifest[manifestGroup][manifestKey] = {
+            ...(currentItem && typeof currentItem === "object" ? currentItem : {}),
+            hero: heroPath,
+          };
+          manifestChanged = true;
+        }
+      }
     }
   }
 
@@ -226,6 +273,13 @@ async function publishObservation(env, entry) {
   observations = observations.filter((item) => item.id !== publicEntry.id);
   observations.unshift(publicEntry);
   files.push({ path: "observations.js", content: serializeWindowArray("OBSERVATIONS", observations), encoding: "utf8" });
+  if (manifestChanged) {
+    files.push({
+      path: "image-manifest.js",
+      content: serializeWindowObject("IMAGE_MANIFEST", imageManifest, "Automatically maintained by Garden Brain photo publishing."),
+      encoding: "utf8",
+    });
+  }
 
   return atomicCommit(env, files, `Garden Brain: ${entry.title || entry.id}`);
 }

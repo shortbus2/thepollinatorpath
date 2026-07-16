@@ -24,7 +24,7 @@ window.GARDEN_BRAIN = {
     {id:"boulder-showcase",type:"boulder",name:"Showcase Boulder",area:"oak-garden",public:true,promptDays:90},
     {id:"boulder-left",type:"boulder",name:"Left Boulder",area:"boulder-garden",public:true,promptDays:90},
     {id:"boulder-water",type:"boulder",name:"Water Feature Boulder",area:"water-feature-garden",public:true,promptDays:90},
-    {id:"path-loop",type:"path",name:"Crusher Fine Loop",area:"front-east",public:true,promptDays:180},
+    {id:"path-loop",type:"path",name:"Flagstone Path",area:"front-east",public:true,promptDays:180},
     {id:"feature-bee-soil",type:"habitat",name:"Ground-Nesting Bee Patch",area:"front-east",public:false,promptDays:21},
     {id:"feature-toad-1",type:"habitat",name:"Toad Shelter No. 1",area:"front-east",public:false,promptDays:30},
     {id:"feature-toad-2",type:"habitat",name:"Toad Shelter No. 2",area:"front-east",public:false,promptDays:30}
