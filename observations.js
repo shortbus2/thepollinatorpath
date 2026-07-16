@@ -1,15 +1,15 @@
 window.OBSERVATIONS = [
   {
-    "id": "2026-07-16-mrmuq2xt",
+    "id": "2026-07-16-mrmvm6ld",
     "date": "2026-07-16",
-    "title": "#28 · Panchito Manzanita · Progress update",
+    "title": "#9 · Blue Grama Grass · Progress update",
     "type": "walk",
     "primary": {
       "kind": "plant",
-      "id": "28"
+      "id": "9"
     },
     "plants": [
-      28
+      9
     ],
     "visitors": [],
     "objects": [],
@@ -21,15 +21,15 @@ window.OBSERVATIONS = [
     "confidence": "confirmed",
     "public": true,
     "featured": false,
-    "notes": "My husband always forgets this plants name. Bandito, Mr. Neeto, Pando. We’ll get there.",
+    "notes": "",
     "setHero": true,
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-16T01:49:54.401Z"
+      "reviewedAt": "2026-07-16T02:14:52.129Z"
     },
     "photos": [
-      "images/observations/2026/2026-07-16-mrmuq2xt/photo-1-jpg.jpg"
+      "images/observations/2026/2026-07-16-mrmvm6ld/photo-1-jpg.jpg"
     ]
   }
 ];
