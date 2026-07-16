@@ -1,5 +1,39 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-07-f428fb8b-b31e-430a-8f66-91d10b59b429",
+    "date": "2026-07-07",
+    "title": "Front Path · Progress update",
+    "type": "library",
+    "primary": {
+      "kind": "habitat",
+      "id": "Front Path"
+    },
+    "plants": [],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [
+      "Front Garden · West Side"
+    ],
+    "behaviors": [
+      "Progress update"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": true,
+    "notes": "Today we installed lighting. The whole zig zag onto wasn’t cool so I had to learn how to be a landscape lighting engineer lol. At least it was a cool night, but dang what a difference!",
+    "originalNarrative": "Today we installed lighting. The whole zig zag onto wasn’t cool so I had to learn how to be a landscape lighting engineer lol. At least it was a cool night, but dang what a difference!",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-16T22:05:00.724Z"
+    },
+    "photos": []
+  },
+  {
     "id": "2026-07-07-53f8effa-ed4e-46a5-b0cd-993d3d5f93e2",
     "date": "2026-07-07",
     "title": "Front Path · Progress update",
