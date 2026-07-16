@@ -1,6 +1,6 @@
-# The Pollinator Path — Garden Brain 3.2.0 Stable Test
+# The Pollinator Path — Garden Brain 4.0.0 AI Foundation
 
-See `STABLE-TEST-3.2.0.md` and `/docs`.
+See `RELEASE-4.0.0-AI-FOUNDATION.md` and `/docs`.
 
 # The Pollinator Path — static GitHub Pages site
 

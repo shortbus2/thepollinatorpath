@@ -18,3 +18,12 @@
 - Version mismatch between site and helper.
 - Image manifest update during master portrait publishing.
 - GitHub reference-update race handling.
+
+## 4.0.0 — AI Foundation
+
+- Added AI-assisted, photo-first Garden Walk drafts.
+- Added cautious identification with alternatives and explicit uncertainty.
+- Added edit and delete controls for published observations.
+- Added safe photo retention/removal behavior during edits.
+- Made privacy review choices sticky during a testing session.
+- Reset entry-specific fields after successful saves.
