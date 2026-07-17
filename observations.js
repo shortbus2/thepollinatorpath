@@ -29,31 +29,14 @@ window.OBSERVATIONS = [
     "privacyReview": {
       "completed": true,
       "safeHomepage": true,
-      "reviewedAt": "2026-07-17T04:25:43.742Z"
+      "reviewedAt": "2026-07-17T04:31:29.758Z"
     },
-    "aiDraft": {
-      "group_together": true,
-      "plant": {
-        "label": "Bee Balm (Monarda)",
-        "existing_id": "4",
-        "confidence": 0.7
-      },
-      "visitor": null,
-      "behavior": null,
-      "overall_confidence": "probable",
-      "alternatives": [
-        "Rocky Mountain Blazing Star",
-        "Sticky Geranium"
-      ],
-      "reasoning": "The images show a plant with crinkly, toothed leaves and clusters of developing flower buds consistent with Bee Balm, which is a known plant in the garden. The coloring and leaf texture match Bee Balm better than similar species. No visitor or behavior evident in the photos. Given the lack of flower open state and close similarity to other known plants, identification confidence is probable rather than confirmed.",
-      "needs_human_review": false,
-      "privacy_flags": []
-    },
+    "aiDraft": null,
     "photos": [
       "images/observations/2026/2026-07-17-3fc7c311-0fba-4462-8928-64e84faf746a/garden-9684e9f9-cdef-41e8-ad08-e450f7e51eaf-1.jpg",
       "images/observations/2026/2026-07-17-3fc7c311-0fba-4462-8928-64e84faf746a/garden-fcab657d-7ad8-4819-943d-527c04bb77dc-2.jpg"
     ],
-    "updatedAt": "2026-07-17T04:25:45.161Z"
+    "updatedAt": "2026-07-17T04:31:30.201Z"
   },
   {
     "id": "2026-07-17-3d3491fb-20a7-41fb-95cf-4883d3231e1b",
