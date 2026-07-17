@@ -1,4 +1,4 @@
-# The Pollinator Path — Garden Brain 4.1.0 Garden Brain Review
+# The Pollinator Path — Garden Brain 4.2.0 · The Garden Comes Alive
 
 See `RELEASE-4.0.0-AI-FOUNDATION.md` and `/docs`.
 
@@ -137,3 +137,12 @@ The uploader creates web-sized JPG copies (maximum 1600 px long edge), files the
 
 ## 4.1.0
 See `RELEASE-4.1.0-GARDEN-BRAIN-REVIEW.md`.
+
+## 4.2.0
+See `RELEASE-4.2.0-THE-GARDEN-COMES-ALIVE.md`.
+
+Run the static rabbit-hole link check with:
+
+```bash
+node scripts/link-audit.mjs .
+```

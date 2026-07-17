@@ -1,0 +1,14 @@
+(()=>{
+ const root=document.querySelector('#observation-page');if(!root)return;
+ const id=new URLSearchParams(location.search).get('id');
+ const observation=(window.OBSERVATIONS||[]).find(o=>String(o.id)===String(id));
+ const plants=window.PLANTS||[],catalog=window.VISITORS||[],residents=window.GARDEN_RESIDENTS||[];
+ const slugify=s=>String(s||'visitor').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ if(!observation){root.innerHTML='<section class="panel"><h1>Memory not found</h1><p>This link may point to a memory that was edited, retired, or is still private.</p><a class="btn btn-green" href="garden-walks.html">Return to Garden Walks</a></section>';return}
+ document.title=`${observation.title||'Garden memory'} · The Pollinator Path`;
+ const plantLinks=(observation.plants||[]).map(n=>{const p=plants.find(x=>Number(x.number)===Number(n));return p?`<a class="chip chip-link" href="plant.html?id=${p.number}">🌿 ${p.common}</a>`:''}).join('');
+ const visitorIds=[...new Set([...(observation.visitors||[]),...(observation.visitorDetails||[]).map(d=>d.id||slugify(d.label))])];
+ const visitorLinks=visitorIds.map(v=>{const r=catalog.find(x=>x.slug===v)||residents.find(x=>x.id===v);const d=(observation.visitorDetails||[]).find(x=>(x.id||slugify(x.label))===v);return `<a class="chip chip-link" href="wildlife.html?id=${encodeURIComponent(v)}">${r?.icon||'🐝'} ${r?.name||d?.label||v}</a>`}).join('');
+ const photos=observation.photos||[];
+ root.innerHTML=`<div class="eyebrow">Garden Walk · ${new Date((observation.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div><h1>${observation.title||'Garden memory'}</h1>${observation.notes?`<p class="intro">${observation.notes}</p>`:''}<div class="observation-actions"><a class="btn btn-green" href="field-notebook.html?edit=${encodeURIComponent(observation.id)}">✏️ Edit this memory</a><a class="btn" href="garden-walks.html#walk-${encodeURIComponent(observation.id)}">See in Garden Walks</a></div>${photos.length?`<section class="panel"><h2>Photos</h2><div class="observation-media" data-gallery-title="${String(observation.title||'Garden memory').replace(/"/g,'&quot;')}">${photos.map((src,i)=>`<button class="gallery-thumb" type="button" data-gallery-src="${src}"><img src="${src}" alt="${observation.title||'Garden memory'} photo ${i+1}" loading="lazy"></button>`).join('')}</div></section>`:''}<section class="panel"><h2>Connected stories</h2><div class="entity-links">${plantLinks}${visitorLinks||(visitorIds.length?'':'<a class="chip chip-link" href="visitors.html">🐝 Meet the Wildlife</a>')}</div></section>${(observation.behaviors||[]).length?`<section class="panel"><h2>What was happening</h2><div class="chips">${observation.behaviors.map(x=>`<span class="chip">${x}</span>`).join('')}</div></section>`:''}`;
+})();

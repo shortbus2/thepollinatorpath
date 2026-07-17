@@ -1,5 +1,5 @@
 window.GARDEN_BRAIN = {
-  version: "4.1.0-garden-brain-review",
+  version: "4.2.0-the-garden-comes-alive",
   scope: "front-garden",
   coordinateSystem: { unit: "percent", origin: "top-left", note: "Map positions are normalized to each source image." },
   corrections: [

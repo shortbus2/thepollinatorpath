@@ -1,7 +1,7 @@
 const API_VERSION = "2022-11-28";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
-const WORKER_VERSION = "4.1.0-garden-brain-review";
+const WORKER_VERSION = "4.2.0-the-garden-comes-alive";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
@@ -222,7 +222,7 @@ async function identifyPhotos(env, body) {
   const context = body.context || {};
   const content = [{
     type: "input_text",
-    text: `You are the cautious identification assistant for a private wildlife garden journal in Mead, Colorado. Analyze these photos as one possible observation group. Never force species-level certainty. Prefer broad truthful labels when visual evidence is weak. Existing garden plants: ${JSON.stringify(context.plants || [])}. Known visitors/residents: ${JSON.stringify(context.visitors || [])}. Return likely plant, visitor, behavior, confidence, alternatives, whether photos belong together, and concise reasoning.`,
+    text: `You are Garden Brain, the cautious identification assistant for a private wildlife garden journal in Mead, Colorado. Analyze these photos as one Garden Walk memory. Identify the likely plant and EVERY visibly distinct wildlife type in the photos, not just the most obvious visitor. Group at the simplest useful level (for example leafcutter bee, honey bee, paper wasp) rather than forcing exact species. Never claim individual identity from appearance alone. Never force certainty; prefer broad truthful labels when evidence is weak. Existing garden plants: ${JSON.stringify(context.plants || [])}. Existing wildlife pages/residents: ${JSON.stringify(context.visitors || [])}. Return one plant suggestion, a list of distinct visitor suggestions, a behavior summary, a warm concise memory summary, confidence, alternatives, whether the photos belong together, and concise evidence-based reasoning. Use a human Garden Brain voice: warm, curious, honest, occasionally lightly amused, never clinical.`,
   }];
   for (const image of images) content.push({ type: "input_image", image_url: image, detail: "high" });
   const schema = {
@@ -231,15 +231,16 @@ async function identifyPhotos(env, body) {
     properties: {
       group_together: { type: "boolean" },
       plant: { type: ["object", "null"], additionalProperties: false, properties: { label: { type: "string" }, existing_id: { type: ["string", "null"] }, confidence: { type: "number" } }, required: ["label", "existing_id", "confidence"] },
-      visitor: { type: ["object", "null"], additionalProperties: false, properties: { label: { type: "string" }, existing_id: { type: ["string", "null"] }, category: { type: "string" }, confidence: { type: "number" } }, required: ["label", "existing_id", "category", "confidence"] },
+      visitors: { type: "array", maxItems: 12, items: { type: "object", additionalProperties: false, properties: { label: { type: "string" }, existing_id: { type: ["string", "null"] }, category: { type: "string" }, confidence: { type: "number" }, evidence: { type: "string" } }, required: ["label", "existing_id", "category", "confidence", "evidence"] } },
       behavior: { type: ["string", "null"] },
+      memory_summary: { type: "string" },
       overall_confidence: { type: "string", enum: ["confirmed", "probable", "tentative", "unidentified"] },
       alternatives: { type: "array", items: { type: "string" }, maxItems: 5 },
       reasoning: { type: "string" },
       needs_human_review: { type: "boolean" },
       privacy_flags: { type: "array", items: { type: "string" } },
     },
-    required: ["group_together", "plant", "visitor", "behavior", "overall_confidence", "alternatives", "reasoning", "needs_human_review", "privacy_flags"],
+    required: ["group_together", "plant", "visitors", "behavior", "memory_summary", "overall_confidence", "alternatives", "reasoning", "needs_human_review", "privacy_flags"],
   };
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",

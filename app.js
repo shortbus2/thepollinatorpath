@@ -20,6 +20,18 @@
     document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu();});
     addEventListener("resize",()=>{if(innerWidth>650)closeMenu();});
   }
+  const publicObservations=()=> (window.OBSERVATIONS||[]).filter(o=>o.public!==false);
+  function slugifyEntity(label){return String(label||'visitor').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'visitor'}
+  function allWildlife(){
+    const map=new Map();
+    (window.VISITORS||[]).forEach(v=>map.set(v.slug,{...v,slug:v.slug,source:'catalog'}));
+    (window.GARDEN_RESIDENTS||[]).filter(r=>r.public!==false).forEach(r=>{if(!map.has(r.id))map.set(r.id,{slug:r.id,name:r.name,species:r.species||r.type||'',category:r.type||'Named resident',icon:r.icon||'🐾',status:'Named resident',summary:r.notes||'',story:r.notes||'',hero:`images/wildlife/${r.id}/hero.jpg`,relatedPlants:[],locations:[],observations:[],firstSeen:'See the living journal',source:'resident'})});
+    publicObservations().forEach(o=>(o.visitorDetails||[]).forEach(d=>{const id=d.id||slugifyEntity(d.label);if(!map.has(id))map.set(id,{slug:id,name:d.label||id,species:d.label||'',category:d.category||'Wildlife visitor',icon:/bird/i.test(d.category||'')?'🐦':/moth|butter/i.test(d.category||'')?'🦋':/toad|frog/i.test(d.category||'')?'🐸':'🐝',status:d.status==='identification-pending'?'Visitor we’re still getting to know':'Garden Brain suggested',summary:d.status==='identification-pending'?'We have a sighting, but not quite enough detail for a confident introduction yet.':`Observed using this garden and connected to ${o.title||'a Garden Walk'}.`,story:d.evidence||'This page will grow as more observations are confirmed.',hero:`images/wildlife/${id}/hero.jpg`,relatedPlants:[],locations:[],observations:[],firstSeen:o.date||'See the living journal',source:'observation'});const v=map.get(id);v.relatedPlants=[...new Set([...(v.relatedPlants||[]),...(o.plants||[])])];}));
+    return [...map.values()];
+  }
+  function wildlifeById(id){return allWildlife().find(v=>v.slug===id)}
+  function entityHref(kind,id){if(kind==='plant')return `plant.html?id=${encodeURIComponent(id)}`;if(kind==='visitor'||kind==='resident')return `wildlife.html?id=${encodeURIComponent(id)}`;if(kind==='observation')return `observation.html?id=${encodeURIComponent(id)}`;if(kind==='walk')return `garden-walks.html#walk-${encodeURIComponent(id)}`;return 'visitors.html'}
+
 
   function iconFor(plant) {
     if (plant.type === "Tree") return "🌳";
@@ -96,19 +108,18 @@
     return (window.OBSERVATIONS || []).filter(o => o.public !== false && (o.plants || []).map(Number).includes(Number(number)));
   }
   function observationsForVisitor(slug) {
-    return (window.OBSERVATIONS || []).filter(o => o.public !== false && (o.visitors || []).includes(slug));
+    return publicObservations().filter(o => (o.visitors || []).includes(slug) || (o.visitorDetails||[]).some(d=>(d.id||slugifyEntity(d.label))===slug));
   }
   function observationJournal(items) {
     if (!items.length) return '<p class="empty">No dated journal entries yet. The garden is still writing this page.</p>';
-    return items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(o => `
-      <article class="journal-entry">
-        <div class="journal-date">${new Date((o.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div>
-        <h3>${o.title || 'Garden observation'}</h3>
-        ${(o.photos||[]).length ? `<div class="journal-photos">${o.photos.map((src,i)=>`<img src="${src}" alt="${o.title||'Observation'} photo ${i+1}" loading="lazy">`).join('')}</div>` : ''}
-        ${o.notes ? `<p>${o.notes}</p>` : ''}
-        <div class="chips">${(o.behaviors||[]).map(x=>`<span class="chip">${x}</span>`).join('')}${o.confidence && o.confidence!=='confirmed'?`<span class="chip">${o.confidence} ID</span>`:''}</div>
-      </article>`).join('');
+    return items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(o => {
+      const photos=o.photos||[],shown=photos.slice(0,16);
+      const photoGrid=shown.length?`<div class="journal-photos compact-gallery" data-gallery-title="${String(o.title||'Garden memory').replace(/"/g,'&quot;')}">${shown.map((src,i)=>`<button type="button" class="gallery-thumb" data-gallery-src="${src}" aria-label="Open photo ${i+1} of ${photos.length}"><img src="${src}" alt="${o.title||'Observation'} photo ${i+1}" loading="lazy">${i===15&&photos.length>16?`<span class="more-overlay">+${photos.length-16}</span>`:''}</button>`).join('')}</div>`:'';
+      const visitorLinks=[...new Set([...(o.visitors||[]),...(o.visitorDetails||[]).map(d=>d.id||slugifyEntity(d.label))])].map(id=>{const v=wildlifeById(id);return `<a class="chip chip-link" href="${entityHref('visitor',id)}">${v?.icon||'🐝'} ${v?.name||id}</a>`}).join('');
+      return `<article class="journal-entry" id="observation-${o.id}"><a class="journal-entry-link" href="${entityHref('observation',o.id)}"><div class="journal-date">${new Date((o.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div><h3>${o.title || 'Garden observation'}</h3></a>${photoGrid}${o.notes ? `<p>${o.notes}</p>` : ''}<div class="chips">${visitorLinks}${(o.behaviors||[]).map(x=>`<span class="chip">${x}</span>`).join('')}${o.confidence && o.confidence!=='confirmed'?`<span class="chip">${o.confidence} ID</span>`:''}<a class="chip chip-link" href="${entityHref('observation',o.id)}">Open memory →</a></div></article>`;
+    }).join('');
   }
+
 
   function statusLinks(status) {
     const lower = status.toLowerCase();
@@ -264,12 +275,9 @@
         if (/humming|bird/i.test(visitor)) icon = "🐦";
         if (/butter|monarch/i.test(visitor)) icon = "🦋";
 
-        return `
-          <div class="visitor">
-            <div class="visitor-icon" aria-hidden="true">${icon}</div>
-            <small>${visitor}</small>
-          </div>
-        `;
+        const match=allWildlife().find(v=>v.name===visitor||v.species===visitor||String(v.name).toLowerCase().includes(String(visitor).toLowerCase()));
+        const href=match?entityHref('visitor',match.slug):`visitors.html?q=${encodeURIComponent(visitor)}`;
+        return `<a class="visitor visitor-link" href="${href}"><div class="visitor-icon" aria-hidden="true">${icon}</div><small>${visitor}</small></a>`;
       })
       .join("");
 
@@ -324,7 +332,7 @@
               <div class="media-gallery auto-gallery">
                 ${autoGallery(`images/plants/${plant.number}`, plant.common, iconFor(plant))}
               </div>
-              <div class="gallery-empty-note">Add photos named <code>photo-01.jpg</code>, <code>photo-02.jpg</code>, and so on inside <code>images/plants/${plant.number}/</code>. They appear here automatically.</div>
+              <div class="gallery-empty-note">Favorite photos will gather here as this plant’s story grows.</div>
             </section>
 
             <section class="panel">
@@ -364,8 +372,10 @@
 
 
   const visitorGrid = $("#visitor-grid");
-  if (visitorGrid && window.VISITORS) {
-    visitorGrid.innerHTML = VISITORS.map((visitor) => `
+  if (visitorGrid) {
+    const wildlife=allWildlife();
+    const categories=[...new Set(wildlife.map(v=>v.category||v.type||'Other wildlife'))];
+    visitorGrid.innerHTML = categories.map(category=>`<section class="wildlife-category"><div class="section-heading"><div><div class="eyebrow">Meet the wildlife</div><h2>${category}</h2></div></div><div class="visitor-grid-inner">${wildlife.filter(v=>(v.category||v.type||'Other wildlife')===category).map((visitor) => `
       <article class="visitor-card">
         <a href="wildlife.html?id=${visitor.slug}" class="visitor-card-link">
           <div class="visitor-photo image-shell">
@@ -384,14 +394,15 @@
           </div>
         </a>
       </article>
-    `).join("");
+    `).join("")}</div></section>`).join("");
     activateImageFallbacks(visitorGrid);
   }
 
   const wildlifePage = $("#wildlife-page");
-  if (wildlifePage && window.VISITORS) {
+  if (wildlifePage) {
     const slug = new URLSearchParams(window.location.search).get("id");
-    const visitor = VISITORS.find((item) => item.slug === slug) || VISITORS[0];
+    const wildlife=allWildlife();
+    const visitor = wildlifeById(slug) || wildlife[0];
     document.title = `${visitor.name} · The Pollinator Path`;
     const plantLinks = visitor.relatedPlants.length
       ? visitor.relatedPlants.map((number) => {
@@ -522,4 +533,8 @@
       }
     }
   }
+  function ensureLightbox(){let box=document.querySelector('#mediaLightbox');if(box)return box;box=document.createElement('div');box.id='mediaLightbox';box.className='media-lightbox';box.hidden=true;box.innerHTML='<button class="lightbox-close" aria-label="Close photo">×</button><button class="lightbox-prev" aria-label="Previous photo">‹</button><img alt="Expanded garden photo"><button class="lightbox-next" aria-label="Next photo">›</button><div class="lightbox-count"></div>';document.body.append(box);return box}
+  let lightboxItems=[],lightboxIndex=0;
+  document.addEventListener('click',e=>{const thumb=e.target.closest('[data-gallery-src]');if(!thumb)return;e.preventDefault();const group=thumb.closest('[data-gallery-title]')||document;lightboxItems=[...group.querySelectorAll('[data-gallery-src]')].map(x=>x.dataset.gallerySrc);lightboxIndex=Math.max(0,lightboxItems.indexOf(thumb.dataset.gallerySrc));const box=ensureLightbox(),show=()=>{box.querySelector('img').src=lightboxItems[lightboxIndex];box.querySelector('.lightbox-count').textContent=`${lightboxIndex+1} of ${lightboxItems.length}`};box.hidden=false;show();box.querySelector('.lightbox-close').onclick=()=>box.hidden=true;box.querySelector('.lightbox-prev').onclick=()=>{lightboxIndex=(lightboxIndex-1+lightboxItems.length)%lightboxItems.length;show()};box.querySelector('.lightbox-next').onclick=()=>{lightboxIndex=(lightboxIndex+1)%lightboxItems.length;show()};});
+
 })();
