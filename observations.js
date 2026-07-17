@@ -1,5 +1,67 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e",
+    "date": "2026-07-17",
+    "title": "#8 · Blanket Flower · Pollinating",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Pollinating"
+    ],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-17T06:19:13.886Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower (Gaillardia)",
+        "existing_id": "8",
+        "confidence": 0.85
+      },
+      "visitor": {
+        "label": "Megachile sp. (leafcutter bee)",
+        "existing_id": "brenda",
+        "category": "Bee",
+        "confidence": 0.75
+      },
+      "behavior": "pollinating",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Other Gaillardia species",
+        "Other bee species"
+      ],
+      "reasoning": "The flowers strongly resemble Blanket Flower in color and shape, a known garden plant here. The black and white striped insect resembles Megachile sp. (leafcutter bees) documented as visitor 'Brenda'. The insect is actively on the flower's central disk, consistent with pollination behavior. Photos show consistent plant and visitor, so they belong together.",
+      "needs_human_review": true,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e/garden-2959f0d8-d8c9-498c-aff4-908fd7563f25-1.jpg",
+      "images/observations/2026/2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e/garden-8be19f53-88ab-49ae-a658-a3addb4497d9-2.jpg",
+      "images/observations/2026/2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e/garden-fb371776-c143-44b8-be07-7781fcbfba0b-3.jpg"
+    ],
+    "updatedAt": "2026-07-17T06:19:15.536Z"
+  },
+  {
     "id": "2026-07-17-564174fb-6e42-43be-8343-de4d2839bace",
     "date": "2026-07-17",
     "title": "#49 · Vermillion Bluffs",
