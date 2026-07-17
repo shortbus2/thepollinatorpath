@@ -1,5 +1,66 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-17-3d3491fb-20a7-41fb-95cf-4883d3231e1b",
+    "date": "2026-07-17",
+    "title": "Brenda · Collecting pollen",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "brenda"
+    },
+    "plants": [],
+    "visitors": [
+      "brenda"
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Collecting pollen"
+    ],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-17T01:58:19.894Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower (Gaillardia)",
+        "existing_id": "8",
+        "confidence": 0.9
+      },
+      "visitor": {
+        "label": "Megachile sp. (leafcutter bee)",
+        "existing_id": "brenda",
+        "category": "bee",
+        "confidence": 0.8
+      },
+      "behavior": "pollinating or foraging on flower",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Other genus of bee",
+        "Other similar composite flowers"
+      ],
+      "reasoning": "The flower strongly matches the known blanket flower with its red and yellow coloration and petal shape. The insect on the flower appears to be a robust bee without visible long tongue, consistent with Megachile sp., a known visitor. Behavior is consistent with pollination or nectar foraging. Images are close-ups of the same flower and visitor, so they belong to one observation group.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-17-3d3491fb-20a7-41fb-95cf-4883d3231e1b/garden-6f5dd0c8-a906-4267-85b5-9064bc4a6c21-1.jpg",
+      "images/observations/2026/2026-07-17-3d3491fb-20a7-41fb-95cf-4883d3231e1b/garden-8f0ece5d-a844-4287-a66f-8bfe93e907da-2.jpg"
+    ],
+    "updatedAt": "2026-07-17T01:58:21.155Z"
+  },
+  {
     "id": "2026-07-16-709f8a29-9426-45c7-8dee-0f9e37fabe01",
     "date": "2026-07-16",
     "title": "#8 · Blanket Flower · Progress update",
