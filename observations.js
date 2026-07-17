@@ -1,5 +1,59 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-17-564174fb-6e42-43be-8343-de4d2839bace",
+    "date": "2026-07-17",
+    "title": "#49 · Vermillion Bluffs",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "49"
+    },
+    "plants": [
+      49
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-17T04:39:50.197Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Pitcher Sage",
+        "existing_id": "29",
+        "confidence": 0.85
+      },
+      "visitor": null,
+      "behavior": null,
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Hummingbird Trumpet",
+        "Firebird Penstemon"
+      ],
+      "reasoning": "The plant has tall spikes with bright red tubular flowers and square stems, characteristic of the Penstemon genus. Among the known garden plants, Pitcher Sage matches best given the red flowers and leaf shape. The photos show the same plant from similar perspectives, so they belong together. No clear visitor is visible.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-17-564174fb-6e42-43be-8343-de4d2839bace/garden-038a3279-dd56-48ed-bc9d-f1b466e0c3d3-1.jpg",
+      "images/observations/2026/2026-07-17-564174fb-6e42-43be-8343-de4d2839bace/garden-5ddfa679-a214-406b-bd3a-03dae0570082-2.jpg"
+    ],
+    "updatedAt": "2026-07-17T04:39:52.070Z"
+  },
+  {
     "id": "2026-07-17-f16abe2b-32bc-48a9-ac8f-b3937a29062b",
     "date": "2026-07-17",
     "title": "#8 · Blanket Flower",
