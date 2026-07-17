@@ -1,4 +1,4 @@
-# The Pollinator Path — Garden Brain 4.0.0 AI Foundation
+# The Pollinator Path — Garden Brain 4.1.0 Garden Brain Review
 
 See `RELEASE-4.0.0-AI-FOUNDATION.md` and `/docs`.
 
@@ -133,3 +133,7 @@ Open `uploader.html` in Microsoft Edge or Google Chrome on Windows.
 6. Commit and push the resulting changes in GitHub Desktop.
 
 The uploader creates web-sized JPG copies (maximum 1600 px long edge), files them in the correct subject folder, and rewrites `image-manifest.js`. Your original photographs are not changed.
+
+
+## 4.1.0
+See `RELEASE-4.1.0-GARDEN-BRAIN-REVIEW.md`.

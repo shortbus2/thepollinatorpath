@@ -1,7 +1,7 @@
 const API_VERSION = "2022-11-28";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
-const WORKER_VERSION = "4.0.0-ai-foundation";
+const WORKER_VERSION = "4.1.0-garden-brain-review";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
@@ -215,6 +215,7 @@ async function deleteObservation(env, id) {
 }
 
 async function identifyPhotos(env, body) {
+  const startedAt = Date.now();
   if (!env.OPENAI_API_KEY) throw Error("AI identification is not configured. Add OPENAI_API_KEY to the Worker secrets.");
   const images = Array.isArray(body.images) ? body.images.slice(0, 8) : [];
   if (!images.length) throw Error("Add at least one photo to identify");
@@ -253,7 +254,7 @@ async function identifyPhotos(env, body) {
   const result = await response.json();
   const text = result.output_text || result.output?.flatMap(x => x.content || []).find(x => x.type === "output_text")?.text;
   if (!text) throw Error("AI returned no identification draft");
-  return JSON.parse(text);
+  return { identification: JSON.parse(text), usage: result.usage || null, model: result.model || env.OPENAI_MODEL || "gpt-4.1-mini", elapsedMs: Date.now() - startedAt, requestId: result.id || null };
 }
 
 async function publishArray(env, { path, variable, items, message, comment }) {
@@ -273,7 +274,7 @@ export default {
         const [p, o, m, r] = await Promise.all([getTextFile(env, "placements.js"), getTextFile(env, "observations.js"), getTextFile(env, "milestones.js"), getTextFile(env, "residents.js")]);
         return json({ placements: parseArray(p, "GARDEN_PLACEMENTS"), observations: parseArray(o, "OBSERVATIONS"), milestones: parseArray(m, "GARDEN_MILESTONES"), residents: parseArray(r, "GARDEN_RESIDENTS") }, 200, headers);
       }
-      if (url.pathname === "/identify" && request.method === "POST") return json({ ok: true, identification: await identifyPhotos(env, await request.json()) }, 200, headers);
+      if (url.pathname === "/identify" && request.method === "POST") return json({ ok: true, ...await identifyPhotos(env, await request.json()) }, 200, headers);
       if (["/entry", "/observations"].includes(url.pathname) && ["POST", "PUT"].includes(request.method)) return json({ ok: true, ...await publishObservation(env, await request.json()) }, 200, headers);
       if (url.pathname.startsWith("/observations/") && request.method === "DELETE") return json({ ok: true, ...await deleteObservation(env, decodeURIComponent(url.pathname.split("/").pop())) }, 200, headers);
       if (url.pathname === "/placements" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "placements.js", variable: "GARDEN_PLACEMENTS", items: b.placements, message: "Garden Brain: publish map placements", comment: "Automatically published by the Garden Map Editor." }) }, 200, headers); }
