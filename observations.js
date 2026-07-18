@@ -1,5 +1,76 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-631b3667-2ef8-4386-9f10-8dc044e1d8bc",
+    "date": "2026-07-18",
+    "title": "#4 · Bee Balm",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "4"
+    },
+    "plants": [
+      4
+    ],
+    "visitors": [
+      "brenda"
+    ],
+    "visitorDetails": [
+      {
+        "id": "brenda",
+        "label": "Megachile sp.",
+        "category": "bee",
+        "confidence": 0.8,
+        "confidenceBand": "high",
+        "status": "linked",
+        "evidence": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "Our bee balms first pollinator landing! So excited!!",
+    "originalNarrative": "Our bee balms first pollinator landing! So excited!!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:17:19.062Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Bee Balm",
+        "existing_id": "4",
+        "confidence": 0.85
+      },
+      "visitor": {
+        "label": "Megachile sp.",
+        "existing_id": "brenda",
+        "category": "bee",
+        "confidence": 0.8
+      },
+      "behavior": "foraging",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Monarda lanceolata (a type of Bee Balm)",
+        "Other wild bee species"
+      ],
+      "reasoning": "The plant resembles Bee Balm with its distinctive purple, tube-like flowers and green leaves; Bee Balm is present in the garden plants list. The insect visitor appears to be a Megachile species bee due to its size, black body, and shape as seen on the flowers, matching known visitor 'Brenda' Megachile sp. The bee is likely foraging as it is on the flowers. Photos show the plant and bee interaction in same lighting and soil context, indicating they belong as a group.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-631b3667-2ef8-4386-9f10-8dc044e1d8bc/garden-b432119b-538e-4700-98f2-e7f223a57da2-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:17:20.119Z"
+  },
+  {
     "id": "2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b",
     "date": "2026-07-18",
     "title": "#8 · Blanket Flower",
