@@ -1,5 +1,60 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-46f64ffe-5f34-40b9-9168-e15c81afcaf0",
+    "date": "2026-07-18",
+    "title": "#10 · Harebell · Full bloom",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "10"
+    },
+    "plants": [
+      10
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Full bloom"
+    ],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "One of my favorite delicate plants",
+    "originalNarrative": "One of my favorite delicate plants",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:22:26.780Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Bluebell (Campanula species)",
+        "existing_id": null,
+        "confidence": 0.7
+      },
+      "visitor": null,
+      "behavior": null,
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Campanula rotundifolia (Harebell)"
+      ],
+      "reasoning": "The plant has small, bell-shaped light purple flowers fitting the Campanula genus. Harebell (Campanula rotundifolia) is in the existing garden plants but this specimen appears more compact and denser than typical harebell, so a more general Bluebell (Campanula sp.) label is appropriate. No clear visitor or behavior is visible, and the single photo shows no evidence for identifying visitors or behaviors. The photo context and plant type suggest it belongs together as a single observation group.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-46f64ffe-5f34-40b9-9168-e15c81afcaf0/garden-cb2e736d-ac04-4a50-b5ae-6f048d1c4fdc-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:22:27.926Z"
+  },
+  {
     "id": "2026-07-18-ba83f3eb-aa68-4f4e-931b-2243be1f8cf2",
     "date": "2026-07-18",
     "title": "#63 · Snow-in-Summer · Weather response",
