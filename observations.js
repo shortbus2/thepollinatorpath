@@ -1,5 +1,76 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-d5835b2f-070f-4f03-916a-9108fc4d5bdb",
+    "date": "2026-07-18",
+    "title": "#59 · Bacheri Blue Spruce",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "59"
+    },
+    "plants": [
+      59
+    ],
+    "visitors": [
+      "unknown-small-bird"
+    ],
+    "visitorDetails": [
+      {
+        "id": "unknown-small-bird",
+        "label": "Unknown small bird",
+        "category": "bird",
+        "confidence": 0.6,
+        "confidenceBand": "moderate",
+        "status": "garden-brain-suggested",
+        "evidence": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:40:13.557Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blue Spruce",
+        "existing_id": "59",
+        "confidence": 0.8
+      },
+      "visitor": {
+        "label": "Unknown small bird",
+        "existing_id": null,
+        "category": "bird",
+        "confidence": 0.6
+      },
+      "behavior": "Perching",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Aspen",
+        "Other local small bird species"
+      ],
+      "reasoning": "The plant with blue-green needle-like leaves matches Blue Spruce (id 59) already in the garden. A small bird is perched amid the foliage but the photo details are insufficient for precise species ID. The behavior is consistent with a bird perching on a tree branch. Given local garden records and appearance, Blue Spruce is the likely plant and an unidentified small bird visitor. The pictures likely belong together as one observation group due to consistent vegetation and subject.",
+      "needs_human_review": true,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-d5835b2f-070f-4f03-916a-9108fc4d5bdb/garden-8399233b-c646-4f08-8104-3b005559d56f-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:40:14.670Z"
+  },
+  {
     "id": "2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4",
     "date": "2026-07-17",
     "title": "#41 · Sunset Hyssop",
