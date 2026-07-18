@@ -1,5 +1,63 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-ce732b0c-f86d-4ffb-a1f8-20de09984b50",
+    "date": "2026-07-18",
+    "title": "#59 · Bacheri Blue Spruce · Weather response",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "59"
+    },
+    "plants": [
+      59
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Weather response"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "It’s always something.. Our spruce decided to get dramatic so I crawled in the dirt, inspected the crown, checked the emitters and tweaked the mulch. She’s dropping needles in a dramatic fashion so I’m on watch!",
+    "originalNarrative": "It’s always something.. Our spruce decided to get dramatic so I crawled in the dirt, inspected the crown, checked the emitters and tweaked the mulch. She’s dropping needles in a dramatic fashion so I’m on watch!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:24:49.121Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Bacheri Blue Spruce",
+        "existing_id": "59",
+        "confidence": 0.95
+      },
+      "visitor": null,
+      "behavior": null,
+      "overall_confidence": "confirmed",
+      "alternatives": [
+        "Other spruce species"
+      ],
+      "reasoning": "The tree shown in the third and fourth images matches the garden's Bacheri Blue Spruce in needle color and form. The close-up images of needles and bark also correspond well with typical blue spruce characteristics. No obvious visitor or animal is visible in the photos to be identified. The photos appear to belong together as a single observation group documenting the same spruce specimen and ground under it.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-ce732b0c-f86d-4ffb-a1f8-20de09984b50/garden-ea94d7b8-da2f-4c61-81e1-8bb4d1fdc067-1.jpg",
+      "images/observations/2026/2026-07-18-ce732b0c-f86d-4ffb-a1f8-20de09984b50/garden-786d6c24-e55b-42f2-b105-26efbe74d092-2.jpg",
+      "images/observations/2026/2026-07-18-ce732b0c-f86d-4ffb-a1f8-20de09984b50/garden-ba86b43a-5d30-40a6-8c6f-a9717f6a2a9f-3.jpg",
+      "images/observations/2026/2026-07-18-ce732b0c-f86d-4ffb-a1f8-20de09984b50/garden-4a9bf440-dd5a-4b38-9a2e-93edc0263fc5-4.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:24:51.761Z"
+  },
+  {
     "id": "2026-07-18-46f64ffe-5f34-40b9-9168-e15c81afcaf0",
     "date": "2026-07-18",
     "title": "#10 · Harebell · Full bloom",
