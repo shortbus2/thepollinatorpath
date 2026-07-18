@@ -1,5 +1,73 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-9374b309-68c5-4729-a702-81b2309d8038",
+    "date": "2026-07-18",
+    "title": "🔵 Unknown visitor · Identification pending",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "unknown-pending"
+    },
+    "plants": [],
+    "visitors": [
+      "unknown-pending",
+      "spider-wasp-carrying-spider"
+    ],
+    "visitorDetails": [
+      {
+        "id": "spider-wasp-carrying-spider",
+        "label": "Spider Wasp carrying Spider",
+        "category": "Insect",
+        "confidence": 0.8,
+        "confidenceBand": "high",
+        "status": "garden-brain-suggested",
+        "evidence": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "Insanity! The spider is almost certainly paralyzed, not dead.\nThe female wasp stings it, leaving it alive but\nunable to escape.\nShe drags it into one of those burrows along\nthe edge of the concrete.\nShe lays a single egg on the spider.\nWhen the larva hatches, it eats the spider over several days, beginning with non-vital tissues so the spider stays fresh until the end.\nThe funny part is that these wasps are actually excellent neighbors:\n• They don't defend colonies like yellowjackets.\n• They're very unlikely to sting people unless physically grabbed.\n• They help keep spider populations in balance.",
+    "originalNarrative": "Insanity! The spider is almost certainly paralyzed, not dead.\nThe female wasp stings it, leaving it alive but\nunable to escape.\nShe drags it into one of those burrows along\nthe edge of the concrete.\nShe lays a single egg on the spider.\nWhen the larva hatches, it eats the spider over several days, beginning with non-vital tissues so the spider stays fresh until the end.\nThe funny part is that these wasps are actually excellent neighbors:\n• They don't defend colonies like yellowjackets.\n• They're very unlikely to sting people unless physically grabbed.\n• They help keep spider populations in balance.",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:48:57.750Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": null,
+      "visitor": {
+        "label": "Spider Wasp carrying Spider",
+        "existing_id": null,
+        "category": "Insect",
+        "confidence": 0.8
+      },
+      "behavior": "Hunting/carrying prey",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Spider Wasp",
+        "Mud Dauber Wasp"
+      ],
+      "reasoning": "The insect in the images is visibly carrying a spider prey near a hole likely used as a nest. This behavior matches spider wasp or mud dauber wasp known for hunting spiders and nesting in small burrows. No matching plants are visible; the background suggests a garden edge but no specific plant identifiable.",
+      "needs_human_review": true,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-9374b309-68c5-4729-a702-81b2309d8038/garden-efa89670-abf5-4f6a-a97b-6b50e83e3a73-1.jpg",
+      "images/observations/2026/2026-07-18-9374b309-68c5-4729-a702-81b2309d8038/garden-43c79bbc-88de-4eac-bcf7-b1379f610725-2.jpg",
+      "images/observations/2026/2026-07-18-9374b309-68c5-4729-a702-81b2309d8038/garden-86d43e79-bd0c-464b-895d-21b23904e94a-3.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:48:59.523Z"
+  },
+  {
     "id": "2026-07-18-d5835b2f-070f-4f03-916a-9108fc4d5bdb",
     "date": "2026-07-18",
     "title": "#59 · Bacheri Blue Spruce",

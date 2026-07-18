@@ -14,5 +14,9 @@ window.IMAGE_MANIFEST = {
       "hero": "images/plants/27/hero.jpg"
     }
   },
-  "wildlife": {}
+  "wildlife": {
+    "unknown-pending": {
+      "hero": "images/wildlife/unknown-pending/hero.jpg"
+    }
+  }
 };
