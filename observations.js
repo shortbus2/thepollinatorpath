@@ -1,5 +1,81 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b",
+    "date": "2026-07-18",
+    "title": "#8 · Blanket Flower",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [
+      "megachilid-bee-leafcutter-or-mason-bee"
+    ],
+    "visitorDetails": [
+      {
+        "id": "megachilid-bee-leafcutter-or-mason-bee",
+        "label": "Megachilid bee (leafcutter or mason bee)",
+        "category": "Insect",
+        "confidence": 0.7,
+        "confidenceBand": "moderate",
+        "status": "garden-brain-suggested",
+        "evidence": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "Brenda was back AGAIN! These blanket flowers are continuing to feed the masses!",
+    "originalNarrative": "Brenda was back AGAIN! These blanket flowers are continuing to feed the masses!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:16:05.539Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower (Gaillardia sp.)",
+        "existing_id": "8",
+        "confidence": 0.9
+      },
+      "visitor": {
+        "label": "Megachilid bee (leafcutter or mason bee)",
+        "existing_id": null,
+        "category": "Insect",
+        "confidence": 0.7
+      },
+      "behavior": "Foraging on flower",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Gaillardia aristata (common blanket flower)",
+        "General native Asteraceae species"
+      ],
+      "reasoning": "The flower has a distinctive red and yellow daisy-like appearance with a large central disc typical of Blanket Flower, known in the garden. The insects on the flowers appear to be solitary bees, such as leafcutter or mason bees (Megachilidae), which commonly forage on these flowers. No hummingbirds or other visitors are evident. The photos show similar flowers and insects in a cohesive setting, supporting grouping. Identification is strong at genus level and visitor level but species and visitor species remain tentative due to visual constraints.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-cb42baa5-06d0-4398-8ccf-84e9bb67c579-1.jpg",
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-c5e16255-5952-4846-94bb-1fcb70212b09-2.jpg",
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-1b202bae-e979-4f21-9af6-c8cd6b08fdce-3.jpg",
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-72c85f08-fd4b-46ac-8599-8ab7d5f1622c-4.jpg",
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-03b40b5f-c7dc-4f43-a3bd-ab3e6f049d1f-5.jpg",
+      "images/observations/2026/2026-07-18-5c162e1c-5a0c-4056-be3e-75df42674e2b/garden-8bc97d8d-7753-4447-b330-88fd2f686d1a-6.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:16:09.723Z"
+  },
+  {
     "id": "2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e",
     "date": "2026-07-17",
     "title": "#8 · Blanket Flower · Pollinating",
