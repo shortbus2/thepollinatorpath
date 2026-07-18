@@ -1,5 +1,59 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-7616b09d-9e28-46f7-85cf-e4f4c29deb2c",
+    "date": "2026-07-18",
+    "title": "#10 · Harebell",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "10"
+    },
+    "plants": [
+      10
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:34:07.517Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Harebell (Campanula rotundifolia)",
+        "existing_id": "10",
+        "confidence": 0.8
+      },
+      "visitor": null,
+      "behavior": null,
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Blue Flax",
+        "Other small blue wildflowers"
+      ],
+      "reasoning": "The plant has characteristic nodding bell-shaped blue flowers matching Harebell, which is present in the garden plants list. The flower shape and color strongly suggest Harebell rather than Blue Flax which has a different flower structure. No visible visitor or behavior is detected in the image to identify further.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-7616b09d-9e28-46f7-85cf-e4f4c29deb2c/garden-14cfb3d6-4aa9-4f15-9b1a-47277c85ef72-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:34:08.549Z"
+  },
+  {
     "id": "2026-07-18-db065ce5-2e37-4ed2-91b2-e7c859b4a344",
     "date": "2026-07-18",
     "title": "#9 · Blue Grama Grass · Seed heads",

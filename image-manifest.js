@@ -7,6 +7,9 @@ window.IMAGE_MANIFEST = {
     "8": {
       "hero": "images/plants/8/hero.jpg"
     },
+    "10": {
+      "hero": "images/plants/10/hero.jpg"
+    },
     "27": {
       "hero": "images/plants/27/hero.jpg"
     }
