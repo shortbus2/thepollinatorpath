@@ -1,5 +1,85 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4",
+    "date": "2026-07-17",
+    "title": "#41 · Sunset Hyssop",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "41"
+    },
+    "plants": [
+      41,
+      23
+    ],
+    "visitors": [
+      "brenda"
+    ],
+    "visitorDetails": [
+      {
+        "id": "brenda",
+        "label": "Megachile sp. (Leafcutter Bee)",
+        "category": "insect",
+        "confidence": 0.75,
+        "confidenceBand": "high",
+        "status": "linked",
+        "evidence": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:35:46.332Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Pitcher Sage",
+        "existing_id": "29",
+        "confidence": 0.85
+      },
+      "visitor": {
+        "label": "Megachile sp. (Leafcutter Bee)",
+        "existing_id": "brenda",
+        "category": "insect",
+        "confidence": 0.75
+      },
+      "behavior": "foraging on flowers",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Penstemon species",
+        "Other sage family plants"
+      ],
+      "reasoning": "The plant morphology with narrow, lance-shaped leaves and tubular, orange to pink flowers matches Pitcher Sage (Penstemon) which is listed in the garden plants. The insect is a black-and-yellow banded bee, which resembles a Megachile species (leafcutter bee), known as 'Brenda' in the garden. Images show the bee foraging on the flowers. The evidence is fairly strong but not definitive due to image quality and potential similarity to other Penstemon or sage family plants.",
+      "needs_human_review": true,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-04ea9d81-e6e1-4906-ad15-268a567775c5-1.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-f4d71ba7-249b-480a-9d82-bed956263e95-2.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-d94579d0-d1f6-4b64-8354-a5c888b5e10c-3.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-e2c6591e-8b03-42b9-8339-8003ae6c0563-4.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-9084875b-af6b-4abf-bc20-ee6fe2aaf316-5.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-de6f89b3-32bb-4b63-8db2-25f651ecc8d1-6.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-3e9d3aef-a147-4168-8731-a041bddcd3d5-7.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-f3d0b842-ee57-459c-b996-6718f0ebaae9-8.jpg",
+      "images/observations/2026/2026-07-17-de9ff3f1-0e55-40f7-9065-80d18e8eeec4/garden-91b8320e-7f2e-4893-9ad9-0c5a8676e5b5-9.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:35:50.722Z"
+  },
+  {
     "id": "2026-07-18-7616b09d-9e28-46f7-85cf-e4f4c29deb2c",
     "date": "2026-07-18",
     "title": "#10 · Harebell",
