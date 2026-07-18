@@ -1,5 +1,60 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-18-49d5db03-6fae-49ec-8012-a8dbe6aaf409",
+    "date": "2026-07-18",
+    "title": "Flagstone Path",
+    "type": "walk",
+    "primary": {
+      "kind": "object",
+      "id": "path-loop"
+    },
+    "plants": [],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [
+      "path-loop"
+    ],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": true,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:57:36.718Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Aspen Daisy (likely) or Blanket Flower",
+        "existing_id": "8",
+        "confidence": 0.6
+      },
+      "visitor": null,
+      "behavior": null,
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Little Bluestem",
+        "Bee Balm"
+      ],
+      "reasoning": "The cluster of red flowers near the pathway closely resemble Blanket Flowers, which are present in the garden. There are also plausible similarities to Aspen Daisy or other red-flowered plants present, but direct species-level certainty for these flowers is low. No visible visitors or behaviors can be confidently identified in the images. The consistent setting and plant arrangement suggest these photos belong to the same observation group.",
+      "needs_human_review": true,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-18-49d5db03-6fae-49ec-8012-a8dbe6aaf409/garden-a75539ba-4b39-4ab1-8028-bb58085a90fe-1.jpg",
+      "images/observations/2026/2026-07-18-49d5db03-6fae-49ec-8012-a8dbe6aaf409/garden-8a1f6425-3a11-45c2-b84c-a020e1f9d155-2.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:57:38.424Z"
+  },
+  {
     "id": "2026-07-16-e62c25eb-fc10-4c9a-9bf6-3e4f0aec01d3",
     "date": "2026-07-16",
     "title": "#4 · Bee Balm",
