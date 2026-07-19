@@ -1,0 +1,10 @@
+name = "pollinator-path-garden-brain-staging"
+main = "src/worker.js"
+compatibility_date = "2026-07-01"
+
+[vars]
+GITHUB_OWNER = "shortbus2"
+GITHUB_REPO = "thepollinatorpath"
+GITHUB_BRANCH = "beta-4.3"
+
+ALLOWED_ORIGIN = "https://thepollinatorpath-staging.pages.dev,localhost:8000,http://127.0.0.1:8000"
