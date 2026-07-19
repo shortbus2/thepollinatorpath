@@ -9,6 +9,9 @@ window.IMAGE_MANIFEST = {
     },
     "27": {
       "hero": "images/plants/27/hero.jpg"
+    },
+    "30": {
+      "hero": "images/plants/30/hero.jpg"
     }
   },
   "wildlife": {}

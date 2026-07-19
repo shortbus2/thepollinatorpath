@@ -1,6 +1,45 @@
 // Persistent wildlife species and useful taxon records. Managed by Garden Brain.
 window.GARDEN_SPECIES = [
   {
+    "id": "large-bee-probable-carpenter-or-bumble-bee",
+    "name": "Large bee (probable carpenter or bumble bee)",
+    "scientificName": "",
+    "rank": "species-or-useful-group",
+    "category": "insect",
+    "icon": "🐝",
+    "status": "published",
+    "aliases": [],
+    "summary": "First documented in A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight..",
+    "story": "A large black bee-like insect is clearly visiting the flower, actively engaged inside the blossom.",
+    "hero": "images/wildlife/large-bee-probable-carpenter-or-bumble-bee/hero.jpg",
+    "identification": {
+      "acceptedIdentificationId": "large-bee-probable-carpenter-or-bumble-bee-ident-1784497577431",
+      "acceptedLabel": "Large bee (probable carpenter or bumble bee)",
+      "confidence": "high",
+      "history": [
+        {
+          "id": "large-bee-probable-carpenter-or-bumble-bee-ident-1784497577431",
+          "at": "2026-07-19T21:46:17.431Z",
+          "label": "Large bee (probable carpenter or bumble bee)",
+          "scientificName": "",
+          "rank": "species-or-useful-group",
+          "confidence": "high",
+          "source": "Garden Brain observation review",
+          "sourceObservationId": "2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be",
+          "note": "A large black bee-like insect is clearly visiting the flower, actively engaged inside the blossom.",
+          "status": "accepted"
+        }
+      ]
+    },
+    "parentSpeciesId": null,
+    "mergedFrom": [],
+    "mergedInto": null,
+    "redirectAliases": [],
+    "public": true,
+    "createdAt": "2026-07-19T21:46:17.431Z",
+    "updatedAt": "2026-07-19T21:46:17.431Z"
+  },
+  {
     "id": "longhorn-beetle-or-similar-flower-visiting-beetle",
     "name": "Longhorn beetle or similar flower-visiting beetle",
     "scientificName": "",

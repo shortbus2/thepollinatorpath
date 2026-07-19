@@ -1,5 +1,88 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be",
+    "date": "2026-07-19",
+    "title": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "30"
+    },
+    "plants": [
+      30
+    ],
+    "visitors": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "visitorDetails": [
+      {
+        "id": "large-bee-probable-carpenter-or-bumble-bee",
+        "label": "Large bee (probable carpenter or bumble bee)",
+        "speciesId": "large-bee-probable-carpenter-or-bumble-bee",
+        "category": "insect",
+        "confidence": 0.75,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "new",
+        "evidence": "A large black bee-like insect is clearly visiting the flower, actively engaged inside the blossom.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
+    "originalNarrative": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-19T21:46:15.716Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Rocky Mountain Columbine",
+        "existing_id": "35",
+        "confidence": 0.7
+      },
+      "visitors": [
+        {
+          "label": "Large bee (probable carpenter or bumble bee)",
+          "existing_id": null,
+          "category": "insect",
+          "confidence": 0.75,
+          "evidence": "A large black bee-like insect is clearly visiting the flower, actively engaged inside the blossom."
+        }
+      ],
+      "behavior": "The large bee visitor is actively foraging inside a Rocky Mountain Columbine flower, likely collecting nectar and/or pollen.",
+      "memory_summary": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Penstemon species",
+        "Other large solitary bee species",
+        "Other similar red/pink native flowers"
+      ],
+      "reasoning": "The flower shape and leaf pattern closely match Rocky Mountain Columbine in the garden list, although flower color is variable. The visitor is a large black bee, too big and robust for smaller bees or flies, suggesting a group like carpenter or bumble bees common in the area. The clear single visitor on this flower and related leaf morphology support this tentative but reasonable ID.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be/garden-d0705172-e196-4cc1-9fd3-72974fd9d909-1.jpg",
+      "images/observations/2026/2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be/garden-fbb1807c-75a6-499c-b4b4-878ba1aaed94-2.jpg"
+    ],
+    "species": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "updatedAt": "2026-07-19T21:46:17.431Z"
+  },
+  {
     "id": "2026-07-19-088c03bb-8d21-4d7d-8421-aea34746281f",
     "date": "2026-07-19",
     "title": "A sunny Garden Walk memory featuring a flourishing Blanket Flower plant buzzing with pollinators, including small native bees and possibly a flower-visiting beetle, busy at work on these bright, fiery blossoms. Their dance among the petals adds lively movement and garden charm.",
