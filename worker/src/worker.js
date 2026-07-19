@@ -1,7 +1,7 @@
 const API_VERSION = "2022-11-28";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
-const WORKER_VERSION = "4.2.0-the-garden-comes-alive";
+const WORKER_VERSION = "4.3.1-beta.4-taxonomy-merge";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
@@ -137,6 +137,99 @@ function cleanPublicEntry(entry, photoPaths) {
   return clean;
 }
 
+function makeSpeciesRecord(detail, entry) {
+  const id = safeSlug(detail.speciesId || detail.id || detail.label, "wildlife");
+  return {
+    id,
+    name: detail.label || id,
+    scientificName: detail.suggestedScientificName || "",
+    rank: "species-or-useful-group",
+    category: detail.category || "Wildlife",
+    icon: /bird/i.test(detail.category||"") ? "🐦" : /moth|butter/i.test(detail.category||"") ? "🦋" : /toad|frog/i.test(detail.category||"") ? "🐸" : "🐝",
+    status: "published",
+    aliases: [],
+    summary: `First documented in ${entry.title || "a Garden Walk"}.`,
+    story: detail.evidence || "This living page will grow as more observations are connected.",
+    hero: `images/wildlife/${id}/hero.jpg`,
+    identification: { acceptedIdentificationId: `${id}-ident-${Date.now()}`, acceptedLabel: detail.label || id, confidence: detail.confidenceBand || detail.confidence || "tentative", history: [{ id: `${id}-ident-${Date.now()}`, at: new Date().toISOString(), label: detail.label || id, scientificName: detail.suggestedScientificName || "", rank: "species-or-useful-group", confidence: detail.confidenceBand || detail.confidence || "tentative", source: "Garden Brain observation review", sourceObservationId: entry.id, note: detail.evidence || "", status: "accepted" }] },
+    parentSpeciesId: null, mergedFrom: [], mergedInto: null, redirectAliases: [],
+    public: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+}
+function mergeSpecies(existing, incoming) {
+  const found = existing.find(x => x.id === incoming.id);
+  if (!found) return [incoming, ...existing];
+  Object.assign(found, { ...incoming, createdAt: found.createdAt || incoming.createdAt, identification: { ...incoming.identification, history: [...(found.identification?.history||[]), ...(incoming.identification?.history||[])] } });
+  return existing;
+}
+
+
+function normalizeSpeciesRecord(record) {
+  const s = { ...record };
+  s.aliases = Array.isArray(s.aliases) ? s.aliases : [];
+  s.mergedFrom = Array.isArray(s.mergedFrom) ? s.mergedFrom : [];
+  s.redirectAliases = Array.isArray(s.redirectAliases) ? s.redirectAliases : [];
+  s.parentSpeciesId = s.parentSpeciesId || null;
+  s.mergedInto = s.mergedInto || null;
+  const history = Array.isArray(s.identification?.history) ? s.identification.history.map((h, i) => ({ id: h.id || `${s.id}-ident-${i + 1}`, label: h.label || s.name, scientificName: h.scientificName ?? s.scientificName ?? "", rank: h.rank || s.rank || "unresolved taxon", confidence: h.confidence || s.identification?.confidence || "tentative", source: h.source || "Legacy record", sourceObservationId: h.sourceObservationId || null, note: h.note || "", at: h.at || s.updatedAt || s.createdAt || new Date().toISOString(), status: h.status || "superseded" })) : [];
+  if (!history.length) history.push({ id: `${s.id}-ident-1`, label: s.name, scientificName: s.scientificName || "", rank: s.rank || "unresolved taxon", confidence: s.identification?.confidence || "tentative", source: "Legacy record migration", sourceObservationId: null, note: "", at: s.updatedAt || s.createdAt || new Date().toISOString(), status: "accepted" });
+  history.forEach(h => h.status = "superseded"); history[history.length - 1].status = "accepted";
+  s.identification = { acceptedIdentificationId: s.identification?.acceptedIdentificationId || history[history.length - 1].id, acceptedLabel: s.identification?.acceptedLabel || history[history.length - 1].label, confidence: s.identification?.confidence || history[history.length - 1].confidence, history };
+  return s;
+}
+function resolveMergedId(species, id) { let current = id, seen = new Set(); while (current && !seen.has(current)) { seen.add(current); const record = species.find(s => s.id === current); if (!record?.mergedInto) break; current = record.mergedInto; } return current || id; }
+async function refineSpecies(env, body) {
+  if (!body?.speciesId) throw Error("Missing speciesId");
+  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES").map(normalizeSpeciesRecord);
+  let record = species.find(s => s.id === body.speciesId);
+  const now = new Date().toISOString();
+  if (!record) { record = normalizeSpeciesRecord({ id: safeSlug(body.speciesId || body.name, "wildlife"), name: body.name || body.speciesId, scientificName: "", rank: "unresolved taxon", category: "Wildlife", icon: "🐾", status: "draft", aliases: [], summary: "", story: "", hero: `images/wildlife/${safeSlug(body.speciesId || body.name, "wildlife")}/hero.jpg`, public: false, createdAt: now, updatedAt: now }); species.unshift(record); }
+  if (record.mergedInto) throw Error(`This record was merged into ${record.mergedInto}. Refine the surviving record instead.`);
+  const history = record.identification.history;
+  history.forEach(h => h.status = "superseded");
+  const identificationId = `${record.id}-ident-${Date.now()}`;
+  const next = { id: identificationId, label: body.name || record.name, scientificName: body.scientificName ?? record.scientificName ?? "", rank: body.rank || record.rank || "unresolved taxon", confidence: body.confidence || record.identification.confidence || "tentative", source: body.source || "User approved", sourceObservationId: null, note: body.note || "", at: now, status: "accepted" };
+  history.push(next);
+  Object.assign(record, { name: next.label, scientificName: next.scientificName, rank: next.rank, category: body.category || record.category || "Wildlife", parentSpeciesId: body.parentSpeciesId || null, aliases: [...new Set([...(record.aliases || []), ...(Array.isArray(body.aliases) ? body.aliases : [])])], identification: { acceptedIdentificationId: identificationId, acceptedLabel: next.label, confidence: next.confidence, history }, updatedAt: now, public: body.public ?? record.public ?? true, status: record.status === "draft" ? "published" : record.status });
+  const result = await atomicCommit(env, [{ path: "species.js", content: serialize("GARDEN_SPECIES", species, "Persistent wildlife species and useful taxon records. Managed by Garden Brain."), encoding: "utf8" }], `Garden Brain: refine ${record.name}`);
+  return { ...result, species };
+}
+async function mergeSpeciesRecords(env, body) {
+  const sourceId = body?.sourceSpeciesId, targetId = body?.targetSpeciesId;
+  if (!sourceId || !targetId) throw Error("Choose both source and target species records");
+  if (sourceId === targetId) throw Error("A species record cannot be merged into itself");
+  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES").map(normalizeSpeciesRecord);
+  let observations = parseArray(await getTextFile(env, "observations.js"), "OBSERVATIONS");
+  let residents = parseArray(await getTextFile(env, "residents.js"), "GARDEN_RESIDENTS");
+  const source = species.find(s => s.id === sourceId), target = species.find(s => s.id === targetId);
+  if (!source || !target) throw Error("Source or target species record was not found");
+  if (source.mergedInto) throw Error(`Source is already merged into ${source.mergedInto}`);
+  if (target.mergedInto) throw Error("Target must be an active surviving record");
+  if (resolveMergedId(species, targetId) === sourceId) throw Error("This merge would create a circular redirect");
+  const now = new Date().toISOString();
+  const combinedHistory = [...(target.identification.history || []), ...(source.identification.history || []).map(h => ({ ...h, note: [h.note, `Merged from ${source.id}`].filter(Boolean).join(" · ") }))].sort((a,b)=>String(a.at).localeCompare(String(b.at)));
+  combinedHistory.forEach(h => h.status = "superseded");
+  const acceptedId = target.identification.acceptedIdentificationId || combinedHistory.at(-1)?.id;
+  const accepted = combinedHistory.find(h => h.id === acceptedId) || combinedHistory.at(-1); if (accepted) accepted.status = "accepted";
+  target.aliases = [...new Set([...(target.aliases || []), source.name, source.scientificName, ...(source.aliases || [])].filter(Boolean))];
+  target.redirectAliases = [...new Set([...(target.redirectAliases || []), source.id, ...(source.redirectAliases || [])])];
+  target.mergedFrom = [...new Set([...(target.mergedFrom || []), source.id, ...(source.mergedFrom || [])])];
+  target.identification = { acceptedIdentificationId: accepted?.id || acceptedId, acceptedLabel: accepted?.label || target.name, confidence: accepted?.confidence || target.identification.confidence, history: combinedHistory };
+  target.updatedAt = now;
+  source.mergedInto = target.id; source.status = "merged"; source.public = false; source.updatedAt = now;
+  observations = observations.map(o => { const x = { ...o }; x.species = [...new Set((x.species || []).map(id => id === source.id ? target.id : id))]; x.visitorDetails = (x.visitorDetails || []).map(d => d.speciesId === source.id ? { ...d, speciesId: target.id, id: d.id === source.id ? target.id : d.id } : d); return x; });
+  residents = residents.map(r => r.speciesId === source.id ? { ...r, speciesId: target.id, updatedAt: now } : r);
+  const files = [
+    { path: "species.js", content: serialize("GARDEN_SPECIES", species, "Persistent wildlife species and useful taxon records. Managed by Garden Brain."), encoding: "utf8" },
+    { path: "observations.js", content: serialize("OBSERVATIONS", observations), encoding: "utf8" },
+    { path: "residents.js", content: serialize("GARDEN_RESIDENTS", residents), encoding: "utf8" }
+  ];
+  const result = await atomicCommit(env, files, `Garden Brain: merge ${source.name} into ${target.name}`);
+  return { ...result, species, observations, residents, redirect: { from: source.id, to: target.id } };
+}
+
 async function publishObservation(env, entry) {
   if (!entry?.id || !entry?.date) throw Error("Missing entry id or date");
   if (entry.public !== true) throw Error("Private entries cannot be published to the public repository");
@@ -145,6 +238,7 @@ async function publishObservation(env, entry) {
   if (incoming.length > MAX_PHOTOS) throw Error(`Maximum ${MAX_PHOTOS} photos per entry`);
 
   let observations = parseArray(await getTextFile(env, "observations.js"), "OBSERVATIONS");
+  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES");
   const previous = observations.find(x => x.id === entry.id);
   const previousPaths = Array.isArray(previous?.photos) ? previous.photos : [];
   const files = [], photoPaths = [];
@@ -190,10 +284,23 @@ async function publishObservation(env, entry) {
     manifestChanged = true;
   }
 
+  const speciesIds = new Set(Array.isArray(entry.species) ? entry.species : []);
+  for (const detail of (entry.visitorDetails || [])) {
+    if (detail.status === "create-species" || detail.disposition === "new") {
+      const record = makeSpeciesRecord(detail, entry);
+      species = mergeSpecies(species, record);
+      detail.speciesId = record.id;
+      detail.id = record.id;
+      detail.status = "linked";
+      speciesIds.add(record.id);
+    } else if (detail.speciesId) speciesIds.add(detail.speciesId);
+  }
+  entry.species = [...speciesIds];
   const publicEntry = cleanPublicEntry(entry, photoPaths);
   observations = observations.filter(x => x.id !== publicEntry.id);
   observations.unshift(publicEntry);
   files.push({ path: "observations.js", content: serialize("OBSERVATIONS", observations), encoding: "utf8" });
+  files.push({ path: "species.js", content: serialize("GARDEN_SPECIES", species, "Persistent wildlife species and useful taxon records. Managed by Garden Brain."), encoding: "utf8" });
   if (manifestChanged) files.push({ path: "image-manifest.js", content: serialize("IMAGE_MANIFEST", manifest, "Automatically maintained by Garden Brain publishing."), encoding: "utf8" });
   return atomicCommit(env, files, `Garden Brain: ${previous ? "edit" : "publish"} ${entry.title || entry.id}`);
 }
@@ -201,6 +308,7 @@ async function publishObservation(env, entry) {
 async function deleteObservation(env, id) {
   if (!id) throw Error("Missing observation id");
   let observations = parseArray(await getTextFile(env, "observations.js"), "OBSERVATIONS");
+  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES");
   const target = observations.find(x => x.id === id);
   if (!target) throw Error("Observation not found");
   observations = observations.filter(x => x.id !== id);
@@ -272,14 +380,18 @@ export default {
     if (!authenticated(request, env)) return json({ error: "Unauthorized" }, 401, headers);
     try {
       if (url.pathname === "/garden" && request.method === "GET") {
-        const [p, o, m, r] = await Promise.all([getTextFile(env, "placements.js"), getTextFile(env, "observations.js"), getTextFile(env, "milestones.js"), getTextFile(env, "residents.js")]);
-        return json({ placements: parseArray(p, "GARDEN_PLACEMENTS"), observations: parseArray(o, "OBSERVATIONS"), milestones: parseArray(m, "GARDEN_MILESTONES"), residents: parseArray(r, "GARDEN_RESIDENTS") }, 200, headers);
+        const [p, o, m, r, s] = await Promise.all([getTextFile(env, "placements.js"), getTextFile(env, "observations.js"), getTextFile(env, "milestones.js"), getTextFile(env, "residents.js"), getTextFile(env, "species.js")]);
+        return json({ placements: parseArray(p, "GARDEN_PLACEMENTS"), observations: parseArray(o, "OBSERVATIONS"), milestones: parseArray(m, "GARDEN_MILESTONES"), residents: parseArray(r, "GARDEN_RESIDENTS"), species: parseArray(s, "GARDEN_SPECIES") }, 200, headers);
       }
       if (url.pathname === "/identify" && request.method === "POST") return json({ ok: true, ...await identifyPhotos(env, await request.json()) }, 200, headers);
       if (["/entry", "/observations"].includes(url.pathname) && ["POST", "PUT"].includes(request.method)) return json({ ok: true, ...await publishObservation(env, await request.json()) }, 200, headers);
       if (url.pathname.startsWith("/observations/") && request.method === "DELETE") return json({ ok: true, ...await deleteObservation(env, decodeURIComponent(url.pathname.split("/").pop())) }, 200, headers);
       if (url.pathname === "/placements" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "placements.js", variable: "GARDEN_PLACEMENTS", items: b.placements, message: "Garden Brain: publish map placements", comment: "Automatically published by the Garden Map Editor." }) }, 200, headers); }
       if (url.pathname === "/residents" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "residents.js", variable: "GARDEN_RESIDENTS", items: b.residents, message: "Garden Brain: update residents", comment: "Editable named garden residents." }) }, 200, headers); }
+      if (url.pathname === "/species" && request.method === "GET") { const s = await getTextFile(env, "species.js"); return json({ ok:true, species:parseArray(s,"GARDEN_SPECIES") },200,headers); }
+      if (url.pathname === "/species" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "species.js", variable: "GARDEN_SPECIES", items: b.species, message: "Garden Brain: update wildlife species", comment: "Persistent wildlife species and useful taxon records. Managed by Garden Brain." }) }, 200, headers); }
+      if (url.pathname === "/species/refine" && request.method === "POST") return json({ ok:true, ...await refineSpecies(env, await request.json()) },200,headers);
+      if (url.pathname === "/species/merge" && request.method === "POST") return json({ ok:true, ...await mergeSpeciesRecords(env, await request.json()) },200,headers);
       if (url.pathname === "/milestones" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "milestones.js", variable: "GARDEN_MILESTONES", items: b.milestones, message: "Garden Brain: update milestones", comment: "Garden milestones and meaningful firsts." }) }, 200, headers); }
       return json({ error: "Not found" }, 404, headers);
     } catch (error) { return json({ error: error.message }, 500, headers); }

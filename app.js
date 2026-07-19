@@ -23,13 +23,15 @@
   const publicObservations=()=> (window.OBSERVATIONS||[]).filter(o=>o.public!==false);
   function slugifyEntity(label){return String(label||'visitor').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'visitor'}
   function allWildlife(){
-    const map=new Map();
-    (window.VISITORS||[]).forEach(v=>map.set(v.slug,{...v,slug:v.slug,source:'catalog'}));
-    (window.GARDEN_RESIDENTS||[]).filter(r=>r.public!==false).forEach(r=>{if(!map.has(r.id))map.set(r.id,{slug:r.id,name:r.name,species:r.species||r.type||'',category:r.type||'Named resident',icon:r.icon||'🐾',status:'Named resident',summary:r.notes||'',story:r.notes||'',hero:`images/wildlife/${r.id}/hero.jpg`,relatedPlants:[],locations:[],observations:[],firstSeen:'See the living journal',source:'resident'})});
-    publicObservations().forEach(o=>(o.visitorDetails||[]).forEach(d=>{const id=d.id||slugifyEntity(d.label);if(!map.has(id))map.set(id,{slug:id,name:d.label||id,species:d.label||'',category:d.category||'Wildlife visitor',icon:/bird/i.test(d.category||'')?'🐦':/moth|butter/i.test(d.category||'')?'🦋':/toad|frog/i.test(d.category||'')?'🐸':'🐝',status:d.status==='identification-pending'?'Visitor we’re still getting to know':'Garden Brain suggested',summary:d.status==='identification-pending'?'We have a sighting, but not quite enough detail for a confident introduction yet.':`Observed using this garden and connected to ${o.title||'a Garden Walk'}.`,story:d.evidence||'This page will grow as more observations are confirmed.',hero:`images/wildlife/${id}/hero.jpg`,relatedPlants:[],locations:[],observations:[],firstSeen:o.date||'See the living journal',source:'observation'});const v=map.get(id);v.relatedPlants=[...new Set([...(v.relatedPlants||[]),...(o.plants||[])])];}));
-    return [...map.values()];
+    if(window.LIVING_STORIES) return window.LIVING_STORIES.allSpecies().map(s=>({...s,slug:s.id,species:s.scientificName||s.name,source:'species'}));
+    return (window.GARDEN_SPECIES||[]).map(s=>({...s,slug:s.id,species:s.scientificName||s.name}));
   }
-  function wildlifeById(id){return allWildlife().find(v=>v.slug===id)}
+  function wildlifeById(id){
+    const resident=(window.GARDEN_RESIDENTS||[]).find(r=>r.id===id);
+    if(resident) return {...resident,slug:resident.id,source:'resident'};
+    return allWildlife().find(v=>v.slug===id);
+  }
+
   function entityHref(kind,id){if(kind==='plant')return `plant.html?id=${encodeURIComponent(id)}`;if(kind==='visitor'||kind==='resident')return `wildlife.html?id=${encodeURIComponent(id)}`;if(kind==='observation')return `observation.html?id=${encodeURIComponent(id)}`;if(kind==='walk')return `garden-walks.html#walk-${encodeURIComponent(id)}`;return 'visitors.html'}
 
 
@@ -108,15 +110,17 @@
     return (window.OBSERVATIONS || []).filter(o => o.public !== false && (o.plants || []).map(Number).includes(Number(number)));
   }
   function observationsForVisitor(slug) {
-    return publicObservations().filter(o => (o.visitors || []).includes(slug) || (o.visitorDetails||[]).some(d=>(d.id||slugifyEntity(d.label))===slug));
+    const resident=(window.GARDEN_RESIDENTS||[]).find(r=>r.id===slug);
+    if(resident) return publicObservations().filter(o=>(o.residents||[]).includes(slug)||(o.visitors||[]).includes(slug));
+    return window.LIVING_STORIES?window.LIVING_STORIES.observationsForSpecies(slug):publicObservations().filter(o=>(o.species||[]).includes(slug));
   }
   function observationJournal(items) {
     if (!items.length) return '<p class="empty">No dated journal entries yet. The garden is still writing this page.</p>';
     return items.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(o => {
-      const photos=o.photos||[],shown=photos.slice(0,16);
-      const photoGrid=shown.length?`<div class="journal-photos compact-gallery" data-gallery-title="${String(o.title||'Garden memory').replace(/"/g,'&quot;')}">${shown.map((src,i)=>`<button type="button" class="gallery-thumb" data-gallery-src="${src}" aria-label="Open photo ${i+1} of ${photos.length}"><img src="${src}" alt="${o.title||'Observation'} photo ${i+1}" loading="lazy">${i===15&&photos.length>16?`<span class="more-overlay">+${photos.length-16}</span>`:''}</button>`).join('')}</div>`:'';
+      const photos=o.photos||[],shown=photos.slice(0,4);
+      const photoGrid=shown.length?`<div class="journal-photos compact-gallery" data-gallery-title="${String(o.title||'Garden memory').replace(/"/g,'&quot;')}">${shown.map((src,i)=>`<button type="button" class="gallery-thumb" data-gallery-src="${src}" aria-label="Open photo ${i+1} of ${photos.length}"><img src="${src}" alt="${o.title||'Observation'} photo ${i+1}" loading="lazy">${i===3&&photos.length>4?`<span class="more-overlay">+${photos.length-4}</span>`:''}</button>`).join('')}</div>`:'';
       const visitorLinks=[...new Set([...(o.visitors||[]),...(o.visitorDetails||[]).map(d=>d.id||slugifyEntity(d.label))])].map(id=>{const v=wildlifeById(id);return `<a class="chip chip-link" href="${entityHref('visitor',id)}">${v?.icon||'🐝'} ${v?.name||id}</a>`}).join('');
-      return `<article class="journal-entry" id="observation-${o.id}"><a class="journal-entry-link" href="${entityHref('observation',o.id)}"><div class="journal-date">${new Date((o.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div><h3>${o.title || 'Garden observation'}</h3></a>${photoGrid}${o.notes ? `<p>${o.notes}</p>` : ''}<div class="chips">${visitorLinks}${(o.behaviors||[]).map(x=>`<span class="chip">${x}</span>`).join('')}${o.confidence && o.confidence!=='confirmed'?`<span class="chip">${o.confidence} ID</span>`:''}<a class="chip chip-link" href="${entityHref('observation',o.id)}">Open memory →</a></div></article>`;
+      return `<article class="journal-entry" id="observation-${o.id}"><a class="journal-entry-link" href="${entityHref('observation',o.id)}"><div class="journal-date">${new Date((o.date||'')+'T12:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div><h3>${o.title || 'Garden observation'}</h3></a>${photoGrid}${o.notes ? `<p>${o.notes}</p>` : ''}<div class="chips">${visitorLinks}${(o.behaviors||[]).map(x=>`<span class="chip">${x}</span>`).join('')}${o.confidence && o.confidence!=='confirmed'?`<span class="chip">${o.confidence} ID</span>`:''}<a class="chip chip-link" href="${entityHref('observation',o.id)}">Read the story →</a></div></article>`;
     }).join('');
   }
 
