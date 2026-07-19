@@ -1,7 +1,7 @@
 const API_VERSION = "2022-11-28";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
-const WORKER_VERSION = "4.3.1-beta.4-taxonomy-merge";
+const WORKER_VERSION = "4.3.2-rc.1-species-integrity";
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
@@ -161,7 +161,14 @@ function makeSpeciesRecord(detail, entry) {
 function mergeSpecies(existing, incoming) {
   const found = existing.find(x => x.id === incoming.id);
   if (!found) return [incoming, ...existing];
-  Object.assign(found, { ...incoming, createdAt: found.createdAt || incoming.createdAt, identification: { ...incoming.identification, history: [...(found.identification?.history||[]), ...(incoming.identification?.history||[])] } });
+  // Existing populated records always win. Publishing a new observation may add history,
+  // aliases or missing fields, but must never erase an established story, portrait or taxonomy.
+  const history=[...(found.identification?.history||[])];
+  for(const item of (incoming.identification?.history||[])) if(!history.some(h=>h.id===item.id)) history.push(item);
+  found.aliases=[...new Set([...(found.aliases||[]),...(incoming.aliases||[])])];
+  found.identification={...(found.identification||incoming.identification),history};
+  for(const key of ['name','scientificName','rank','category','icon','status','summary','story','hero','public']) if((found[key]===undefined||found[key]===null||found[key]==='')&&incoming[key]!==undefined) found[key]=incoming[key];
+  found.updatedAt=new Date().toISOString();
   return existing;
 }
 
@@ -238,7 +245,7 @@ async function publishObservation(env, entry) {
   if (incoming.length > MAX_PHOTOS) throw Error(`Maximum ${MAX_PHOTOS} photos per entry`);
 
   let observations = parseArray(await getTextFile(env, "observations.js"), "OBSERVATIONS");
-  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES");
+  let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES").map(normalizeSpeciesRecord);
   const previous = observations.find(x => x.id === entry.id);
   const previousPaths = Array.isArray(previous?.photos) ? previous.photos : [];
   const files = [], photoPaths = [];
@@ -247,6 +254,31 @@ async function publishObservation(env, entry) {
   manifest.plants = manifest.plants && typeof manifest.plants === "object" ? manifest.plants : {};
   manifest.wildlife = manifest.wildlife && typeof manifest.wildlife === "object" ? manifest.wildlife : {};
   let manifestChanged = false;
+
+  // Resolve/create wildlife records before processing portraits so the primary subject has a stable ID.
+  const speciesIds = new Set(Array.isArray(entry.species) ? entry.species : []);
+  const createdIds = new Set();
+  for (const detail of (entry.visitorDetails || [])) {
+    if (detail.status === "create-species" || detail.disposition === "new") {
+      const record = makeSpeciesRecord(detail, entry);
+      species = mergeSpecies(species, record);
+      detail.speciesId = record.id;
+      detail.id = record.id;
+      detail.status = "linked";
+      createdIds.add(record.id);
+      speciesIds.add(record.id);
+    } else if (detail.speciesId) speciesIds.add(resolveMergedId(species, detail.speciesId));
+  }
+  if (entry.primary?.kind === "visitor") {
+    const match=(entry.visitorDetails||[]).find(d=>d.id===entry.primary.id||d.speciesId===entry.primary.id);
+    if(match?.speciesId) entry.primary.id=resolveMergedId(species,match.speciesId);
+    else if(entry.primary.id==='unknown-pending'){
+      const linked=(entry.visitorDetails||[]).filter(d=>d.status==='linked'&&d.speciesId);
+      if(linked.length===1)entry.primary.id=resolveMergedId(species,linked[0].speciesId);
+    }
+  }
+  entry.visitors=[...new Set((entry.visitors||[]).map(id=>resolveMergedId(species,id)).filter(Boolean))];
+  entry.species = [...speciesIds].map(id=>resolveMergedId(species,id));
 
   for (let i = 0; i < incoming.length; i++) {
     const photo = incoming[i];
@@ -270,6 +302,10 @@ async function publishObservation(env, entry) {
         const heroPath = `${heroFolder}/hero.jpg`;
         files.push({ path: heroPath, content: raw, encoding: "base64" });
         if (group) { manifest[group][key] = { ...(manifest[group][key] || {}), hero: heroPath }; manifestChanged = true; }
+        if(group==='wildlife'){
+          const record=species.find(x=>x.id===key);
+          if(record){record.hero=heroPath;record.updatedAt=new Date().toISOString();}
+        }
       }
     }
     if (entry.featured && entry.privacyReview?.safeHomepage && i === 0 && !manifest.hero.includes(path)) {
@@ -284,27 +320,15 @@ async function publishObservation(env, entry) {
     manifestChanged = true;
   }
 
-  const speciesIds = new Set(Array.isArray(entry.species) ? entry.species : []);
-  for (const detail of (entry.visitorDetails || [])) {
-    if (detail.status === "create-species" || detail.disposition === "new") {
-      const record = makeSpeciesRecord(detail, entry);
-      species = mergeSpecies(species, record);
-      detail.speciesId = record.id;
-      detail.id = record.id;
-      detail.status = "linked";
-      speciesIds.add(record.id);
-    } else if (detail.speciesId) speciesIds.add(detail.speciesId);
-  }
-  entry.species = [...speciesIds];
   const publicEntry = cleanPublicEntry(entry, photoPaths);
   observations = observations.filter(x => x.id !== publicEntry.id);
   observations.unshift(publicEntry);
   files.push({ path: "observations.js", content: serialize("OBSERVATIONS", observations), encoding: "utf8" });
   files.push({ path: "species.js", content: serialize("GARDEN_SPECIES", species, "Persistent wildlife species and useful taxon records. Managed by Garden Brain."), encoding: "utf8" });
   if (manifestChanged) files.push({ path: "image-manifest.js", content: serialize("IMAGE_MANIFEST", manifest, "Automatically maintained by Garden Brain publishing."), encoding: "utf8" });
-  return atomicCommit(env, files, `Garden Brain: ${previous ? "edit" : "publish"} ${entry.title || entry.id}`);
+  const result=await atomicCommit(env, files, `Garden Brain: ${previous ? "edit" : "publish"} ${entry.title || entry.id}`);
+  return {...result, observation:publicEntry, createdSpecies:[...createdIds]};
 }
-
 async function deleteObservation(env, id) {
   if (!id) throw Error("Missing observation id");
   let observations = parseArray(await getTextFile(env, "observations.js"), "OBSERVATIONS");

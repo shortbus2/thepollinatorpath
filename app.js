@@ -23,13 +23,17 @@
   const publicObservations=()=> (window.OBSERVATIONS||[]).filter(o=>o.public!==false);
   function slugifyEntity(label){return String(label||'visitor').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'visitor'}
   function allWildlife(){
-    if(window.LIVING_STORIES) return window.LIVING_STORIES.allSpecies().map(s=>({...s,slug:s.id,species:s.scientificName||s.name,source:'species'}));
-    return (window.GARDEN_SPECIES||[]).map(s=>({...s,slug:s.id,species:s.scientificName||s.name}));
+    const species=(window.LIVING_STORIES?window.LIVING_STORIES.allSpecies():(window.GARDEN_SPECIES||[])).map(s=>({...s,slug:s.id,species:s.scientificName||s.name,source:'species'}));
+    const byId=new Map(species.map(s=>[s.slug,s]));
+    for(const legacy of (window.VISITORS||[])) if(!byId.has(legacy.slug)) byId.set(legacy.slug,{...legacy,source:'legacy'});
+    for(const resident of (window.GARDEN_RESIDENTS||[]).filter(r=>r.public!==false)){
+      const taxon=species.find(s=>s.id===resident.speciesId)||{};
+      byId.set(resident.id,{...taxon,...resident,slug:resident.id,speciesId:resident.speciesId||taxon.id,species:resident.species||taxon.scientificName||resident.type,hero:resident.hero||taxon.hero||`images/wildlife/${resident.id}/hero.jpg`,summary:resident.summary||resident.notes||taxon.summary||'',story:resident.story||taxon.story||resident.notes||'',relatedPlants:taxon.plants||taxon.relatedPlants||[],locations:taxon.areas||taxon.locations||[],observations:taxon.behaviors||taxon.observations||[],firstSeen:taxon.firstSeen||'',status:resident.status||taxon.status||'Garden resident',source:'resident'});
+    }
+    return [...byId.values()];
   }
   function wildlifeById(id){
-    const resident=(window.GARDEN_RESIDENTS||[]).find(r=>r.id===id);
-    if(resident) return {...resident,slug:resident.id,source:'resident'};
-    return allWildlife().find(v=>v.slug===id);
+    return allWildlife().find(v=>v.slug===id||v.id===id||(v.aliases||[]).includes(id));
   }
 
   function entityHref(kind,id){if(kind==='plant')return `plant.html?id=${encodeURIComponent(id)}`;if(kind==='visitor'||kind==='resident')return `wildlife.html?id=${encodeURIComponent(id)}`;if(kind==='observation')return `observation.html?id=${encodeURIComponent(id)}`;if(kind==='walk')return `garden-walks.html#walk-${encodeURIComponent(id)}`;return 'visitors.html'}
@@ -279,7 +283,7 @@
         if (/humming|bird/i.test(visitor)) icon = "🐦";
         if (/butter|monarch/i.test(visitor)) icon = "🦋";
 
-        const match=allWildlife().find(v=>v.name===visitor||v.species===visitor||String(v.name).toLowerCase().includes(String(visitor).toLowerCase()));
+        const needle=String(visitor).toLowerCase().replace(/[“”"']/g,'');const match=allWildlife().find(v=>[v.name,v.species,v.scientificName,...(v.aliases||[])].filter(Boolean).some(value=>{const hay=String(value).toLowerCase().replace(/[“”"']/g,'');return hay===needle||hay.includes(needle)||needle.includes(hay)}));
         const href=match?entityHref('visitor',match.slug):`visitors.html?q=${encodeURIComponent(visitor)}`;
         return `<a class="visitor visitor-link" href="${href}"><div class="visitor-icon" aria-hidden="true">${icon}</div><small>${visitor}</small></a>`;
       })
@@ -332,7 +336,7 @@
             </section>
 
             <section class="panel">
-              <h2>Photo gallery</h2>
+              <h2>Favorite moments</h2>
               <div class="media-gallery auto-gallery">
                 ${autoGallery(`images/plants/${plant.number}`, plant.common, iconFor(plant))}
               </div>
@@ -340,7 +344,7 @@
             </section>
 
             <section class="panel">
-              <h2>Living plant journal</h2>
+              <h2>Garden moments</h2>
               <div class="journal-list">${observationJournal(observationsForPlant(plant.number))}</div>
             </section>
             <section class="panel">
@@ -408,8 +412,8 @@
     const wildlife=allWildlife();
     const visitor = wildlifeById(slug) || wildlife[0];
     document.title = `${visitor.name} · The Pollinator Path`;
-    const plantLinks = visitor.relatedPlants.length
-      ? visitor.relatedPlants.map((number) => {
+    const plantLinks = (visitor.relatedPlants||visitor.plants||[]).length
+      ? (visitor.relatedPlants||visitor.plants||[]).map((number) => {
           const plant = PLANTS.find((item) => Number(item.number) === Number(number));
           return plant ? `<a class="chip chip-link" href="plant.html?id=${plant.number}">${plant.common} ↗</a>` : "";
         }).join("")
@@ -432,22 +436,22 @@
         </header>
         <div class="content-grid wildlife-content">
           <div>
-            <section class="panel"><h2>Its garden story</h2><p>${visitor.story}</p></section>
+            <section class="panel"><h2>Its garden story</h2><p>${visitor.story}</p><p><a class="card-link" href="taxonomy-admin.html?id=${encodeURIComponent(visitor.speciesId||visitor.slug)}">Manage this visitor →</a></p></section>
             <section class="panel">
-              <h2>Photo gallery</h2>
+              <h2>Favorite moments</h2>
               <div class="media-gallery auto-gallery">
                 ${autoGallery(`images/wildlife/${visitor.slug}`, visitor.name, visitor.icon)}
               </div>
             </section>
             <section class="panel">
-              <h2>Living visitor journal</h2>
+              <h2>Garden moments</h2>
               <div class="journal-list">${observationJournal(observationsForVisitor(visitor.slug))}</div>
             </section>
           </div>
           <aside>
             <section class="panel"><h2>First documented</h2><p>${visitor.firstSeen}</p></section>
-            <section class="panel"><h2>Seen around</h2><ul>${visitor.locations.map((item) => `<li>${item}</li>`).join("")}</ul></section>
-            <section class="panel"><h2>Observed behavior</h2><ul>${visitor.observations.map((item) => `<li>${item}</li>`).join("")}</ul></section>
+            <section class="panel"><h2>Seen around</h2><ul>${(visitor.locations||visitor.areas||[]).map((item) => `<li>${item}</li>`).join("")||"<li>Locations will grow with observations.</li>"}</ul></section>
+            <section class="panel"><h2>Observed behavior</h2><ul>${(visitor.observations||visitor.behaviors||[]).map((item) => `<li>${item}</li>`).join("")||"<li>Behavior notes will grow with observations.</li>"}</ul></section>
             <section class="panel"><h2>Connected plants</h2><div class="chips">${plantLinks}</div></section>
           </aside>
         </div>

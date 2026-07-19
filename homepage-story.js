@@ -30,11 +30,11 @@
   const plantRecords=plantNums.map(n=>(window.PLANTS||[]).find(p=>Number(p.number)===n)).filter(Boolean);
   const visitors=visitorRecords.map(v=>v.name);
   const plants=plantRecords.map(p=>p.common);
-  title.textContent=recent.length===1?'One Garden Walk, worth remembering':`${recent.length} Garden Walks, woven together`;
+  title.textContent='This Week in the Garden';
   const parts=[];
-  if(visitors.length)parts.push(`${visitors.slice(0,3).join(', ')}${visitors.length>3?` and ${visitors.length-3} more visitor${visitors.length-3===1?'':'s'}`:''} appeared in this week’s field notes`);
+  if(visitors.length)parts.push(`${visitors.slice(0,3).join(', ')}${visitors.length>3?' and other visitors':''} appeared this week`);
   if(plants.length)parts.push(`${plants.slice(0,3).join(', ')}${plants.length>3?' and other plants':''} helped tell the story`);
-  if(behaviors.length)parts.push(`the notes included ${behaviors.slice(0,3).join(', ').toLowerCase()}`);
-  summary.textContent=(parts.length?parts.join('. ')+'. ':'')+'Every name below opens another part of the garden’s story.';
+  if(behaviors.length)parts.push(`${behaviors.slice(0,3).join(', ')} helped shape what happened`);
+  summary.textContent=(parts.length?parts.join('. ')+'. ':'')+'Every name below opens another thread to explore.';
   chips.innerHTML=[...visitorRecords.slice(0,4).map(v=>`<a class="weekly-chip" href="wildlife.html?id=${encodeURIComponent(v.slug||v.id)}">${v.icon||'🐝'} ${v.name}</a>`),...plantRecords.slice(0,4).map(p=>`<a class="weekly-chip" href="plant.html?id=${p.number}">🌿 ${p.common}</a>`)].join('');
 })();

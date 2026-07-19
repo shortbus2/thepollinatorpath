@@ -1,3 +1,7 @@
+# 4.3.2 RC1 — Stability & Species Integrity
+
+See `RELEASE-4.3.2-RC1-STABILITY.md`.
+
 # Changelog
 
 ## 3.2.2 — Mobile Navigation & Garden Brain UI Hotfix

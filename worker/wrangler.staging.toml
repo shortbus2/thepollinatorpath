@@ -7,4 +7,4 @@ GITHUB_OWNER = "shortbus2"
 GITHUB_REPO = "thepollinatorpath"
 GITHUB_BRANCH = "beta-4.3"
 
-ALLOWED_ORIGIN = "https://thepollinatorpath-staging.pages.dev,localhost:8000,http://127.0.0.1:8000"
+ALLOWED_ORIGIN = "https://thepollinatorpath-staging.pages.dev,http://localhost:8000,http://127.0.0.1:8000"
