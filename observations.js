@@ -1,5 +1,86 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-19-363e08d7-ad24-4d25-a74f-c409ff84c813",
+    "date": "2026-07-19",
+    "title": "A sweet moment capturing a leafcutter bee busily foraging on a red Blanket Flower, soaking up pollen on a sunny day in Mead. This little bee's hard work reminds us how vital these native garden plants are for supporting solitary pollinators.",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [
+      "leafcutter-bee-megachilidae"
+    ],
+    "visitorDetails": [
+      {
+        "id": "leafcutter-bee-megachilidae",
+        "label": "Leafcutter bee (Megachilidae)",
+        "speciesId": "leafcutter-bee-megachilidae",
+        "category": "Bee",
+        "confidence": 0.9,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "new",
+        "evidence": "Small bee with a stout body and pollen baskets on legs; typical Megachile features visible on flower.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "I’m loving all the pollinators on the blanket flowers.",
+    "originalNarrative": "I’m loving all the pollinators on the blanket flowers.",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-19T21:38:47.780Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower",
+        "existing_id": "8",
+        "confidence": 0.85
+      },
+      "visitors": [
+        {
+          "label": "Leafcutter bee (Megachilidae)",
+          "existing_id": "brenda",
+          "category": "Bee",
+          "confidence": 0.9,
+          "evidence": "Small bee with a stout body and pollen baskets on legs; typical Megachile features visible on flower."
+        }
+      ],
+      "behavior": "Probable nectar and pollen foraging by a solitary bee species on flower head.",
+      "memory_summary": "A sweet moment capturing a leafcutter bee busily foraging on a red Blanket Flower, soaking up pollen on a sunny day in Mead. This little bee's hard work reminds us how vital these native garden plants are for supporting solitary pollinators.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Gaillardia (general)",
+        "Other native solitary bee species"
+      ],
+      "reasoning": "The flower matches the Blanket Flower's characteristic petal shape and color. The visitor's body shape, size, and pollen-collecting legs strongly suggest a leafcutter bee (Megachilidae), which aligns with an existing resident Megachile sp. visitor in the garden. No other distinct visitors or behaviors are apparent.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-19-363e08d7-ad24-4d25-a74f-c409ff84c813/garden-ff4ff8b5-8f72-4b3c-b353-6491a29f1e09-1.jpg"
+    ],
+    "species": [
+      "leafcutter-bee-megachilidae"
+    ],
+    "updatedAt": "2026-07-19T21:38:48.645Z"
+  },
+  {
     "id": "2026-07-17-99c2adc9-ad48-41aa-8fd3-a1b818ab802e",
     "date": "2026-07-17",
     "title": "#8 · Blanket Flower · Pollinating",

@@ -1,12 +1,51 @@
 // Persistent wildlife species and useful taxon records. Managed by Garden Brain.
 window.GARDEN_SPECIES = [
   {
-    "id": "leafcutter-bee",
-    "name": "Leafcutter Bee",
-    "scientificName": "Leafcutter bee \u00b7 Family Megachilidae",
+    "id": "leafcutter-bee-megachilidae",
+    "name": "Leafcutter bee (Megachilidae)",
+    "scientificName": "",
     "rank": "species-or-useful-group",
     "category": "Bee",
-    "icon": "\ud83d\udc1d",
+    "icon": "🐝",
+    "status": "published",
+    "aliases": [],
+    "summary": "First documented in A sweet moment capturing a leafcutter bee busily foraging on a red Blanket Flower, soaking up pollen on a sunny day in Mead. This little bee's hard work reminds us how vital these native garden plants are for supporting solitary pollinators..",
+    "story": "Small bee with a stout body and pollen baskets on legs; typical Megachile features visible on flower.",
+    "hero": "images/wildlife/leafcutter-bee-megachilidae/hero.jpg",
+    "identification": {
+      "acceptedIdentificationId": "leafcutter-bee-megachilidae-ident-1784497128645",
+      "acceptedLabel": "Leafcutter bee (Megachilidae)",
+      "confidence": "high",
+      "history": [
+        {
+          "id": "leafcutter-bee-megachilidae-ident-1784497128645",
+          "at": "2026-07-19T21:38:48.645Z",
+          "label": "Leafcutter bee (Megachilidae)",
+          "scientificName": "",
+          "rank": "species-or-useful-group",
+          "confidence": "high",
+          "source": "Garden Brain observation review",
+          "sourceObservationId": "2026-07-19-363e08d7-ad24-4d25-a74f-c409ff84c813",
+          "note": "Small bee with a stout body and pollen baskets on legs; typical Megachile features visible on flower.",
+          "status": "accepted"
+        }
+      ]
+    },
+    "parentSpeciesId": null,
+    "mergedFrom": [],
+    "mergedInto": null,
+    "redirectAliases": [],
+    "public": true,
+    "createdAt": "2026-07-19T21:38:48.645Z",
+    "updatedAt": "2026-07-19T21:38:48.645Z"
+  },
+  {
+    "id": "leafcutter-bee",
+    "name": "Leafcutter Bee",
+    "scientificName": "Leafcutter bee · Family Megachilidae",
+    "rank": "species-or-useful-group",
+    "category": "Bee",
+    "icon": "🐝",
     "status": "published",
     "aliases": [
       "brenda"
@@ -22,7 +61,7 @@ window.GARDEN_SPECIES = [
         {
           "id": "leafcutter-bee-ident-1",
           "label": "Leafcutter Bee",
-          "scientificName": "Leafcutter bee \u00b7 Family Megachilidae",
+          "scientificName": "Leafcutter bee · Family Megachilidae",
           "rank": "species-or-useful-group",
           "confidence": "reasonable",
           "source": "Migration from Beta 3",
@@ -45,7 +84,7 @@ window.GARDEN_SPECIES = [
     "scientificName": "Resident toad",
     "rank": "species-or-useful-group",
     "category": "Wildlife",
-    "icon": "\ud83d\udc38",
+    "icon": "🐸",
     "status": "published",
     "aliases": [],
     "summary": "Resident toad and unofficial habitat-quality inspector.",
@@ -79,10 +118,10 @@ window.GARDEN_SPECIES = [
   {
     "id": "broad-tailed-hummingbird",
     "name": "Probable Female Broad-tailed Hummingbird",
-    "scientificName": "Selasphorus platycercus \u00b7 probable identification",
+    "scientificName": "Selasphorus platycercus · probable identification",
     "rank": "species-or-useful-group",
     "category": "Bird",
-    "icon": "\ud83d\udc26",
+    "icon": "🐦",
     "status": "published",
     "aliases": [],
     "summary": "Observed feeding from Vermillion Bluffs and Hummingbird Trumpet before disappearing into the oak canopy.",
@@ -96,7 +135,7 @@ window.GARDEN_SPECIES = [
         {
           "id": "broad-tailed-hummingbird-ident-1",
           "label": "Probable Female Broad-tailed Hummingbird",
-          "scientificName": "Selasphorus platycercus \u00b7 probable identification",
+          "scientificName": "Selasphorus platycercus · probable identification",
           "rank": "species-or-useful-group",
           "confidence": "reasonable",
           "source": "Migration from Beta 3",
@@ -119,7 +158,7 @@ window.GARDEN_SPECIES = [
     "scientificName": "Hyles lineata",
     "rank": "species-or-useful-group",
     "category": "Moth",
-    "icon": "\ud83e\udd8b",
+    "icon": "🦋",
     "status": "published",
     "aliases": [],
     "summary": "A dramatic nighttime visitor doing part of the garden's pollination work after dark.",
@@ -156,7 +195,7 @@ window.GARDEN_SPECIES = [
     "scientificName": "Species not yet firmly established",
     "rank": "unresolved taxon",
     "category": "Amphibian",
-    "icon": "\ud83d\udc38",
+    "icon": "🐸",
     "status": "published",
     "aliases": [
       "toad"
