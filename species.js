@@ -1,6 +1,45 @@
 // Persistent wildlife species and useful taxon records. Managed by Garden Brain.
 window.GARDEN_SPECIES = [
   {
+    "id": "thread-waisted-wasp-likely-genus-ammophila-or-related",
+    "name": "Thread-waisted wasp (likely genus Ammophila or related)",
+    "scientificName": "",
+    "rank": "species-or-useful-group",
+    "category": "insect",
+    "icon": "🐝",
+    "status": "published",
+    "aliases": [],
+    "summary": "First documented in A curious garden scene showing a thread-waisted wasp busily navigating mulch, possibly digging or hunting, accompanied by a small black-and-white bee hiding among wood chips. The dense mulch provides a perfect habitat for these fascinating soil and wood-inhabiting insects. No clear garden plant visible in this snapshot of their underground world..",
+    "story": "The first photo shows a wasp with a distinct slender 'thread-waist', brown-orange body, and brightly colored head distinctive of thread-waisted wasps.",
+    "hero": "images/wildlife/thread-waisted-wasp-likely-genus-ammophila-or-related/hero.jpg",
+    "identification": {
+      "acceptedIdentificationId": "thread-waisted-wasp-likely-genus-ammophila-or-related-ident-1784497939581",
+      "acceptedLabel": "Thread-waisted wasp (likely genus Ammophila or related)",
+      "confidence": "high",
+      "history": [
+        {
+          "id": "thread-waisted-wasp-likely-genus-ammophila-or-related-ident-1784497939581",
+          "at": "2026-07-19T21:52:19.581Z",
+          "label": "Thread-waisted wasp (likely genus Ammophila or related)",
+          "scientificName": "",
+          "rank": "species-or-useful-group",
+          "confidence": "high",
+          "source": "Garden Brain observation review",
+          "sourceObservationId": "2026-07-19-f5551322-1c76-4182-84b7-1a346f943025",
+          "note": "The first photo shows a wasp with a distinct slender 'thread-waist', brown-orange body, and brightly colored head distinctive of thread-waisted wasps.",
+          "status": "accepted"
+        }
+      ]
+    },
+    "parentSpeciesId": null,
+    "mergedFrom": [],
+    "mergedInto": null,
+    "redirectAliases": [],
+    "public": true,
+    "createdAt": "2026-07-19T21:52:19.581Z",
+    "updatedAt": "2026-07-19T21:52:19.581Z"
+  },
+  {
     "id": "large-bee-probable-carpenter-or-bumble-bee",
     "name": "Large bee (probable carpenter or bumble bee)",
     "scientificName": "",

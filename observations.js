@@ -1,5 +1,99 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-19-f5551322-1c76-4182-84b7-1a346f943025",
+    "date": "2026-07-19",
+    "title": "A curious garden scene showing a thread-waisted wasp busily navigating mulch, possibly digging or hunting, accompanied by a small black-and-white bee hiding among wood chips. The dense mulch provides a perfect habitat for these fascinating soil and wood-inhabiting insects. No clear garden plant visible in this snapshot of their underground world.",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "unknown-pending"
+    },
+    "plants": [],
+    "visitors": [
+      "unknown-pending",
+      "thread-waisted-wasp-likely-genus-ammophila-or-related"
+    ],
+    "visitorDetails": [
+      {
+        "id": "thread-waisted-wasp-likely-genus-ammophila-or-related",
+        "label": "Thread-waisted wasp (likely genus Ammophila or related)",
+        "speciesId": "thread-waisted-wasp-likely-genus-ammophila-or-related",
+        "category": "insect",
+        "confidence": 0.9,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "new",
+        "evidence": "The first photo shows a wasp with a distinct slender 'thread-waist', brown-orange body, and brightly colored head distinctive of thread-waisted wasps.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "A curious thread-waisted wasp busily navigating mulch, started her new home! I was so excited to see she had excavated a new place for herself.",
+    "originalNarrative": "A curious thread-waisted wasp busily navigating mulch, started her new home! I was so excited to see she had excavated a new place for herself.",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-19T21:52:15.212Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Unknown soil view with mulch and some green stem, no clear plant identified",
+        "existing_id": null,
+        "confidence": 0.2
+      },
+      "visitors": [
+        {
+          "label": "Thread-waisted wasp (likely genus Ammophila or related)",
+          "existing_id": null,
+          "category": "insect",
+          "confidence": 0.9,
+          "evidence": "The first photo shows a wasp with a distinct slender 'thread-waist', brown-orange body, and brightly colored head distinctive of thread-waisted wasps."
+        },
+        {
+          "label": "Small black-and-white banded insect, likely a leafcutter bee or resin bee (Megachile or Ceratina genus)",
+          "existing_id": null,
+          "category": "insect",
+          "confidence": 0.6,
+          "evidence": "Photos 2-6 show a small black insect with white bands on the abdomen, partially hidden in mulch, resembling leafcutter or resin bees."
+        }
+      ],
+      "behavior": "The thread-waisted wasp is likely nesting or hunting in the mulch, a common behavior as they often dig burrows and provision them with caterpillars. The small black-and-white banded insect seems to be moving or resting among the mulch, possibly nesting or scavenging.",
+      "memory_summary": "A curious garden scene showing a thread-waisted wasp busily navigating mulch, possibly digging or hunting, accompanied by a small black-and-white bee hiding among wood chips. The dense mulch provides a perfect habitat for these fascinating soil and wood-inhabiting insects. No clear garden plant visible in this snapshot of their underground world.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Thread-waisted wasp could be a similar sphecid wasp",
+        "Black-and-white insect might be a small wasp rather than a bee",
+        "Plant potentially a buried stem or an unrecognized ground cover"
+      ],
+      "reasoning": "The wasp's slender 'thread-waist' and coloration match known thread-waisted wasps common in Colorado. The black-and-white banded insect is small and partially obscured but shows the banding pattern typical of some native bees like leafcutter bees (Megachile). The absence of clear flowering plants or leaves limits plant ID, so the plant presence is inferred only as mulch/soil substrate. Multiple photos show similar mulch environment and the two insects occupy similar ground-level habitat, justifying grouping them as one memory.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-b093dfc3-a8c3-40da-bb40-a162b37a2252-1.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-eb1482dc-ceb9-4a59-bef5-91e1b68da883-2.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-e8dd37bb-a367-47f9-9b12-6bf6ea79d9ff-3.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-8038b152-85c2-4b00-8486-e5d9246381f7-4.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-9fcccdea-6c94-409a-bb18-86518abd1290-5.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-e4a73572-9f0a-4e12-9b7f-741aa04ae98e-6.jpg",
+      "images/observations/2026/2026-07-19-f5551322-1c76-4182-84b7-1a346f943025/garden-468ac5c9-6468-47d4-803f-a688476b1d29-7.jpg"
+    ],
+    "species": [
+      "thread-waisted-wasp-likely-genus-ammophila-or-related"
+    ],
+    "updatedAt": "2026-07-19T21:52:19.581Z"
+  },
+  {
     "id": "2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be",
     "date": "2026-07-19",
     "title": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
