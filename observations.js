@@ -1,5 +1,93 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074",
+    "date": "2026-07-21",
+    "title": "Large bee (probable carpenter or bumble bee)",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "large-bee-probable-carpenter-or-bumble-bee"
+    },
+    "plants": [],
+    "visitors": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "visitorDetails": [
+      {
+        "id": "large-bee-probable-carpenter-or-bumble-bee",
+        "label": "Large bee (probable carpenter or bumble bee)",
+        "speciesId": "large-bee-probable-carpenter-or-bumble-bee",
+        "category": "insect",
+        "confidence": 0.85,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "The insect is noticeably large and furry with pollen on its legs, typical of large bees such as bumble bees or carpenter bees, and frequenting blanket flower blossoms.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "Pollen pants at their finest! 😍 This fuzzy beauty was working hard in today’s heat.",
+    "originalNarrative": "Pollen pants at their finest! 😍 This fuzzy beauty was working hard in today’s heat.",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-21T01:28:48.091Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower",
+        "existing_id": "8",
+        "confidence": 0.9
+      },
+      "visitors": [
+        {
+          "label": "Large bee (probable carpenter or bumble bee)",
+          "existing_id": "large-bee-probable-carpenter-or-bumble-bee",
+          "category": "insect",
+          "confidence": 0.85,
+          "evidence": "The insect is noticeably large and furry with pollen on its legs, typical of large bees such as bumble bees or carpenter bees, and frequenting blanket flower blossoms."
+        }
+      ],
+      "behavior": "The large bee is actively foraging and collecting pollen on a blanket flower, as seen in multiple close-up images showing diligent flower visitation and pollen gathering.",
+      "memory_summary": "A large furry bee busily visits bright blanket flowers, dusting its legs with pollen as it dances from blossom to blossom in the garden. The flower’s fiery colors perfectly frame this charming pollinator’s round, fuzzy body - a joyful summer scene in Mead.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Gaillardia (other species)",
+        "Other large native bees"
+      ],
+      "reasoning": "The flower’s distinct red and yellow petals match the known Blanket Flower in the garden. The insect’s size, fuzziness, and pollen-carrying legs align with known large bee types (bumble or carpenter) more than smaller native bees or other flower visitors. Multiple images show the same flower and insect, supporting a single observation memory.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-bb2d2a92-503b-4fff-927e-e1ef2b4561aa-1.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-fad364a6-b156-48db-b89a-2165c032f827-2.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-c0e70664-add5-4c97-ac8d-fbf5a4216701-3.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-6bf464d5-e8ad-4106-b824-f748e05743ac-4.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-befa0525-a58f-48ba-8b68-29611888254a-5.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-01a31ae1-49b4-41a3-9e27-7b8e1df78576-6.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-481a95eb-952c-415b-a9cc-b63d29f4a0f9-7.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-d3356a09-0d2f-4205-ba71-713788f1cc2c-8.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-71490035-e770-43de-b78a-b122baaa68df-9.jpg",
+      "images/observations/2026/2026-07-21-de8aefa5-743d-49e0-b9fe-d08ed0bca074/garden-d9994408-98e9-47b7-8972-8190b2547863-10.jpg"
+    ],
+    "species": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "updatedAt": "2026-07-21T01:28:52.638Z"
+  },
+  {
     "id": "2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4",
     "date": "2026-07-21",
     "title": "Large bee (probable carpenter or bumble bee)",
