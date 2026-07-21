@@ -1,5 +1,90 @@
 window.OBSERVATIONS = [
   {
+    "id": "2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4",
+    "date": "2026-07-21",
+    "title": "Large bee (probable carpenter or bumble bee)",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "large-bee-probable-carpenter-or-bumble-bee"
+    },
+    "plants": [],
+    "visitors": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "visitorDetails": [
+      {
+        "id": "large-bee-probable-carpenter-or-bumble-bee",
+        "label": "Large bee (probable carpenter or bumble bee)",
+        "speciesId": "large-bee-probable-carpenter-or-bumble-bee",
+        "category": "insect",
+        "confidence": 0.9,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "Black, robust bee with noticeable pollen baskets full of bright yellow pollen on hind legs, foraging on flower head.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "My photography skills are getting sharper. The pollen baskets on this beauty are amazing!",
+    "originalNarrative": "My photography skills are getting sharper. The pollen baskets on this beauty are amazing!",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-21T01:24:04.850Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Blanket Flower",
+        "existing_id": "8",
+        "confidence": 0.9
+      },
+      "visitors": [
+        {
+          "label": "Large bee (probable carpenter or bumble bee)",
+          "existing_id": "large-bee-probable-carpenter-or-bumble-bee",
+          "category": "insect",
+          "confidence": 0.9,
+          "evidence": "Black, robust bee with noticeable pollen baskets full of bright yellow pollen on hind legs, foraging on flower head."
+        }
+      ],
+      "behavior": "The large bee is actively foraging on the Blanket Flower, gathering pollen as seen on its legs and body while interacting closely with the flower head.",
+      "memory_summary": "A gentle summer moment in the Mead garden with a handsome large bee happily working the bright red and orange Blanket Flower, a proud native bloom attracting hardworking pollinators.",
+      "overall_confidence": "confirmed",
+      "alternatives": [
+        "Small native solitary bee",
+        "Longhorn beetle or similar flower-visiting beetle"
+      ],
+      "reasoning": "The flower clearly matches the known Blanket Flower in the garden by coloration and flower shape. The insect's size, coloration, and pollen carrying behavior aligns well with a large bee such as a bumble or carpenter bee rather than smaller bees or beetles. All photos share the same flowers, location, and visitor type, confirming this as a single observation event.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-96b77f38-ab4b-4ba9-9190-622b7fe950f2-1.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-030f38a9-2cd3-4bc5-826f-5a136551235a-2.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-aa9c629a-3220-4b8c-8277-6543c3653a2b-3.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-7177b3e8-319a-4f8d-83b3-30574a66182b-4.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-8b22976d-7879-4f9b-94b9-996aa7a2d549-5.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-f2bf660f-8bcf-4b8e-aa07-4d53382f75c7-6.jpg",
+      "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-34dd2e94-42ea-4149-837d-7e6d5f7da2cf-7.jpg"
+    ],
+    "species": [
+      "large-bee-probable-carpenter-or-bumble-bee"
+    ],
+    "updatedAt": "2026-07-21T01:24:08.400Z"
+  },
+  {
     "id": "2026-07-19-f5551322-1c76-4182-84b7-1a346f943025",
     "date": "2026-07-19",
     "title": "A curious garden scene showing a thread-waisted wasp busily navigating mulch, possibly digging or hunting, accompanied by a small black-and-white bee hiding among wood chips. The dense mulch provides a perfect habitat for these fascinating soil and wood-inhabiting insects. No clear garden plant visible in this snapshot of their underground world.",

@@ -17,6 +17,9 @@ window.IMAGE_MANIFEST = {
   "wildlife": {
     "unknown-pending": {
       "hero": "images/wildlife/unknown-pending/hero.jpg"
+    },
+    "large-bee-probable-carpenter-or-bumble-bee": {
+      "hero": "images/wildlife/large-bee-probable-carpenter-or-bumble-bee/hero.jpg"
     }
   }
 };
