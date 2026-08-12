@@ -1,148 +1,117 @@
-# The Pollinator Path — Garden Brain 4.2.0 · The Garden Comes Alive
+# The Pollinator Path
 
-See `RELEASE-4.0.0-AI-FOUNDATION.md` and `/docs`.
+> **Purpose:** Introduce the project, its mission, its documentation, and the responsibilities of contributors.
+>
+> **Document version:** 1.0.0
+>
+> **Last updated:** 2026-07-30
 
-# The Pollinator Path — static GitHub Pages site
+The Pollinator Path is a living ecological garden documentation project. It records a real habitat garden: its plants, wildlife observations, seasonal changes, stewardship decisions, and the relationships that develop between people and the natural world.
 
-## What is included
-- Mobile-first entrance-QR home page
-- Searchable and filterable front-yard plant directory
-- One reusable plant profile page powered by `data.js`
-- Interactive schematic garden map with clickable numbered pins
-- Personal notes, humor, observed-wildlife sections, photo placeholders
-- No database, build system, or paid hosting required
+It is more than a website and more than a species database. The software exists to help preserve evidence, memory, context, and wonder without allowing the machinery to become more important than the garden.
 
-## Publish on GitHub Pages
-1. Download and unzip the package.
-2. Upload the contents—not the outer folder—to the root of your existing GitHub Pages repository.
-3. Replace the existing files when GitHub asks.
-4. Commit the changes.
-5. GitHub Pages will publish the update.
+> Take care of your little piece of the world in a way that allows others to thrive alongside you.
 
-Keep a copy of your current `index.html` before replacing it.
+## Mission
 
-## Add or edit a plant
-Open `data.js`. Each plant is one object inside `window.PLANTS`.
+The project helps people notice, remember, understand, and share what happens in one small habitat over time. It aims to:
 
-Important fields:
-- `number`
-- `common`
-- `botanical`
-- `location`
-- `status`
-- `pollinators`
-- `bloom`
-- `type`
-- `sun`
-- `water`
-- `story`
-- `observed`
-- `notes`
-- `mapZone`
+- preserve real observations and their ecological context;
+- document how plants, wildlife, weather, and stewardship interact;
+- distinguish evidence, identification, uncertainty, and interpretation;
+- make the public garden story welcoming, useful, and human;
+- demonstrate that beauty and habitat can thrive together; and
+- encourage others to become curious about their own piece of the world.
 
-The directory, profile page, search, and map all update from that one record.
+## Rule Zero
 
-## Add plant photos
-Plant photos are organized by plant number. No HTML editing is required.
+**Never lose information that represents a real observation.**
 
-- `images/plants/8/hero.jpg` — main portrait for Plant #8
-- `images/plants/8/photo-01.jpg` through `photo-12.jpg` — automatic gallery
+Observations are primary historical records. Photos support observations. New information must be merged into the record; it must not silently replace observations, identities, taxonomy history, confidence, dates, locations, or ecological context.
 
-Missing photos remain as intentional placeholders. Gallery filenames that do not exist are quietly hidden.
+## Start here
 
-## Add wildlife photos
-Wildlife photos are organized by profile name.
+New contributors should begin with [START-HERE.md](START-HERE.md), then follow this reading order:
 
-- `images/wildlife/brenda/hero.jpg`
-- `images/wildlife/brenda/photo-01.jpg` through `photo-12.jpg`
-- `images/wildlife/big-booty-judy/hero.jpg`
+1. [Project Philosophy](PROJECT_PHILOSOPHY.md)
+2. [Design Principles](docs/DESIGN_PRINCIPLES.md)
+3. [Architecture](docs/ARCHITECTURE.md)
+4. [Data Model](docs/DATA_MODEL.md)
+5. [AI Guardrails](docs/AI_GUARDRAILS.md)
+6. [Release Process](docs/RELEASE_PROCESS.md)
 
-The same pattern is already prepared for the hummingbird and white-lined sphinx.
+Supporting project records include:
 
-## Refine the map
-Open `app.js` and find:
-`const zones = { ... }`
+- [Project Decisions](DECISIONS.md)
+- [Security and Privacy Architecture](SECURITY-PRIVACY.md)
+- [Roadmap](ROADMAP.md)
+- [Changelog](CHANGELOG.md)
+- [Current stable-test checklist](docs/QC.md)
+- [Existing AI guidelines](docs/AI_GUIDELINES.md)
 
-Those percentages place the center of each garden zone. Plants are automatically arranged around their zone. For an exact map, the next step is to add `mapX` and `mapY` percentages to each plant in `data.js` using the numbered planting plan.
+Release-specific files remain historical evidence. Do not rewrite an old release note or checklist to describe a newer release.
 
-## Content accuracy notes
-- Only plants listed in front-yard-related locations were included: Front yard, Shed garden, Garage wall, and Trash-can planter.
-- Plants with blank locations or only Back yard were omitted.
-- Botanical capitalization, hybrid symbols, and several common names were standardized.
-- Bloom windows are practical garden ranges and can be adjusted to your actual observations.
+## Contributor orientation
 
+Before making a change:
 
-## Welcome-and-invitation update
-This version adds:
-- A prominent “You’re Welcome Here” invitation immediately below the hero
-- Explicit permission to walk the front paths, take photos, linger, and say hello
-- A stepping-stone request explained through habitat rather than rules
-- “Curiosity is encouraged”
-- A new “Why This Garden Exists” section
-- Updated navigation linking directly to that story
+1. Inspect the repository and the relevant historical documents.
+2. Identify the source records that the change could affect.
+3. Preserve originals and merge new information.
+4. Keep uncertainty visible and explain consequential decisions.
+5. Validate locally, then use staging for release review.
+6. Obtain human approval before committing, publishing, deploying, or changing production.
 
-## Rabbit-hole update
-Added:
-- Clickable Native, Native Cultivar, Cultivar, and Plant Select badges
-- Native explainer page
-- Native-cultivar explainer page
-- Plant Select feature page with official links
-- Colorado starter-resources page featuring Resource Central, CSU Extension, Plant Select, and CoNPS
-- A sixth home-page exploration card for starting a garden
-- Removal of the duplicate purple “why this exists” section
+Documentation, code, structured records, and media serve different roles. A change to one can create integrity obligations in the others. See the [Architecture](docs/ARCHITECTURE.md), [Data Model](docs/DATA_MODEL.md), and [Release Process](docs/RELEASE_PROCESS.md) before changing behavior or data.
 
-## Validated front-garden rebuild
-- Rebuilt from the last working plant version rather than patching the broken renderer.
-- Includes 44 public-facing plant records.
-- Areas: Front Garden, Garage Wall Garden, and The Screen Garden.
-- Shed-only plant records are excluded.
-- Honeycrisp Apple (#58) is restored as a Front Garden plant based on the actual west-side map.
-- Native, Native Cultivar/Cultivar, and Plant Select badges are clickable on cards and profile pages.
-- JavaScript syntax and plant-data loading were validated before packaging.
+## AI contributor notice
 
-## Plant photos
+AI assistants are contributors, not authorities. They may help organize evidence, suggest cautious identifications, explain alternatives, and improve writing. They must preserve original observations and human voice, state uncertainty honestly, and leave publication and release decisions to people.
 
-Plant images are optional. The site now shows a designed placeholder whenever a
-file is absent, so plant cards and profiles remain fully visible from day one.
-Add photos later to `images/plants/` using the plant number, such as `8.jpg`.
+AI assistants must follow [AI Guardrails](docs/AI_GUARDRAILS.md) and the existing [AI Guidelines](docs/AI_GUIDELINES.md). They may not fabricate observations, replace datasets, delete media, commit without approval, deploy without approval, or modify production.
 
-## Adding photographs without editing code
+## Current implementation
 
-Plant photos are organized by plant number:
+The repository currently contains a static, mobile-oriented public site and Garden Brain tools. It includes:
 
-- `images/plants/8/hero.jpg` — main Blanket Flower portrait
-- `images/plants/8/photo-01.jpg` through `photo-12.jpg` — automatic gallery
+- a public homepage and ecological story pages;
+- a searchable plant directory and reusable plant profiles;
+- a schematic garden map;
+- Garden Walk capture, review, and publishing interfaces;
+- observation, species, resident, object, placement, and image-manifest records;
+- a browser-based photo preparation workflow; and
+- a Cloudflare Worker used for guarded publishing and AI-assisted workflows.
 
-Wildlife photos are organized by profile slug:
+The current implementation is described more fully in [Architecture](docs/ARCHITECTURE.md). Version-specific behavior belongs in the changelog and release notes rather than in this overview.
 
-- `images/wildlife/brenda/hero.jpg`
-- `images/wildlife/brenda/photo-01.jpg` through `photo-12.jpg`
-- `images/wildlife/big-booty-judy/hero.jpg`
+## Working with plant and media records
 
-The site quietly hides missing gallery files. Add or replace the correctly named JPG, commit, and push; no HTML edits are needed.
+Plant information is currently represented in `data.js`, with related placement and image-manifest records elsewhere in the repository. Before editing plant content, inspect all references to the plant identifier and preserve its history, names, status, location, and ecological context.
 
-## Local photo uploader
+Media is stored under `images/`. Plant and wildlife hero/gallery images use subject-oriented paths, while Garden Walk photographs use observation-oriented paths. The local uploader prepares web-sized JPEG copies and updates the image manifest. Original photographs should remain outside destructive automated workflows.
 
-Open `uploader.html` in Microsoft Edge or Google Chrome on Windows.
+Photos are evidence supporting observations. A photo path or portrait may change, but that must never erase the observation it supports.
 
-1. Choose the cloned repository folder (the folder containing `data.js` and `images`).
-2. Choose Plant or Wildlife and select the subject.
-3. Drop in JPG, PNG, WebP, HEIC, or HEIF photographs.
-4. Optionally make the first image the page portrait.
-5. Click **Prepare and file photos**.
-6. Commit and push the resulting changes in GitHub Desktop.
+## Local review
 
-The uploader creates web-sized JPG copies (maximum 1600 px long edge), files them in the correct subject folder, and rewrites `image-manifest.js`. Your original photographs are not changed.
+Because the public site is static, it can be reviewed with a local web server. Some Garden Brain actions depend on the configured Worker and must be tested only against the intended environment.
 
-
-## 4.1.0
-See `RELEASE-4.1.0-GARDEN-BRAIN-REVIEW.md`.
-
-## 4.2.0
-See `RELEASE-4.2.0-THE-GARDEN-COMES-ALIVE.md`.
-
-Run the static rabbit-hole link check with:
+Run the repository's static link audit with:
 
 ```bash
 node scripts/link-audit.mjs .
 ```
+
+Use the applicable release checklist for behavioral testing. The current release-candidate checklist is [TEST-4.3.2-RC1.md](TEST-4.3.2-RC1.md); it is a historical, version-specific document and should be replaced by a new checklist when a new candidate is prepared.
+
+## Publishing
+
+Do not publish by copying files directly into production as an unreviewed step. Follow the [Release Process](docs/RELEASE_PROCESS.md):
+
+1. validate the candidate and its data;
+2. review it in staging;
+3. verify rollback readiness;
+4. obtain explicit human approval; and
+5. promote the exact approved candidate.
+
+Production stability is more important than release speed.
