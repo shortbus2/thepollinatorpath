@@ -60,3 +60,14 @@ Garden Brain is an application platform. The website is its first presentation l
 ## Stop rule
 
 Any new historical conflict, source-hash mismatch, identifier replacement, or attempted activation of a DEFER or QUARANTINE entity stops implementation and returns to Historical Curator review.
+
+## Subsequent curator clarification
+
+### CUR-NEW-001 — Quarantined media semantics
+
+- Observations approved for activation remain active when associated media assets have an approved `QUARANTINE` disposition.
+- Quarantined media references remain part of the canonical historical record and provenance.
+- Validation distinguishes missing and unclassified media, unexpectedly unavailable media, and intentionally quarantined media.
+- A referenced media path is validly unavailable only when its ledger disposition is `QUARANTINE`; this exception does not activate, copy, link, rename, reorganize, or delete the media asset.
+- Canonical records are not altered solely to satisfy runtime validation.
+- Presentation may suppress quarantined media or display an unavailable state, but canonical relationships remain unchanged.

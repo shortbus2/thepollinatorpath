@@ -39,6 +39,7 @@ Purpose: Provide a durable, append-only structure linking governance approvals t
 | `DEC-2026-0006` | 2026-07-30 | `CUR-BAS-01`; `CUR-DOC-01` | Use base `6a26c9f774b53a046d12e691e92196ec5ac88e74`; preserve handbook work in its separate commit | Historical Curator / Project Owner | Implemented | `6a9bc86ddc516be5268330cb6d042aa2a44c1ab8` |
 | `DEC-2026-0007` | 2026-08-12 | `ADR-GB-001` | Garden Brain is an application platform; the website is its first presentation layer | Historical Curator / Project Owner | Not implemented | Foundation Reconciliation Release |
 | `DEC-2026-0008` | 2026-08-12 | `CUR-AUTH-01` | Authorize controlled implementation and RC preparation only; deployment, tags, and release remain separate | Historical Curator / Project Owner | Not implemented | `FICR-2026-08-12-001` |
+| `DEC-2026-0009` | 2026-08-12 | `CUR-NEW-001` | Keep approved observations active while preserving their explicitly quarantined media references as intentionally unavailable | Historical Curator / Project Owner | Not implemented | Foundation Reconciliation Release |
 
 The exact field values, taxonomy records, media scope, source hashes, and authorization boundaries for these index entries are preserved in [Foundation implementation decisions](../evidence/reconciliation/foundation-4.4.0-rc.1/IMPLEMENTATION_DECISIONS.md). This index is not a substitute for that exact record.
 
