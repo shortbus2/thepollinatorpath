@@ -1122,5 +1122,161 @@ window.OBSERVATIONS = [
       "large-bee-probable-carpenter-or-bumble-bee"
     ],
     "updatedAt": "2026-07-21T01:28:52.638Z"
+  },
+  {
+    "id": "2026-07-17-3fc7c311-0fba-4462-8928-64e84faf746a",
+    "date": "2026-07-17",
+    "title": "#38 · Spotted Joe-Pye Weed · Seed heads",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "38"
+    },
+    "plants": [
+      38
+    ],
+    "visitors": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Seed heads"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Joe is finally showing his buds!!",
+    "originalNarrative": "Joe is finally showing his buds!!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-17T04:31:29.758Z"
+    },
+    "aiDraft": null,
+    "photos": [
+      "images/observations/2026/2026-07-17-3fc7c311-0fba-4462-8928-64e84faf746a/garden-9684e9f9-cdef-41e8-ad08-e450f7e51eaf-1.jpg",
+      "images/observations/2026/2026-07-17-3fc7c311-0fba-4462-8928-64e84faf746a/garden-fcab657d-7ad8-4819-943d-527c04bb77dc-2.jpg"
+    ],
+    "updatedAt": "2026-07-17T04:31:30.201Z"
+  },
+  {
+    "id": "2026-07-18-ba83f3eb-aa68-4f4e-931b-2243be1f8cf2",
+    "date": "2026-07-18",
+    "title": "#63 · Snow-in-Summer · Weather response",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "63"
+    },
+    "plants": [
+      63
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Weather response"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Our poor snow in summer is going through it lol. Keep them in your thoughts during this difficult adjustment time!",
+    "originalNarrative": "Our poor snow in summer is going through it lol. Keep them in your thoughts during this difficult adjustment time!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:25:52.916Z"
+    },
+    "aiDraft": null,
+    "photos": [
+      "images/observations/2026/2026-07-18-ba83f3eb-aa68-4f4e-931b-2243be1f8cf2/garden-055736c2-aedc-445b-a9cb-10ccb108013e-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:25:53.296Z"
+  },
+  {
+    "id": "2026-07-18-db065ce5-2e37-4ed2-91b2-e7c859b4a344",
+    "date": "2026-07-18",
+    "title": "#9 · Blue Grama Grass · Seed heads",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "9"
+    },
+    "plants": [
+      9
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Seed heads"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Our blue grama is pushing seed heads!",
+    "originalNarrative": "Our blue grama is pushing seed heads!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-18T02:28:11.922Z"
+    },
+    "aiDraft": null,
+    "photos": [
+      "images/observations/2026/2026-07-18-db065ce5-2e37-4ed2-91b2-e7c859b4a344/garden-0dbdca35-252d-42cb-812b-0f14e0072db4-1.jpg"
+    ],
+    "updatedAt": "2026-07-18T02:28:12.350Z"
+  },
+  {
+    "id": "2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be",
+    "date": "2026-07-19",
+    "title": "A delightful moment observing a large black bee busily foraging on a vibrant pink Rocky Mountain Columbine, its petals and leaves basking in sunlight.",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "30"
+    },
+    "plants": [
+      30
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "probable",
+    "public": true,
+    "featured": false,
+    "notes": "A large black bee busily foraging on a vibrant pink prairie wine cups, its petals and leaves basking in sunlight.",
+    "originalNarrative": "A large black bee busily foraging on a vibrant pink prairie wine cups, its petals and leaves basking in sunlight.",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-07-19T21:47:01.521Z"
+    },
+    "aiDraft": null,
+    "photos": [
+      "images/observations/2026/2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be/garden-d0705172-e196-4cc1-9fd3-72974fd9d909-1.jpg",
+      "images/observations/2026/2026-07-19-dc4cd81a-e75d-42e7-9a2d-c573d043d7be/garden-fbb1807c-75a6-499c-b4b4-878ba1aaed94-2.jpg"
+    ],
+    "species": [],
+    "updatedAt": "2026-07-19T21:47:02.055Z"
   }
 ];
