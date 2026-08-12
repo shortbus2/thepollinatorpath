@@ -40,6 +40,7 @@ Purpose: Provide a durable, append-only structure linking governance approvals t
 | `DEC-2026-0007` | 2026-08-12 | `ADR-GB-001` | Garden Brain is an application platform; the website is its first presentation layer | Historical Curator / Project Owner | Not implemented | Foundation Reconciliation Release |
 | `DEC-2026-0008` | 2026-08-12 | `CUR-AUTH-01` | Authorize controlled implementation and RC preparation only; deployment, tags, and release remain separate | Historical Curator / Project Owner | Not implemented | `FICR-2026-08-12-001` |
 | `DEC-2026-0009` | 2026-08-12 | `CUR-NEW-001` | Keep approved observations active while preserving their explicitly quarantined media references as intentionally unavailable | Historical Curator / Project Owner | Implemented | `d2ed5452bdbc8eff6d4a6c5c72c8629961c42d1b` |
+| `DEC-2026-0010` | 2026-08-12 | `CUR-NEW-002`; eight exact active taxonomy hero references | Preserve the canonical hero paths as approved unavailable presentation metadata without importing or activating media; fail closed for every unlisted missing taxonomy hero | Historical Curator / Project Owner | Implemented | Foundation Gate 2 blocker-resolution batch |
 
 The exact field values, taxonomy records, media scope, source hashes, and authorization boundaries for these index entries are preserved in [Foundation implementation decisions](../evidence/reconciliation/foundation-4.4.0-rc.1/IMPLEMENTATION_DECISIONS.md). This index is not a substitute for that exact record.
 

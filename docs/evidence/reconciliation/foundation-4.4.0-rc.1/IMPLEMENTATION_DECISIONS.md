@@ -71,3 +71,30 @@ Any new historical conflict, source-hash mismatch, identifier replacement, or at
 - A referenced media path is validly unavailable only when its ledger disposition is `QUARANTINE`; this exception does not activate, copy, link, rename, reorganize, or delete the media asset.
 - Canonical records are not altered solely to satisfy runtime validation.
 - Presentation may suppress quarantined media or display an unavailable state, but canonical relationships remain unchanged.
+
+### CUR-NEW-002 — Approved unavailable taxonomy hero references
+
+Taxonomy hero media is optional presentation metadata. It is not required for canonical taxonomy identity or activation. The following exact active taxonomy records may preserve their existing canonical `hero` paths while the referenced media bytes remain unavailable:
+
+| Stable taxonomy ID | Approved unavailable hero path |
+|---|---|
+| `broad-tailed-hummingbird` | `images/wildlife/broad-tailed-hummingbird/hero.jpg` |
+| `large-bee-probable-carpenter-or-bumble-bee` | `images/wildlife/large-bee-probable-carpenter-or-bumble-bee/hero.jpg` |
+| `leafcutter-bee` | `images/wildlife/brenda/hero.jpg` |
+| `longhorn-beetle-or-similar-flower-visiting-beetle` | `images/wildlife/longhorn-beetle-or-similar-flower-visiting-beetle/hero.jpg` |
+| `small-bee-likely-a-native-solitary-bee-or-small-generalist-bee` | `images/wildlife/small-bee-likely-a-native-solitary-bee-or-small-generalist-bee/hero.jpg` |
+| `thread-waisted-wasp-likely-genus-ammophila-or-related` | `images/wildlife/thread-waisted-wasp-likely-genus-ammophila-or-related/hero.jpg` |
+| `toad-unresolved` | `images/wildlife/toad-unresolved/hero.jpg` |
+| `white-lined-sphinx` | `images/wildlife/white-lined-sphinx/hero.jpg` |
+
+For these exact ID-and-path pairs:
+
+- preserve the canonical path and its provenance;
+- classify an absent file as an approved unavailable taxonomy hero reference;
+- do not fabricate, restore, import, rename, move, substitute, or activate media;
+- do not classify the absent bytes as `QUARANTINE` without separate evidence;
+- permit the presentation layer to use its normal fallback or no-image behavior.
+
+Validation remains fail-closed. A present active taxonomy hero is valid. An absent taxonomy hero is valid only when its exact ID-and-path pair is listed above or its media row has an independently approved `QUARANTINE` disposition. Any other missing active taxonomy hero is a validation failure. This exception does not apply to observation photos, required active media, unexplained missing media, the existing 17 `QUARANTINE` rows, or future taxonomy hero references.
+
+This decision changes availability semantics only. It does not modify canonical taxonomy records, identity, activation, provenance, the disposition ledger, or media bytes.

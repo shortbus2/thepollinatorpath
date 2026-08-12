@@ -21,6 +21,10 @@ test("valid canonical dry run", () => {
   assert.equal(result.report.status, "PASS");
   assert.equal(result.report.evidence.ledgerRows, 293);
   assert.equal(result.report.identifierChanges, 0);
+  assert.equal(result.report.media.taxonomyHeroes.present, 0);
+  assert.equal(result.report.media.taxonomyHeroes.approvedUnavailable, 8);
+  assert.equal(result.report.media.taxonomyHeroes.intentionallyQuarantined, 0);
+  assert.deepEqual(result.report.media.taxonomyHeroes.missing, []);
 });
 
 test("repeated dry runs are deterministic", () => {
@@ -43,6 +47,10 @@ test("unresolved merge decision fails closed", () => expectFailure("DECISION_MIS
   fixture.decisions = fixture.decisions.replaceAll("CUR-MRG-01", "REMOVED-MRG-01");
 }));
 
+test("unavailable taxonomy hero decision fails closed when missing", () => expectFailure("DECISION_MISSING", (fixture) => {
+  fixture.decisions = fixture.decisions.replaceAll("CUR-NEW-002", "REMOVED-NEW-002");
+}));
+
 test("active deferred entity fails closed", () => expectFailure("INACTIVE_DISPOSITION_ACTIVE", (fixture) => {
   const row = fixture.ledger.find((candidate) => candidate.canonical_disposition === "DEFER");
   row.active_in_preview = "yes";
@@ -57,6 +65,28 @@ test("approved quarantined media is intentionally unavailable", () => {
   const result = runDryRun(repoRoot);
   assert.equal(result.report.media.intentionallyQuarantined, 17);
   assert.deepEqual(result.report.media.missing, []);
+});
+
+test("unclassified missing taxonomy hero fails closed", () => expectFailure("ACTIVE_TAXONOMY_HERO_MISSING", (fixture) => {
+  fixture.canonical.canonical_preview.modern_species.proposed_active[0].record.hero = "images/wildlife/not-approved/hero.jpg";
+}));
+
+test("present active taxonomy hero is valid", () => {
+  const result = runDryRun(repoRoot, (fixture) => {
+    fixture.canonical.canonical_preview.modern_species.proposed_active[0].record.hero = "images/maps/front-aerial-measured.jpg";
+  });
+  assert.equal(result.report.media.taxonomyHeroes.present, 1);
+  assert.equal(result.report.media.taxonomyHeroes.approvedUnavailable, 7);
+  assert.deepEqual(result.report.media.taxonomyHeroes.missing, []);
+});
+
+test("quarantined taxonomy hero follows existing quarantine semantics", () => {
+  const result = runDryRun(repoRoot, (fixture) => {
+    fixture.canonical.canonical_preview.modern_species.proposed_active[0].record.hero = "images/observations/2026/2026-07-21-92011266-0d78-4c03-8986-7ed9e090e4b4/garden-030f38a9-2cd3-4bc5-826f-5a136551235a-2.jpg";
+  });
+  assert.equal(result.report.media.taxonomyHeroes.intentionallyQuarantined, 1);
+  assert.equal(result.report.media.taxonomyHeroes.approvedUnavailable, 7);
+  assert.deepEqual(result.report.media.taxonomyHeroes.missing, []);
 });
 
 test("invalid plant reference fails closed", () => expectFailure("PLANT_REFERENCE", (fixture) => {

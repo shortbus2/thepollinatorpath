@@ -35,6 +35,17 @@ const APPROVED_RESIDENT_SPECIES = Object.freeze({
   "big-booty-judy": "toad-unresolved",
 });
 
+const APPROVED_UNAVAILABLE_TAXONOMY_HEROES = Object.freeze({
+  "broad-tailed-hummingbird": "images/wildlife/broad-tailed-hummingbird/hero.jpg",
+  "large-bee-probable-carpenter-or-bumble-bee": "images/wildlife/large-bee-probable-carpenter-or-bumble-bee/hero.jpg",
+  "leafcutter-bee": "images/wildlife/brenda/hero.jpg",
+  "longhorn-beetle-or-similar-flower-visiting-beetle": "images/wildlife/longhorn-beetle-or-similar-flower-visiting-beetle/hero.jpg",
+  "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee": "images/wildlife/small-bee-likely-a-native-solitary-bee-or-small-generalist-bee/hero.jpg",
+  "thread-waisted-wasp-likely-genus-ammophila-or-related": "images/wildlife/thread-waisted-wasp-likely-genus-ammophila-or-related/hero.jpg",
+  "toad-unresolved": "images/wildlife/toad-unresolved/hero.jpg",
+  "white-lined-sphinx": "images/wildlife/white-lined-sphinx/hero.jpg",
+});
+
 export class ValidationError extends Error {
   constructor(code, message, details = undefined) {
     super(message);
@@ -166,7 +177,7 @@ function assertDecisionCoverage(decisionText) {
   const required = [
     ...Array.from({ length: 10 }, (_, index) => `CUR-MRG-${String(index + 1).padStart(2, "0")}`),
     ...Array.from({ length: 4 }, (_, index) => `CUR-TAX-${String(index + 1).padStart(2, "0")}`),
-    "CUR-MED-01", "CUR-BAS-01", "CUR-DOC-01", "CUR-NEW-001",
+    "CUR-MED-01", "CUR-BAS-01", "CUR-DOC-01", "CUR-NEW-001", "CUR-NEW-002",
   ];
   const missing = required.filter((decision) => !decisionText.includes(decision));
   if (missing.length) throw new ValidationError("DECISION_MISSING", "Required implementation decisions are missing", missing);
@@ -200,7 +211,12 @@ function validateReferences(repoRoot, target, ledger) {
   const wildlife = new Set([...target.modernSpecies, ...target.legacyVisitors].map((record) => String(record.id ?? record.slug)));
   wildlife.add("unknown-pending");
   const mediaRows = new Map(ledger.filter((row) => row.entity_type === "media_asset").map((row) => [row.entity_id.replaceAll("\\", "/"), row]));
-  const media = { present: 0, intentionallyQuarantined: 0, missing: [] };
+  const media = {
+    present: 0,
+    intentionallyQuarantined: 0,
+    missing: [],
+    taxonomyHeroes: { present: 0, approvedUnavailable: 0, intentionallyQuarantined: 0, missing: [] },
+  };
   for (const observation of target.observations) {
     for (const plantId of observation.plants ?? []) if (!plants.has(String(plantId))) throw new ValidationError("PLANT_REFERENCE", `${observation.id} references unknown plant ${plantId}`);
     for (const residentId of observation.residents ?? []) if (!residents.has(String(residentId))) throw new ValidationError("RESIDENT_REFERENCE", `${observation.id} references unknown resident ${residentId}`);
@@ -213,6 +229,18 @@ function validateReferences(repoRoot, target, ledger) {
     }
   }
   if (media.missing.length) throw new ValidationError("ACTIVE_MEDIA_MISSING", "Active observations reference missing media without an approved QUARANTINE disposition", media.missing);
+
+  for (const taxon of target.modernSpecies) {
+    const normalized = typeof taxon.hero === "string" ? taxon.hero.trim().replaceAll("\\", "/") : "";
+    if (!normalized) continue;
+    if (fs.existsSync(path.join(repoRoot, ...normalized.split("/")))) media.taxonomyHeroes.present += 1;
+    else if (APPROVED_UNAVAILABLE_TAXONOMY_HEROES[taxon.id] === normalized) media.taxonomyHeroes.approvedUnavailable += 1;
+    else if (mediaRows.get(normalized)?.canonical_disposition === "QUARANTINE") media.taxonomyHeroes.intentionallyQuarantined += 1;
+    else media.taxonomyHeroes.missing.push({ taxonomyId: taxon.id, mediaPath: normalized, ledgerDisposition: mediaRows.get(normalized)?.canonical_disposition ?? null });
+  }
+  if (media.taxonomyHeroes.missing.length) {
+    throw new ValidationError("ACTIVE_TAXONOMY_HERO_MISSING", "Active taxonomy records reference missing hero media without an exact approved unavailable or QUARANTINE classification", media.taxonomyHeroes.missing);
+  }
   return media;
 }
 
