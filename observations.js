@@ -1,5 +1,50 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-acceptance-20260812-223222",
+    "date": "2026-08-12",
+    "title": "Foundation 4.4.0 staging acceptance",
+    "type": "observation",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [
+      "Front Garden / Garage Wall Garden"
+    ],
+    "behaviors": [
+      "Other"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
+    "originalNarrative": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
+    "editingMode": "exact",
+    "setHero": false,
+    "photos": [],
+    "privacyReview": {
+      "reviewedAt": "2026-08-13T04:32:22.6391777Z",
+      "completed": true,
+      "safeHomepage": false
+    },
+    "species": [],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-13T04:32:24.016Z"
+  },
+  {
     "id": "stg-acceptance-20260812-223108",
     "date": "2026-08-12",
     "title": "Foundation 4.4.0 staging acceptance",
