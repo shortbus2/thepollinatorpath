@@ -182,3 +182,16 @@ A release record is incomplete without:
 A passed earlier gate does not authorize a later lifecycle action. Staging, tag creation, release publication, production authorization, and production deployment remain distinct approvals.
 
 See [Architecture](ARCHITECTURE.md), [Data Model](DATA_MODEL.md), [AI Guardrails](AI_GUARDRAILS.md), and the current version-specific verification checklist.
+
+## Default post-Foundation release workflow
+
+After the Foundation release, treat the website and its persistence Worker as one versioned Garden Brain service contract while keeping their deployment controls separate. The default workflow is:
+
+1. **Plan the integrated contract.** Identify Pages changes, Worker changes, target data branch, protected canonical states, migration needs, and rollback controls before implementation.
+2. **Implement in a review-first branch.** Keep canonical rules in presentation-independent domain modules. Browser code and Worker routes consume the shared contract as adapters; neither becomes the only definition of a business rule.
+3. **Run one integrated validation command.** The Foundation validator performs deterministic canonical checks, JavaScript syntax checks, write-contract fixtures, version/branch parity, Git-blob checksum validation, and unexpected-path detection. It may emit both machine-readable JSON and a compact human summary.
+4. **Package deterministically.** Build Pages artifacts from committed Git blobs, validate every packaged member and the embedded checksum manifest, and record the exact Pages artifact hash. Package the Worker from the same reviewed contract version without changing canonical data.
+5. **Deploy to isolated staging with independent rollback controls.** Record the active Pages deployment and Worker deployment before changing either. Deploy only the approved artifacts and target only the approved staging data branch.
+6. **Validate the complete staging experience.** Test read and persistent create/edit/save/read-back workflows, stale-write protection, protected-state failures, offline behavior, Pages/Worker contract identity, and rollback. Production promotion remains a separate approval.
+
+The automated validation must stop on any unexpected tracked deletion, rename, move, missing protected state, checksum mismatch, contract-version mismatch, branch-target mismatch, or nondeterministic output. Automation records evidence; it does not grant approval or weaken review-first requirements.

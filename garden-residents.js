@@ -1,10 +1,11 @@
 (()=>{
   const cfg=window.FIELD_NOTEBOOK_CONFIG||{mode:'offline',apiUrl:''};
+  const contractPromise=import('./domain/foundation-write-contract.mjs');
   const $=s=>document.querySelector(s);
   const list=$('#residentList');
   const status=$('#residentStatus');
   const keyInput=$('#residentApiKey');
-  let residents=structuredClone(window.GARDEN_RESIDENTS||[]);
+  let residents=structuredClone(window.GARDEN_RESIDENTS||[]),remoteRevision='';
 
   keyInput.value=localStorage.getItem('gardenBrainKey')||localStorage.getItem('fieldNotebookKey')||'';
 
@@ -65,6 +66,7 @@
       const body=await response.json();
       if(!response.ok) throw new Error(body.error||'Could not load residents.');
       if(Array.isArray(body.residents)) residents=body.residents;
+      remoteRevision=body.revision||remoteRevision;
       render();
       setStatus(showSuccess?'Latest residents loaded from GitHub.':'Ready.','success');
       return true;
@@ -75,13 +77,16 @@
     }
   }
   async function publishResidents(){
+    if(!remoteRevision) throw new Error('Load the latest staging residents before publishing.');
+    const contract=await contractPromise;
     const response=await fetch(cfg.apiUrl.replace(/\/$/,'')+'/residents',{
       method:'POST',
       headers:authHeaders(),
-      body:JSON.stringify({residents}),
+      body:JSON.stringify(contract.withRevision({residents},remoteRevision)),
     });
     const body=await response.json();
     if(!response.ok) throw new Error(body.error||'Resident publishing failed.');
+    remoteRevision=body.commitSha||remoteRevision;
     return body;
   }
 
@@ -89,8 +94,10 @@
     const name=$('#residentName').value.trim();
     if(!name){ setStatus('Give the resident a name before publishing.','error'); return; }
     const originalId=$('#residentId').value;
-    const id=originalId||slug(name);
-    const resident={
+    if(originalId&&!originalId.startsWith('stg-')){setStatus('Foundation baseline residents are read-only during staging acceptance.','error');return;}
+    const id=originalId||`stg-${slug(name)}-${crypto.randomUUID().slice(0,8)}`;
+    const original=residents.find(item=>item.id===id)||{};
+    const resident={...original,
       id,
       name,
       type:$('#residentType').value.trim(),
