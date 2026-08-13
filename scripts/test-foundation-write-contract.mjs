@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import worker from "../worker/src/worker.js";
 import {
   FOUNDATION_WRITE_CONTRACT,
+  FOUNDATION_PRODUCTION_CONTRACT,
   classifyTaxonomyHero,
   contractInventory,
   foundationBaselinePlacements,
@@ -171,9 +172,14 @@ test("stale writes, malformed sources, DEFER and QUARANTINE fail closed", async 
   const malformed = await call(fixture, "/garden"); assert.equal(malformed.status, 503); assert.equal(malformed.body.code, "SOURCE_MALFORMED");
 });
 
-test("production or wrong-branch identity is rejected before access", async () => {
-  const fixture = createGitHubFixture(), env = { ...ENV, ENVIRONMENT: "production", GITHUB_BRANCH: "main" };
-  const result = await call(fixture, "/health", { authenticated: false, env }); assert.equal(result.status, 503); assert.equal(result.body.code, "STAGING_IDENTITY_MISMATCH"); assert.equal(fixture.writes.length, 0);
+test("production identity uses the final contract while wrong branches fail closed", async () => {
+  const fixture = createGitHubFixture(), env = { ...ENV, ENVIRONMENT: "production", GITHUB_BRANCH: "main", FOUNDATION_CONTRACT_VERSION: FOUNDATION_PRODUCTION_CONTRACT.version, FOUNDATION_BASELINE_COMMIT: FOUNDATION_WRITE_CONTRACT.baselineCommit };
+  const health = await call(fixture, "/health", { authenticated: false, env }); assert.equal(health.status, 200); assert.equal(health.body.contractVersion, "4.4.0"); assert.equal(health.body.environment, "production");
+  const id = "stg-production-observation-fixture";
+  const entry = { id, date: "2026-08-12", title: "Production fixture", type: "observation", primary: { kind: "plant", id: "8" }, plants: [8], visitors: [], visitorDetails: [], residents: [], objects: [], areas: [], behaviors: [], confidence: "confirmed", public: true, featured: false, notes: "Production", originalNarrative: "Production", privacyReview: { completed: true, safeHomepage: false }, photos: [] };
+  const created = await call(fixture, "/entry", { method: "POST", body: withRevision(entry, fixture.revision, FOUNDATION_PRODUCTION_CONTRACT.version), env }); assert.equal(created.status, 200);
+  const saved = current(fixture, "observations.js", "OBSERVATIONS").find((candidate) => candidate.id === id); assert.equal(saved.provenance.environment, "production"); assert.equal(saved.provenance.recordClass, "garden-brain-managed");
+  const wrong = await call(createGitHubFixture(), "/health", { authenticated: false, env: { ...env, GITHUB_BRANCH: "beta-4.3" } }); assert.equal(wrong.status, 503); assert.equal(wrong.body.code, "ENVIRONMENT_IDENTITY_MISMATCH");
 });
 
 let passed = 0;

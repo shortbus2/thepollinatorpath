@@ -82,7 +82,7 @@
     const response=await fetch(cfg.apiUrl.replace(/\/$/,'')+'/residents',{
       method:'POST',
       headers:authHeaders(),
-      body:JSON.stringify(contract.withRevision({residents},remoteRevision)),
+      body:JSON.stringify(contract.withRevision({residents},remoteRevision,cfg.contractVersion)),
     });
     const body=await response.json();
     if(!response.ok) throw new Error(body.error||'Resident publishing failed.');

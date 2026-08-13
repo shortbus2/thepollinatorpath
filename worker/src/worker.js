@@ -18,7 +18,14 @@ import {
 const API_VERSION = "2022-11-28";
 const MAX_PHOTOS = 20;
 const MAX_BASE64_CHARS = 12_000_000;
-const WORKER_VERSION = "4.4.0-rc.1-foundation-staging-write";
+const workerVersion = (env) => env.ENVIRONMENT === "production" ? "4.4.0-foundation-write" : "4.4.0-rc.1-foundation-staging-write";
+const contractVersion = (env) => String(env.FOUNDATION_CONTRACT_VERSION || FOUNDATION_WRITE_CONTRACT.version);
+const writeProvenance = (env) => ({
+  environment: String(env.ENVIRONMENT || "staging"),
+  contractVersion: contractVersion(env),
+  baselineCommit: String(env.FOUNDATION_BASELINE_COMMIT || FOUNDATION_WRITE_CONTRACT.baselineCommit),
+  recordClass: env.ENVIRONMENT === "production" ? "garden-brain-managed" : "staging-acceptance-test",
+});
 
 const json = (value, status = 200, headers = {}) => new Response(JSON.stringify(value), {
   status,
@@ -171,7 +178,7 @@ function cleanPublicEntry(entry, photoPaths) {
   return clean;
 }
 
-function makeSpeciesRecord(detail, entry) {
+function makeSpeciesRecord(detail, entry, env) {
   const id = safeSlug(detail.speciesId || detail.id || detail.label, "wildlife");
   assertStagingRecord("modern_species", { id });
   const now = new Date().toISOString();
@@ -191,7 +198,7 @@ function makeSpeciesRecord(detail, entry) {
     identification: { acceptedIdentificationId: identificationId, acceptedLabel: detail.label || id, confidence: detail.confidenceBand || detail.confidence || "tentative", history: [{ id: identificationId, at: now, label: detail.label || id, scientificName: detail.suggestedScientificName || "", rank: "species-or-useful-group", confidence: detail.confidenceBand || detail.confidence || "tentative", source: "Human-reviewed staging observation", sourceObservationId: entry.id, note: detail.evidence || "", status: "accepted" }] },
     parentSpeciesId: null, mergedFrom: [], mergedInto: null, redirectAliases: [],
     public: false,
-    provenance: { environment: "staging", contractVersion: FOUNDATION_WRITE_CONTRACT.version, baselineCommit: FOUNDATION_WRITE_CONTRACT.baselineCommit, recordClass: "staging-acceptance-test" },
+    provenance: writeProvenance(env),
     createdAt: now,
     updatedAt: now
   };
@@ -232,7 +239,7 @@ function resolveMergedId(species, id) { let current = id, seen = new Set(); whil
 async function refineSpecies(env, body) {
   if (!body?.speciesId) throw Error("Missing speciesId");
   const state = await branchState(env);
-  assertBaseRevision(body, state.commitSha);
+  assertBaseRevision(body, state.commitSha, contractVersion(env));
   assertStagingRecord("modern_species", { id: body.speciesId });
   let species = parseArray(await getTextFile(env, "species.js"), "GARDEN_SPECIES");
   let record = species.find(s => s.id === body.speciesId);
@@ -240,7 +247,7 @@ async function refineSpecies(env, body) {
   if (!record) { record = normalizeSpeciesRecord({ id: safeSlug(body.speciesId || body.name, "wildlife"), name: body.name || body.speciesId, scientificName: "", rank: "unresolved taxon", category: "Wildlife", icon: "🐾", status: "draft", aliases: [], summary: "", story: "", hero: `images/wildlife/${safeSlug(body.speciesId || body.name, "wildlife")}/hero.jpg`, public: false, createdAt: now, updatedAt: now }); species.unshift(record); }
   assertStagingRecord("modern_species", record);
   record.hero = record.hero && normalizeMediaPath(record.hero).startsWith("images/staging/") ? normalizeMediaPath(record.hero) : "";
-  record.provenance = mergePreservingUnknown(record.provenance || {}, { environment: "staging", contractVersion: FOUNDATION_WRITE_CONTRACT.version, baselineCommit: FOUNDATION_WRITE_CONTRACT.baselineCommit, recordClass: "staging-acceptance-test" });
+  record.provenance = mergePreservingUnknown(record.provenance || {}, writeProvenance(env));
   if (record.mergedInto) throw Error(`This record was merged into ${record.mergedInto}. Refine the surviving record instead.`);
   const history = record.identification.history;
   history.forEach(h => h.status = "superseded");
@@ -258,7 +265,7 @@ async function mergeSpeciesRecords(env, body) {
 async function publishObservation(env, entry) {
   if (!entry?.id || !entry?.date) throw Error("Missing entry id or date");
   const state = await branchState(env);
-  assertBaseRevision(entry, state.commitSha);
+  assertBaseRevision(entry, state.commitSha, contractVersion(env));
   assertStagingRecord("observation", entry);
   if (entry.public !== true) throw Error("Private entries cannot be published to the public repository");
   if (!entry.privacyReview?.completed) throw Error("Privacy review is required before publication");
@@ -281,7 +288,7 @@ async function publishObservation(env, entry) {
   const createdIds = new Set();
   for (const detail of (entry.visitorDetails || [])) {
     if (detail.status === "create-species" || detail.disposition === "new") {
-      const record = makeSpeciesRecord(detail, entry);
+      const record = makeSpeciesRecord(detail, entry, env);
       species = mergeSpecies(species, record);
       speciesChanged = true;
       detail.speciesId = record.id;
@@ -343,7 +350,7 @@ async function publishObservation(env, entry) {
     }
   }
 
-  const publicEntry = cleanPublicEntry(preserveObservationEdit(previous, entry), [...new Set(photoPaths)]);
+  const publicEntry = cleanPublicEntry(preserveObservationEdit(previous, entry, writeProvenance(env)), [...new Set(photoPaths)]);
   observations = observations.filter(x => x.id !== publicEntry.id);
   observations.unshift(publicEntry);
   files.push({ path: "observations.js", content: serialize("OBSERVATIONS", observations), encoding: "utf8" });
@@ -408,7 +415,7 @@ function parsePlacements(text) {
 async function publishArray(env, { path, variable, items, message, comment, body, entityType, responseKey = entityType, parser = parseArray }) {
   if (!Array.isArray(items)) throw Error("Expected an array");
   const state = await branchState(env);
-  assertBaseRevision(body, state.commitSha);
+  assertBaseRevision(body, state.commitSha, contractVersion(env));
   const current = parser(await getTextFile(env, path), variable);
   const currentById = new Map(current.map((record) => [String(record.id), record]));
   const merged = items.map((record) => currentById.has(String(record?.id)) ? mergePreservingUnknown(currentById.get(String(record.id)), record) : record);
@@ -424,19 +431,19 @@ export default {
     const url = new URL(request.url);
     try {
       const identity = assertEnvironment(env);
-      if (url.pathname === "/health" && request.method === "GET") return json({ ok: true, service: "Pollinator Path Garden Brain", version: WORKER_VERSION, contractVersion: FOUNDATION_WRITE_CONTRACT.version, environment: identity.environment, branch: identity.branch, baselineCommit: identity.baselineCommit, protections: contractInventory(), aiConfigured: Boolean(env.OPENAI_API_KEY) }, 200, headers);
+      if (url.pathname === "/health" && request.method === "GET") return json({ ok: true, service: "Pollinator Path Garden Brain", version: workerVersion(env), contractVersion: identity.contractVersion, environment: identity.environment, branch: identity.branch, baselineCommit: identity.baselineCommit, protections: contractInventory(), aiConfigured: Boolean(env.OPENAI_API_KEY) }, 200, headers);
       if (!(await authenticated(request, env))) return json({ error: "Unauthorized", code: "UNAUTHORIZED" }, 401, headers);
       if (url.pathname === "/garden" && request.method === "GET") {
         const state = await branchState(env);
         const [p, o, m, r, s] = await Promise.all([getTextFile(env, "placements.js"), getTextFile(env, "observations.js"), getTextFile(env, "milestones.js"), getTextFile(env, "residents.js"), getTextFile(env, "species.js")]);
-        return json({ contractVersion: FOUNDATION_WRITE_CONTRACT.version, revision: state.commitSha, branch: state.branch, placements: parsePlacements(p), observations: parseArray(o, "OBSERVATIONS"), milestones: parseArray(m, "GARDEN_MILESTONES"), residents: parseArray(r, "GARDEN_RESIDENTS"), species: parseArray(s, "GARDEN_SPECIES") }, 200, headers);
+        return json({ contractVersion: identity.contractVersion, revision: state.commitSha, branch: state.branch, placements: parsePlacements(p), observations: parseArray(o, "OBSERVATIONS"), milestones: parseArray(m, "GARDEN_MILESTONES"), residents: parseArray(r, "GARDEN_RESIDENTS"), species: parseArray(s, "GARDEN_SPECIES") }, 200, headers);
       }
       if (url.pathname === "/identify" && request.method === "POST") return json({ ok: true, ...await identifyPhotos(env, await request.json()) }, 200, headers);
       if (["/entry", "/observations"].includes(url.pathname) && ["POST", "PUT"].includes(request.method)) return json({ ok: true, ...await publishObservation(env, await request.json()) }, 200, headers);
       if (url.pathname.startsWith("/observations/") && request.method === "DELETE") return json({ ok: true, ...await deleteObservation(env, decodeURIComponent(url.pathname.split("/").pop())) }, 200, headers);
       if (url.pathname === "/placements" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "placements.js", variable: "GARDEN_PLACEMENTS", items: b.placements, body: b, entityType: "placements", parser: parsePlacements, message: "Garden Brain staging: publish map placements", comment: "Automatically published by the Garden Map Editor." }) }, 200, headers); }
       if (url.pathname === "/residents" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "residents.js", variable: "GARDEN_RESIDENTS", items: b.residents, body: b, entityType: "named_resident", responseKey: "residents", message: "Garden Brain staging: update residents", comment: "Editable named garden residents." }) }, 200, headers); }
-      if (url.pathname === "/species" && request.method === "GET") { const state = await branchState(env); const s = await getTextFile(env, "species.js"); return json({ ok:true, contractVersion: FOUNDATION_WRITE_CONTRACT.version, revision: state.commitSha, species:parseArray(s,"GARDEN_SPECIES") },200,headers); }
+      if (url.pathname === "/species" && request.method === "GET") { const state = await branchState(env); const s = await getTextFile(env, "species.js"); return json({ ok:true, contractVersion:identity.contractVersion, revision: state.commitSha, species:parseArray(s,"GARDEN_SPECIES") },200,headers); }
       if (url.pathname === "/species" && request.method === "POST") { const b = await request.json(); return json({ ok: true, ...await publishArray(env, { path: "species.js", variable: "GARDEN_SPECIES", items: b.species, body: b, entityType: "modern_species", message: "Garden Brain staging: update wildlife species", comment: "Persistent wildlife species and useful taxon records. Managed by Garden Brain." }) }, 200, headers); }
       if (url.pathname === "/species/refine" && request.method === "POST") return json({ ok:true, ...await refineSpecies(env, await request.json()) },200,headers);
       if (url.pathname === "/species/merge" && request.method === "POST") return json({ ok:true, ...await mergeSpeciesRecords(env, await request.json()) },200,headers);

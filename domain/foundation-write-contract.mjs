@@ -6,6 +6,13 @@ export const FOUNDATION_WRITE_CONTRACT = Object.freeze({
   stagingIdPrefix: "stg-",
 });
 
+export const FOUNDATION_PRODUCTION_CONTRACT = Object.freeze({
+  version: "4.4.0",
+  environment: "production",
+  branch: "main",
+  stagingIdPrefix: "stg-",
+});
+
 const DEFER_ENTITY_KEYS = new Set([
   "media_asset|images/maps/front-aerial-measured.jpg",
   "media_asset|images/maps/front-east-numbered.jpg",
@@ -147,21 +154,30 @@ export function assertEnvironment(env) {
     contractVersion: env.FOUNDATION_CONTRACT_VERSION,
     baselineCommit: env.FOUNDATION_BASELINE_COMMIT,
   };
-  const expected = {
+  const production = actual.environment === FOUNDATION_PRODUCTION_CONTRACT.environment;
+  const expected = production ? {
+    environment: FOUNDATION_PRODUCTION_CONTRACT.environment,
+    branch: FOUNDATION_PRODUCTION_CONTRACT.branch,
+    contractVersion: FOUNDATION_PRODUCTION_CONTRACT.version,
+    baselineCommit: actual.baselineCommit,
+  } : {
     environment: FOUNDATION_WRITE_CONTRACT.environment,
     branch: FOUNDATION_WRITE_CONTRACT.branch,
     contractVersion: FOUNDATION_WRITE_CONTRACT.version,
     baselineCommit: FOUNDATION_WRITE_CONTRACT.baselineCommit,
   };
+  if (production && !/^[0-9a-f]{40}$/.test(String(actual.baselineCommit || ""))) {
+    throw new ContractError("PRODUCTION_BASELINE_REQUIRED", "Production requires an exact 40-character release commit baseline", 503);
+  }
   if (canonicalJson(actual) !== canonicalJson(expected)) {
-    throw new ContractError("STAGING_IDENTITY_MISMATCH", "Worker staging identity does not match the approved Foundation contract", 503, { actual, expected });
+    throw new ContractError("ENVIRONMENT_IDENTITY_MISMATCH", "Worker identity does not match the approved Foundation contract", 503, { actual, expected });
   }
   return expected;
 }
 
-export function assertBaseRevision(body, currentRevision) {
-  if (!body || body.contractVersion !== FOUNDATION_WRITE_CONTRACT.version) {
-    throw new ContractError("CONTRACT_VERSION_REQUIRED", `Write requires contractVersion ${FOUNDATION_WRITE_CONTRACT.version}`, 409);
+export function assertBaseRevision(body, currentRevision, expectedVersion = FOUNDATION_WRITE_CONTRACT.version) {
+  if (!body || body.contractVersion !== expectedVersion) {
+    throw new ContractError("CONTRACT_VERSION_REQUIRED", `Write requires contractVersion ${expectedVersion}`, 409);
   }
   if (!body.baseRevision || body.baseRevision !== currentRevision) {
     throw new ContractError("STALE_REVISION", "The staging branch changed after this screen was loaded. Refresh before saving.", 409, { expected: currentRevision, received: body?.baseRevision ?? null });
@@ -224,7 +240,7 @@ export function assertCollectionPreserved(before, after, entityType) {
   return true;
 }
 
-export function preserveObservationEdit(existing, incoming) {
+export function preserveObservationEdit(existing, incoming, provenance = undefined) {
   assertStagingRecord("observation", incoming);
   const merged = mergePreservingUnknown(existing ?? {}, incoming);
   const previousPhotos = Array.isArray(existing?.photos) ? existing.photos.map(normalizeMediaPath) : [];
@@ -233,7 +249,7 @@ export function preserveObservationEdit(existing, incoming) {
   for (const path of retained) if (!previousPhotos.includes(path)) assertWritableMediaPath(path);
   merged.photos = [...new Set([...previousPhotos, ...retained])];
   merged.id = incoming.id;
-  merged.provenance = mergePreservingUnknown(existing?.provenance ?? {}, {
+  merged.provenance = mergePreservingUnknown(existing?.provenance ?? {}, provenance ?? {
     environment: FOUNDATION_WRITE_CONTRACT.environment,
     contractVersion: FOUNDATION_WRITE_CONTRACT.version,
     baselineCommit: FOUNDATION_WRITE_CONTRACT.baselineCommit,
@@ -251,8 +267,8 @@ export function classifyTaxonomyHero(taxonomyId, mediaPath, present = false) {
   return "unexplained-missing";
 }
 
-export function withRevision(payload, baseRevision) {
-  return { ...payload, contractVersion: FOUNDATION_WRITE_CONTRACT.version, baseRevision };
+export function withRevision(payload, baseRevision, contractVersion = FOUNDATION_WRITE_CONTRACT.version) {
+  return { ...payload, contractVersion, baseRevision };
 }
 
 export function contractInventory() {

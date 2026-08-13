@@ -28,7 +28,7 @@
     const original=residents.find(record=>record.id===id)||{};
     const record={...original,id,name:els.name.value.trim(),icon:els.icon.value.trim()||'🌿',type:els.type.value.trim(),species:els.species.value.trim(),confidence:els.confidence.value,status:els.status.value,notes:els.notes.value.trim(),public:els.public.checked};
     const next=residents.map(candidate=>candidate.id===id?record:candidate);if(!next.some(candidate=>candidate.id===id))next.push(record);
-    const contract=await contractPromise,body=await api('/residents',{method:'POST',body:JSON.stringify(contract.withRevision({residents:next},remoteRevision))});
+    const contract=await contractPromise,body=await api('/residents',{method:'POST',body:JSON.stringify(contract.withRevision({residents:next},remoteRevision,cfg.contractVersion))});
     residents=body.residents||next;remoteRevision=body.commitSha||remoteRevision;selected=id;render();status(record.name+' saved to the isolated staging data branch.');
   }
   $('#newResident').addEventListener('click',clear);

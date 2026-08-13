@@ -29,15 +29,26 @@ const EXPECTED_ALIGNMENT_PATHS = new Set([
   "docs/RELEASE_PROCESS.md",
   "domain/foundation-write-contract.mjs",
   "field-config.js",
+  "field-config.staging.js",
   "field-notebook.js",
+  "field-notebook.html",
+  "garden-brain-home.js",
+  "garden-brain.html",
+  "garden-brain.js",
   "garden-map-editor.js",
   "garden-residents.js",
+  "ai-usage.html",
   "residents-editor.js",
   "scripts/test-foundation-write-contract.mjs",
   "scripts/validate-foundation-release.mjs",
   "taxonomy-admin.js",
+  "taxonomy-admin.html",
+  "sw.js",
+  "VERSION",
+  "worker/package-lock.json",
   "worker/package.json",
   "worker/src/worker.js",
+  "worker/wrangler.toml",
   "worker/wrangler.staging.toml",
 ]);
 
@@ -62,7 +73,9 @@ function validateSyntax(repoRoot) {
 
 function validateContractMetadata(repoRoot) {
   const required = {
-    "field-config.js": ["4.4.0-rc.1", "environment: \"staging\"", "destructiveWrites: false"],
+    "field-config.js": ["4.4.0", "environment: \"production\"", "destructiveWrites: false"],
+    "field-config.staging.js": ["4.4.0-rc.1", "environment: \"staging\"", "destructiveWrites: false"],
+    "worker/wrangler.toml": ["4.4.0", "ENVIRONMENT = \"production\"", "GITHUB_BRANCH = \"main\""],
     "worker/wrangler.staging.toml": ["4.4.0-rc.1", "staging/foundation-4.4.0-rc.1", "3e5f427f07c9efa80d518f0f48ad6f2831dc367d"],
     "worker/src/worker.js": ["foundation-write-contract.mjs"],
   };
