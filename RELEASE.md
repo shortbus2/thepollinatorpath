@@ -1,4 +1,18 @@
-# The Pollinator Path v3.2.2 — Mobile Navigation & Garden Brain UI Hotfix
+# Current Release Candidate
+
+## The Pollinator Path 4.4.0 RC1 — Foundation Reconciliation
+
+Status: implementation validated locally; staging not yet authorized.
+
+The Foundation candidate establishes an auditable canonical garden baseline while preserving stable identifiers, provenance, uncertainty, deferred records, and quarantined media relationships. See [Foundation RC release notes](RELEASE-4.4.0-RC1-FOUNDATION.md) and [Foundation release history](FOUNDATION_RELEASE_HISTORY.md).
+
+Gate 2 application validation is PASS. Gate 1 human repository review, Phase 6 commit review, staging authorization, Gate 3, tagging, release publication, and production deployment remain separate steps.
+
+---
+
+# Historical Release Record
+
+## The Pollinator Path v3.2.2 — Mobile Navigation & Garden Brain UI Hotfix
 
 ## Status
 Release candidate for QC.

@@ -8,6 +8,8 @@
 
 ## Architectural intent
 
+Garden Brain is an application platform. The website is its first presentation layer. Canonical garden data, stable identity, provenance, reconciliation, governance, validation, and business rules remain presentation-independent whenever practical. Browser globals are compatibility adapters for the current website, not the sole canonical authority. This Foundation release does not introduce an API, database, native client, authentication redesign, or application framework.
+
 The central flow is:
 
 > Garden Walk → Garden Brain private memory → organization and review → privacy review → explicitly published material → The Pollinator Path public story.
@@ -142,5 +144,19 @@ Production promotion requires validated artifacts, completed human review, data 
 - Require human approval for publication and production changes.
 - Prefer production stability over release speed.
 - Keep implementation documentation tied to inspected evidence.
+- Keep canonical domain rules out of the service worker; `sw.js` is limited to caching, asset lifecycle, and offline behavior.
+- Preserve interfaces that can later serve desktop, mobile, tablet, local-first, API-backed, or other clients without replacing stable IDs.
+
+## Foundation reconciliation implementation
+
+The Foundation candidate keeps immutable reconciliation evidence under `docs/evidence/reconciliation/foundation-4.4.0-rc.1/`. The website consumes active file-backed projections while the canonical preview, disposition ledger, source hashes, and implementation decisions remain separate audit assets.
+
+- `data.js` retains the plant and legacy `window.VISITORS` domains.
+- `species.js` supplies the distinct modern `window.GARDEN_SPECIES` domain.
+- `observations.js`, `residents.js`, and `image-manifest.js` retain their established browser adapters.
+- `scripts/foundation-reconciliation.mjs` validates the active projection against frozen evidence without changing runtime data.
+- `sw.js` caches `species.js` for offline use but contains no canonical taxonomy or reconciliation rules.
+
+The verified production snapshot remains historical evidence of the legacy deployed model. It is not overwritten by the Foundation candidate.
 
 For contributor behavior, continue with [START-HERE](../START-HERE.md), [Design Principles](DESIGN_PRINCIPLES.md), and [AI Guardrails](AI_GUARDRAILS.md).

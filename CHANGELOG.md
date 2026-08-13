@@ -1,3 +1,24 @@
+# 4.4.0 RC1 — Foundation Reconciliation
+
+See `RELEASE-4.4.0-RC1-FOUNDATION.md`.
+
+### Added
+
+- Frozen governance and reconciliation evidence foundation.
+- Fail-closed canonical reconciliation and validation tooling.
+- Eight approved modern taxonomy records and offline taxonomy caching.
+- Durable handling for approved quarantined observation media and approved unavailable taxonomy hero references.
+
+### Reconciled
+
+- 293 entities with one disposition each: KEEP 86, RESTORE 112, MERGE 10, DEFER 68, QUARANTINE 17.
+- Zero duplicate entity keys, replacement identifiers, or provenance failures.
+- Approved observation, resident, and media-manifest field merges with stable identifiers preserved.
+
+### Not included
+
+- Historical-import implementation, deferred or quarantined activation, media reorganization, production deployment, or a native Garden Brain client.
+
 # 4.3.2 RC1 — Stability & Species Integrity
 
 See `RELEASE-4.3.2-RC1-STABILITY.md`.

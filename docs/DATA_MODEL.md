@@ -186,4 +186,24 @@ The named identity links human memory to observations and one or more cautious t
 6. Separate private records from public representations.
 7. Require human review for destructive, identity-changing, or public actions.
 
+## Reconciliation state and provenance
+
+The Foundation implementation uses five evidence dispositions without turning them into taxonomy or observation attributes:
+
+- **KEEP:** retain the approved active value and stable identifier.
+- **RESTORE:** restore the approved strong-source record without replacing its identifier.
+- **MERGE:** activate only the exact approved field outcome while preserving source variants.
+- **DEFER:** preserve the evidence but keep the entity inactive.
+- **QUARANTINE:** preserve the relationship and evidence without activating or importing the media.
+
+Every one of the 293 reconciled entities has exactly one ledger disposition. The ledger and canonical preview are evidence assets; the current website arrays are active presentation projections.
+
+### Media availability states
+
+- A missing observation photo is a validation failure unless its exact media ledger row is `QUARANTINE`.
+- The 17 approved quarantined observation-media paths remain referenced for historical integrity and inactive as media assets.
+- Taxonomy `hero` paths are optional presentation metadata. The eight ID-and-path pairs in `CUR-NEW-002` may remain as approved unavailable references without importing bytes.
+- An unlisted missing active taxonomy hero remains a validation failure.
+- Availability classification never authorizes fabrication, substitution, renaming, movement, or deletion of media.
+
 See [Design Principles](DESIGN_PRINCIPLES.md), [AI Guardrails](AI_GUARDRAILS.md), and [Release Process](RELEASE_PROCESS.md).

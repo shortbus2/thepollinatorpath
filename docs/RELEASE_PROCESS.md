@@ -81,6 +81,13 @@ Any unexplained loss is a release blocker.
 
 Missing media may degrade safely only when the product and release scope explicitly allow it.
 
+Classify unavailable media rather than treating every absent byte identically:
+
+- missing required media is a validation failure;
+- media with an approved `QUARANTINE` disposition may remain referenced but inactive;
+- an exact curator-approved optional presentation reference may remain unavailable under its recorded classification;
+- no generic exception permits unexplained missing media.
+
 ## 6. Stage the exact candidate
 
 - Deploy only to the staging environment.
@@ -164,5 +171,14 @@ A release record is incomplete without:
 - rollback plan;
 - explicit approval; and
 - production verification result.
+
+## Foundation release gates
+
+- **Gate 0 — Historical Integrity:** production history, IDs, species references, observations, and media evidence reconcile.
+- **Gate 1 — Repository Integrity:** the exact candidate diff, path scope, hashes, and clean state receive human review.
+- **Gate 2 — Application Integrity:** automated and browser validation prove canonical parity, safe media classifications, domain separation, and current-client behavior.
+- **Gate 3 — Release Integrity:** the exact RC, tag proposal, deployment sequence, rollback target, and staging evidence receive explicit approval.
+
+A passed earlier gate does not authorize a later lifecycle action. Staging, tag creation, release publication, production authorization, and production deployment remain distinct approvals.
 
 See [Architecture](ARCHITECTURE.md), [Data Model](DATA_MODEL.md), [AI Guardrails](AI_GUARDRAILS.md), and the current version-specific verification checklist.
