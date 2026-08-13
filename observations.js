@@ -1,5 +1,49 @@
-// Canonical active garden observations. Managed by Garden Brain.
 window.OBSERVATIONS = [
+  {
+    "id": "stg-acceptance-20260812-223108",
+    "date": "2026-08-12",
+    "title": "Foundation 4.4.0 staging acceptance",
+    "type": "observation",
+    "primary": {
+      "kind": "plant",
+      "id": "8"
+    },
+    "plants": [
+      8
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [
+      "Front Garden / Garage Wall Garden"
+    ],
+    "behaviors": [
+      "Other"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
+    "originalNarrative": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
+    "editingMode": "exact",
+    "setHero": false,
+    "photos": [],
+    "privacyReview": {
+      "reviewedAt": "2026-08-13T04:31:08.5364484Z",
+      "completed": true,
+      "safeHomepage": false
+    },
+    "species": [],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-13T04:31:09.819Z"
+  },
   {
     "id": "2026-07-07-53f8effa-ed4e-46a5-b0cd-993d3d5f93e2",
     "date": "2026-07-07",
