@@ -1,11 +1,11 @@
-7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6  ./.nojekyll
+01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b  ./.nojekyll
 a8d139ae2b928b7648f05b18c083b9f42db79468688859914c3e7fe69a32b1dd  ./ai-usage.html
 3bda72feb3a9f68982a2b67144c132729257ce08f470b2003cbdbd863962698b  ./ai-usage.js
 b27097c26d68b80f6c3e4034ea32d84e3c71836b00e21e4b838835e8d0841f5d  ./app.js
 fc4e98f23ef1df0d7b956a4e70bd3df9d8ca5cbdfe28f79d391fd79720b1da71  ./AUTOMATION-SETUP.md
 c26cb03fa3d8cbdf0441fb88c628336e0ea09e0a2235310d409179a16f07c368  ./becoming-habitat.html
 36d0afd021e5e0005cfff915bc66c83be9b3de9365df900ca293120ab7d77aaf  ./BUGFIX-3.1.1.md
-5ed8fb60546447bf1e045a73f0a48ba17161e60c97d69c6ffc80bbd3cc1ec011  ./CHANGELOG.md
+1f79a41803682fdc313e3672e716c22ba83affcabf6251c92cd27bf1b8f6c93d  ./CHANGELOG.md
 da3c0c72809381644d8d6845ccc022cb2c9c6b20c89256cef527c918e92b6fc9  ./CNAME
 4d0030e074252a6de46afe60cb3eb224e075205805427b644cdb5c66311cbfb9  ./data.js
 ae7b43c48e9b237cb9fb687a8c79663eaa3b730d9aa8545f319b1b56e6823a4b  ./data.js.bak
@@ -14,9 +14,9 @@ e03d07def13594c9f36c69e9fee7db8305fb73f2ad4eb8e5fa5c45ff43217e1f  ./DECISIONS.md
 b39518a9a34a1fbfe90485e9180f4c50721b310ef34d44e4efcaa66dd1b5dca3  ./DEPLOY-FIRST.md
 12a9c6b500f77647ad6bd9e56b0839fa12a003f30891626a72b3bc7e533f79fd  ./docs/AI_GUARDRAILS.md
 8103eabb1c99479b2cf69532fb1e05564bdd8609a7ca48435221568b804defe1  ./docs/AI_GUIDELINES.md
-9b1ca46bd927d56a4bbd33ad2e962c94c460abf43dcd4b6e3fa5811d77b19abd  ./docs/ARCHITECTURE.md
+8058ce78883971e01b50742257ee27f4d623aa9d60ec097d530109069836884a  ./docs/ARCHITECTURE.md
 ff0917e7feb8f8b63296432295c8661769d89d65b5ecfce591f6e039fddf9a1c  ./docs/CHANGELOG.md
-040b73c803f5443ecb60884d93afb407b0774ca4df9f3aa3e761ad09d55f2871  ./docs/DATA_MODEL.md
+5606fb2d394a3d78abb9252377b9c27ef646f7b0c2c48c228854cb966adf1ca2  ./docs/DATA_MODEL.md
 25dd4cb42f43208c9b49efc5fffce523c22601b3ce2744b1f404f55c87a8095e  ./docs/DECISIONS.md
 c26f6c238daffc5c671e15ec4f599f212d9220d02947c92994753fa753524ac2  ./docs/DESIGN_PRINCIPLES.md
 8b37b277fce08b747e50df1857c8d4c03e3bccf60933186a3232e7c8987c5036  ./docs/evidence/imports/README.md
@@ -24,8 +24,8 @@ ed9f8ed7170d53e30910a6c9c053970845f4a2c1dfa589cab4316f7809920460  ./docs/evidenc
 8c333972ae2d13ea2a1c2bdbe60b5543bb4ef773fef9d4f5e67c22a4d4f7771e  ./docs/evidence/production/README.md
 4fd6c9408f1534f4572fe0a1107efa75710524c09e78cab9b8006dfdff99c536  ./docs/evidence/README.md
 49e68a01339647f3da38bb637488ea4399d9b9965500d56457e4ddae19fa8719  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/canonical-preview.json
-b8b80b653ecdef96fcb0e6b28bee496f80c7ff1a8cbf4a5d45403f8ea3131446  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/complete-disposition-ledger.csv
-9466f0f8cae9babcd923f1ff4af731bd29de83d83ff867bb16e003870fb1b7c5  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/counts-before-after.csv
+a959df0f9359bcacabb647f3e62584565cd7e4fea3191c21c29c89598083563f  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/complete-disposition-ledger.csv
+ff612d66d48876b3a50f81e3d18d5716c24c9a6f705d3a86e7fa4da90a7bf08f  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/counts-before-after.csv
 8bd70f6dc817c03f397f50780ea39fce22dc0f17436351089f3193724e8ff9d6  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/IMPLEMENTATION_DECISIONS.md
 9b26bbcb565e1fef8d9821dbddcadcb75097241e38d24b069d815f81de95e694  ./docs/evidence/reconciliation/foundation-4.4.0-rc.1/SOURCE_HASHES.sha256
 fe2d1524f7b792a0b306f73a4a8469cacc55fa1e2f842f95cd56e386b3e896c5  ./docs/evidence/reconciliation/README.md
@@ -43,8 +43,8 @@ e8df39481ade64ea299ac890ac1a9312a3b7bebc2cc5cc0966c12026c5caeada  ./docs/governa
 d8dce52844b5a598c442900395ba924f47e4a657aa62f9ece36dea9aa66cc7fe  ./docs/governance/REPOSITORY_CONSTITUTION.md
 8651cfd1debeb39e7157b42c234efdc33307b7b46692894e77da62d764018121  ./docs/governance/REVIEW_POLICY.md
 4c5eed51bacaf928549e9b17b71737e83eef453845edf3fe485d6db3edb3c454  ./docs/MANIFESTO.md
-baf0f75b63750de576b503e8f3cd3f2c0a9d71e699e50e489e79b6085207cc37  ./docs/QC.md
-f4ce29dfb9b0513762526e12371d492ef3b36eaf9ae3b78d8ba8064abb681c1a  ./docs/RELEASE_PROCESS.md
+e6e2d516da636d10d36269da97556107fec224274c4d6210b8e00dc0be39ac4d  ./docs/QC.md
+b6612825eb7bbcf9032da10ffede6502ebe7842e353dabfc57cf5bf58daf88c6  ./docs/RELEASE_PROCESS.md
 2cb0f99ae7747437022dcfa7ffee12ef82b1f7a00b2a6f4602413ab2674849aa  ./docs/REPOSITORY_EXPORT_CHECKLIST.md
 b90f959c75a40ae57560256774518c6d23be3b6885fdaf049c76d4b0beff721d  ./docs/ROADMAP.md
 c80dc923c9d5ef39280d92bcf209da80943eb3c9fdb0c1e43bd641e4c9a240c8  ./docs/SECURITY.md
@@ -105,7 +105,7 @@ a4c9e6f5c04a538d6859e724255e6723ad2e6303fdd2e07dbf3630a3632aa2ad  ./plants.html
 ae7374cdfe045cad60a5154ad92e4968bbd6257b36f52d19eb6826b8903aa824  ./QC-3.2.1.md
 b48e5e3ee167f138bb64aaf4b56f1c70524b22d4840039cb2863ee43c0415e4b  ./QC-3.2.2.md
 fcd22370e2efb9ef999fc4a632d8ac5657d5dd1a72ef35158c0302e22443dc2f  ./README.md
-366faf6b8d3fc566b2e28d7841def560315a68b8327f6b28ec8f161bc9339eff  ./RELEASE.md
+12cb90b14a9a005b7e6cd7f0e692ddfcc6d879dd1cf5a44393880508326ff56c  ./RELEASE.md
 3126ad338021498004a2d128bc88c49946d7be7debb894af885ae2c0657809c7  ./RELEASE-4.0.0-AI-FOUNDATION.md
 e00e7b735361865a626c26171a6cbb3191ef169484be25edcc9579824b36b070  ./RELEASE-4.1.0-GARDEN-BRAIN-REVIEW.md
 1a16c46c7647cd3cfbaac8582ce96f7cad61b25cd8956bd4b3df0f68dcca0ab1  ./RELEASE-4.2.0-THE-GARDEN-COMES-ALIVE.md
@@ -118,7 +118,7 @@ b479ad6aaf1c05fdab72adfdc6c13b7dbb36ed3d3311361cccdbf7b19a49b676  ./residents.ht
 b31b1eb1723dd837398b2c9fe469b8ae4f4dfb6a9aea64a0a7dc9735062d5fad  ./residents-editor.js
 e516e48cf779ead6bbdf1205ee908a135ed0dd1ffea871cc208742390ddd38e1  ./resources.html
 501450152cd8dc25268215673fc2b13455c5286d94d0e19f0afde9eb7c8a1cef  ./ROADMAP.md
-64c3fd18827ac01bab4cd3011f6936d938eaed849f0b1860d528364bada17e78  ./script.js
+6537a083d72664a2e77928cc2362f5099cf3eab2f1076e42b7f5f322b4a3f0fe  ./script.js
 b709abb7a68fb5d3740af2bf1e233094aa72ea0cede1ed39aa956e0028adf841  ./scripts/files for beta 3 - Shortcut.lnk
 8757e903192f0b239c8c41374bf94d96f21eb621e3076abf58370e987e240e53  ./scripts/foundation-reconciliation.mjs
 b2c35b6139b469dffe3c323a523b011f4360615ee454ac25fa26ed0b3262983c  ./scripts/link-audit.mjs
@@ -140,8 +140,8 @@ dbe32d850375f120829f2b39f9fcde9f1a3182190c233bd55454cebabd3eae8c  ./taxonomy-adm
 f55543b9710b779ee20d04cfecd6440ad19f42b73d1a9c305ad1e826b47896fe  ./visitors.html
 3b0525d81b796897ca8fe71acb80691644aa2a9858ecfc1064c2791b50c82b3d  ./weekly-recap.js
 56c0ecb1728e52ed480baa1f5ae950734e79be0d9b3b44cb3d1a7913f0cad441  ./wildlife.html
-996f7c878b81edd232d78fe62971661dcec75e84ee126eb7f646eda94dc5f795  ./worker/package.json
-9de7bef9b9beda6be4c2817f142a9beb2bed739142896fc906a9c862a794f06c  ./worker/package-lock.json
+6ba4d06a5d0995beafa7537a162a75f87e2163e0a9b1de70eb9587c2a7aabc82  ./worker/package.json
+8f24f72c4801142f9fad73b5cc1c9c0f7d37443eff3206c55614ba721feef36c  ./worker/package-lock.json
 301861094a998275018c960b9554eb4541101d82b43e971573975c20324c00fb  ./worker/src/worker.js
 6bb95609f7343b80ae567dca3f3f2bf2cd7d9496ffda147b70421ffb0c0a44d4  ./worker/wrangler.staging.toml
 eacb47a369b151add328222f6a0c6af7f2e2d6695135f00822bd99b9fe152a9c  ./worker/wrangler.toml
