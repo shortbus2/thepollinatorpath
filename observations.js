@@ -25,8 +25,8 @@ window.OBSERVATIONS = [
     "confidence": "confirmed",
     "public": true,
     "featured": false,
-    "notes": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
-    "originalNarrative": "Automated staging acceptance record. Safe to retain on the isolated staging branch.",
+    "notes": "Automated staging acceptance record - edit/read-back passed.",
+    "originalNarrative": "Automated staging acceptance record - edit/read-back passed.",
     "editingMode": "exact",
     "setHero": false,
     "photos": [],
@@ -42,7 +42,7 @@ window.OBSERVATIONS = [
       "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
       "recordClass": "staging-acceptance-test"
     },
-    "updatedAt": "2026-08-13T04:32:24.016Z"
+    "updatedAt": "2026-08-13T04:32:28.065Z"
   },
   {
     "id": "stg-acceptance-20260812-223108",
