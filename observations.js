@@ -1,5 +1,69 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-2026-08-14-10a937cd-318d-4fb4-ab7a-5add6a4a58ec",
+    "date": "2026-08-14",
+    "title": "My aster is loaded with buds!",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "37"
+    },
+    "plants": [
+      37
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "New growth"
+    ],
+    "stage": "Buds",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "For being a first year plant, those guys are phenomenal. I can’t wait to see the buds erupt!",
+    "originalNarrative": "For being a first year plant, those guys are phenomenal. I can’t wait to see the buds erupt!",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-14T05:08:57.527Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Sulphur Flower Buckwheat",
+        "existing_id": "19",
+        "confidence": 0.85
+      },
+      "visitors": [],
+      "behavior": null,
+      "memory_summary": "A fresh cluster of Sulphur Flower Buckwheat is taking root, its delicate buds waiting patiently for pollinators to discover them. A quiet moment of potential, with no visible visitors yet buzzing in.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Leadplant",
+        "Sticky Geranium"
+      ],
+      "reasoning": "The plant's fine, branching stems with small round buds and silver-green leaves closely match Sulphur Flower Buckwheat, which shows a distinctive airy and delicate habit. No pollinators or other wildlife are visible, so visitor identification isn't possible.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-14-10a937cd-318d-4fb4-ab7a-5add6a4a58ec/garden-81f21820-c7e4-4d1d-9149-828f7dfb960e-1.jpg"
+    ],
+    "species": [],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-14T05:08:59.847Z"
+  },
+  {
     "id": "stg-acceptance-20260812-223222",
     "date": "2026-08-12",
     "title": "Foundation 4.4.0 staging acceptance",
