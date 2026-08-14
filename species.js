@@ -1,6 +1,51 @@
 // Persistent wildlife species and useful taxon records. Managed by Garden Brain.
 window.GARDEN_SPECIES = [
   {
+    "id": "stg-garden-toad",
+    "name": "Garden Toad",
+    "scientificName": "",
+    "rank": "species-or-useful-group",
+    "category": "amphibian",
+    "icon": "🐝",
+    "status": "published",
+    "aliases": [],
+    "summary": "First documented in Garden Toad.",
+    "story": "The toad is seen resting on rocks and hidden among rock crevices, showing characteristic bumpy skin and body shape visible in multiple photos.",
+    "hero": "images/staging/wildlife/stg-garden-toad/hero.jpg",
+    "identification": {
+      "acceptedIdentificationId": "stg-garden-toad-ident-acac7e16-4230-4afa-ac30-8aa48d5b29eb",
+      "acceptedLabel": "Garden Toad",
+      "confidence": "moderate",
+      "history": [
+        {
+          "id": "stg-garden-toad-ident-acac7e16-4230-4afa-ac30-8aa48d5b29eb",
+          "at": "2026-08-14T05:14:32.307Z",
+          "label": "Garden Toad",
+          "scientificName": "",
+          "rank": "species-or-useful-group",
+          "confidence": "moderate",
+          "source": "Human-reviewed staging observation",
+          "sourceObservationId": "stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237",
+          "note": "The toad is seen resting on rocks and hidden among rock crevices, showing characteristic bumpy skin and body shape visible in multiple photos.",
+          "status": "accepted"
+        }
+      ]
+    },
+    "parentSpeciesId": null,
+    "mergedFrom": [],
+    "mergedInto": null,
+    "redirectAliases": [],
+    "public": false,
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "createdAt": "2026-08-14T05:14:32.307Z",
+    "updatedAt": "2026-08-14T05:14:32.307Z"
+  },
+  {
     "id": "broad-tailed-hummingbird",
     "name": "Probable Female Broad-tailed Hummingbird",
     "scientificName": "Selasphorus platycercus · probable identification",

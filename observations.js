@@ -1,5 +1,88 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237",
+    "date": "2026-08-12",
+    "title": "Garden Toad",
+    "type": "walk",
+    "primary": {
+      "kind": "visitor",
+      "id": "stg-garden-toad"
+    },
+    "plants": [],
+    "visitors": [
+      "stg-garden-toad"
+    ],
+    "visitorDetails": [
+      {
+        "id": "stg-garden-toad",
+        "label": "Garden Toad",
+        "speciesId": "stg-garden-toad",
+        "category": "amphibian",
+        "confidence": 0.7,
+        "confidenceBand": "moderate",
+        "status": "linked",
+        "disposition": "new",
+        "evidence": "The toad is seen resting on rocks and hidden among rock crevices, showing characteristic bumpy skin and body shape visible in multiple photos.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "Dorothy not only bravely called mountain rocks, but she gleefully jumped into soak her butt in the water tub. We scooped her up after a long soak due to rain moving in and the sun setting.",
+    "originalNarrative": "Dorothy not only bravely called mountain rocks, but she gleefully jumped into soak her butt in the water tub. We scooped her up after a long soak due to rain moving in and the sun setting.",
+    "editingMode": "light",
+    "setHero": true,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-14T05:14:29.009Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": null,
+      "visitors": [
+        {
+          "label": "Garden Toad",
+          "existing_id": "toad-unresolved",
+          "category": "amphibian",
+          "confidence": 0.7,
+          "evidence": "The toad is seen resting on rocks and hidden among rock crevices, showing characteristic bumpy skin and body shape visible in multiple photos."
+        }
+      ],
+      "behavior": "The toad is basking on a sunlit rock and also retreating into rock crevices, likely seeking shelter or cooling spots during the day.",
+      "memory_summary": "A cautious garden toad was found sunning itself on rocks before disappearing into the cool refuges between stone crevices—a classic quiet moment in Mead's garden life.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Unidentified amphibian",
+        "Common toad species"
+      ],
+      "reasoning": "The visible bumpy skin and body shape are consistent with a garden toad species known to inhabit the region. Its behavior of basking and hiding in rocky crevices fits well. No plants or other visitors are evident, so the ID focuses on the toad itself.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237/garden-7e449086-9a18-423f-9532-3817550e868c-1.jpg",
+      "images/staging/observations/2026/stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237/garden-08c86d1a-eebf-4fa7-9f49-3ce2ad0ab411-2.jpg",
+      "images/staging/observations/2026/stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237/garden-cfef2964-d8b2-4f8c-8544-f3bf871e0650-3.jpg"
+    ],
+    "species": [
+      "stg-garden-toad"
+    ],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-14T05:14:32.307Z"
+  },
+  {
     "id": "stg-2026-08-14-10a937cd-318d-4fb4-ab7a-5add6a4a58ec",
     "date": "2026-08-14",
     "title": "My aster is loaded with buds!",

@@ -18,6 +18,9 @@ window.IMAGE_MANIFEST = {
   "wildlife": {
     "unknown-pending": {
       "hero": "images/wildlife/unknown-pending/hero.jpg"
+    },
+    "stg-garden-toad": {
+      "hero": "images/staging/wildlife/stg-garden-toad/hero.jpg"
     }
   }
 };
