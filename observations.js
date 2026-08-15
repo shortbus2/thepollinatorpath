@@ -1,5 +1,69 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-2026-08-15-2fa8db7b-6eb2-44c8-9e04-c18a065e414e",
+    "date": "2026-08-15",
+    "title": "These are so tough to grow, glad she’s got her first blooms!!",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "33"
+    },
+    "plants": [
+      33
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "First bloom"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-15T23:36:00.229Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Pitcher Sage",
+        "existing_id": "29",
+        "confidence": 0.85
+      },
+      "visitors": [],
+      "behavior": null,
+      "memory_summary": "A young Pitcher Sage plant stands resilient among wood mulch and soil in the garden, its small red tubular flowers just starting to open. No visible visitors this time, but the scene suggests a promising home for hummingbirds or bees soon.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Hummingbird Trumpet",
+        "Firecracker Penstemon"
+      ],
+      "reasoning": "The plant's low stature, opposite serrated leaves, and red tubular flowers match well with Pitcher Sage, one of the existing plants noted for Mead, Colorado. While flower shape might also resemble Hummingbird Trumpet or Firecracker Penstemon, leaf shape and arrangement favor Pitcher Sage.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-15-2fa8db7b-6eb2-44c8-9e04-c18a065e414e/garden-e91538bf-1a1e-4cb6-bfba-d94614aa58c1-1.jpg"
+    ],
+    "species": [],
+    "provenance": {
+      "environment": "production",
+      "contractVersion": "4.4.0",
+      "baselineCommit": "1029039d633ed5401ceeae9925fb9023358b2425",
+      "recordClass": "garden-brain-managed"
+    },
+    "updatedAt": "2026-08-15T23:36:02.610Z"
+  },
+  {
     "id": "stg-2026-08-15-a2667687-b91f-4bf7-9eff-9a9b657f06a4",
     "date": "2026-08-15",
     "title": "Butterfly weed first buds!",
