@@ -1,5 +1,115 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-2026-08-15-f56b8d16-a093-48d8-9a5b-af7b65bad022",
+    "date": "2026-08-15",
+    "title": "Her first blooms!",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "11"
+    },
+    "plants": [
+      11
+    ],
+    "visitors": [
+      "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee",
+      "longhorn-beetle-or-similar-flower-visiting-beetle"
+    ],
+    "visitorDetails": [
+      {
+        "id": "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee",
+        "label": "Small bee (likely a native solitary bee or small generalist bee)",
+        "speciesId": "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee",
+        "category": "insect",
+        "confidence": 0.8,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "Image shows a small bee actively visiting bright orange flowers characteristic of Butterfly Weed.",
+        "suggestedScientificName": ""
+      },
+      {
+        "id": "longhorn-beetle-or-similar-flower-visiting-beetle",
+        "label": "Longhorn beetle or similar flower-visiting beetle",
+        "speciesId": "longhorn-beetle-or-similar-flower-visiting-beetle",
+        "category": "insect",
+        "confidence": 0.7,
+        "confidenceBand": "moderate",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "Presence of a longer-bodied beetle on the flowers, likely a longhorn or flower-visiting beetle.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "First bloom"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-15T23:45:41.360Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Butterfly Weed",
+        "existing_id": "11",
+        "confidence": 0.85
+      },
+      "visitors": [
+        {
+          "label": "Small bee (likely a native solitary bee or small generalist bee)",
+          "existing_id": "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee",
+          "category": "insect",
+          "confidence": 0.8,
+          "evidence": "Image shows a small bee actively visiting bright orange flowers characteristic of Butterfly Weed."
+        },
+        {
+          "label": "Longhorn beetle or similar flower-visiting beetle",
+          "existing_id": "longhorn-beetle-or-similar-flower-visiting-beetle",
+          "category": "insect",
+          "confidence": 0.7,
+          "evidence": "Presence of a longer-bodied beetle on the flowers, likely a longhorn or flower-visiting beetle."
+        }
+      ],
+      "behavior": "The visitors are engaging in typical nectar foraging on Butterfly Weed flowers, with small native bees and beetles exploring the floral parts.",
+      "memory_summary": "A charming garden moment capturing a low-growing Butterfly Weed showcasing bright orange blooms visited by a busy small bee and a curious longhorn-like beetle, busy gathering nectar and pollen in Mead, Colorado.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Showy Milkweed",
+        "Butterfly Weed variant"
+      ],
+      "reasoning": "The flower morphology and leaf structure best match Butterfly Weed from the garden list. The observed insects fit common pollinators for this plant type. No contradictory details suggest alternate identification.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-15-f56b8d16-a093-48d8-9a5b-af7b65bad022/garden-a8164e36-a600-439c-8351-bde7d36c99dd-1.jpg"
+    ],
+    "species": [
+      "small-bee-likely-a-native-solitary-bee-or-small-generalist-bee",
+      "longhorn-beetle-or-similar-flower-visiting-beetle"
+    ],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-15T23:45:43.772Z"
+  },
+  {
     "id": "stg-2026-08-12-c1f6ab09-d3dc-4ee4-8ee3-c409bdc7f237",
     "date": "2026-08-12",
     "title": "Garden Toad",
