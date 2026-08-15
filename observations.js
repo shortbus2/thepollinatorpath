@@ -1,5 +1,68 @@
 window.OBSERVATIONS = [
   {
+    "id": "stg-2026-08-15-6233d21d-8dba-425b-b193-9ccae33ee664",
+    "date": "2026-08-15",
+    "title": "Such a fussy one, her first blooms!",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "33"
+    },
+    "plants": [
+      33
+    ],
+    "visitors": [],
+    "visitorDetails": [],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "First bloom"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-15T23:47:16.178Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Pitcher Sage",
+        "existing_id": "29",
+        "confidence": 0.9
+      },
+      "visitors": [],
+      "behavior": null,
+      "memory_summary": "A neat little Pitcher Sage plant is growing in your garden, showing its delicate red tubular flowers and green serrated leaves, surrounded by mulch and some white stones. It looks healthy and is just starting to bloom, no visitors spotted right now, but it surely will attract some hummingbirds and bees soon enough.",
+      "overall_confidence": "confirmed",
+      "alternatives": [
+        "Penstemon species"
+      ],
+      "reasoning": "The plant clearly matches the known Pitcher Sage from your garden list: red tubular flowers and serrated leaves, planting style with surrounding white stones and mulch matches garden care, no visible wildlife distinct enough to identify in the current photo. No behavior to note as no visitors are visible.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-15-6233d21d-8dba-425b-b193-9ccae33ee664/garden-dd7313b4-9721-4d05-9b8e-463b83cd031d-1.jpg"
+    ],
+    "species": [],
+    "provenance": {
+      "environment": "staging",
+      "contractVersion": "4.4.0-rc.1",
+      "baselineCommit": "3e5f427f07c9efa80d518f0f48ad6f2831dc367d",
+      "recordClass": "staging-acceptance-test"
+    },
+    "updatedAt": "2026-08-15T23:47:18.634Z"
+  },
+  {
     "id": "stg-2026-08-15-f56b8d16-a093-48d8-9a5b-af7b65bad022",
     "date": "2026-08-15",
     "title": "Her first blooms!",
