@@ -1,5 +1,114 @@
-// Canonical active garden observations. Managed by Garden Brain.
 window.OBSERVATIONS = [
+  {
+    "id": "stg-2026-08-15-a2667687-b91f-4bf7-9eff-9a9b657f06a4",
+    "date": "2026-08-15",
+    "title": "Butterfly weed first buds!",
+    "type": "walk",
+    "primary": {
+      "kind": "plant",
+      "id": "11"
+    },
+    "plants": [
+      11
+    ],
+    "visitors": [
+      "large-bee-probable-carpenter-or-bumble-bee",
+      "broad-tailed-hummingbird"
+    ],
+    "visitorDetails": [
+      {
+        "id": "large-bee-probable-carpenter-or-bumble-bee",
+        "label": "Large bee (probable carpenter or bumble bee)",
+        "speciesId": "large-bee-probable-carpenter-or-bumble-bee",
+        "category": "insect",
+        "confidence": 0.8,
+        "confidenceBand": "high",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "An orange and black fuzzy bee visible gathering nectar on the bright orange flowers.",
+        "suggestedScientificName": ""
+      },
+      {
+        "id": "broad-tailed-hummingbird",
+        "label": "Probable Female Broad-tailed Hummingbird",
+        "speciesId": "broad-tailed-hummingbird",
+        "category": "bird",
+        "confidence": 0.7,
+        "confidenceBand": "moderate",
+        "status": "linked",
+        "disposition": "existing",
+        "evidence": "Small hummingbird hovering near flower clusters consistent with hummingbird feeding.",
+        "suggestedScientificName": ""
+      }
+    ],
+    "residents": [],
+    "objects": [],
+    "areas": [],
+    "behaviors": [
+      "Full bloom"
+    ],
+    "stage": "",
+    "confidence": "confirmed",
+    "public": true,
+    "featured": false,
+    "notes": "",
+    "originalNarrative": "",
+    "editingMode": "light",
+    "setHero": false,
+    "privacyReview": {
+      "completed": true,
+      "safeHomepage": true,
+      "reviewedAt": "2026-08-15T23:34:31.883Z"
+    },
+    "aiDraft": {
+      "group_together": true,
+      "plant": {
+        "label": "Butterfly Weed",
+        "existing_id": "11",
+        "confidence": 0.9
+      },
+      "visitors": [
+        {
+          "label": "Large bee (probable carpenter or bumble bee)",
+          "existing_id": "large-bee-probable-carpenter-or-bumble-bee",
+          "category": "insect",
+          "confidence": 0.8,
+          "evidence": "An orange and black fuzzy bee visible gathering nectar on the bright orange flowers."
+        },
+        {
+          "label": "Probable Female Broad-tailed Hummingbird",
+          "existing_id": "broad-tailed-hummingbird",
+          "category": "bird",
+          "confidence": 0.7,
+          "evidence": "Small hummingbird hovering near flower clusters consistent with hummingbird feeding."
+        }
+      ],
+      "behavior": "Pollinators, both a large bee and a hummingbird, are visiting the Butterfly Weed flowers likely to feed on nectar and simultaneously pollinate the plant.",
+      "memory_summary": "A sunny moment in Mead's garden where vivid Butterfly Weed flowers attracted a bustling large fuzzy bee alongside a delicate female broad-tailed hummingbird. Both visitors busy with nectar gathering, adding life and vibrance to the prairie garden scene.",
+      "overall_confidence": "probable",
+      "alternatives": [
+        "Showy Milkweed",
+        "Orange Milkweed"
+      ],
+      "reasoning": "The flower shape and bright orange cluster strongly indicate Butterfly Weed, a known garden resident. The large bee's fuzziness suggests a bumble or carpenter bee rather than a small solitary bee. The hovering small bird with rapid wing movement matches the size and behavior of a broad-tailed hummingbird, a common visitor to these flowers in this region. No other distinct wildlife types are observed in the images. Photos clearly belong together given the consistent plant and overlapping wildlife.",
+      "needs_human_review": false,
+      "privacy_flags": []
+    },
+    "photos": [
+      "images/staging/observations/2026/stg-2026-08-15-a2667687-b91f-4bf7-9eff-9a9b657f06a4/garden-526b3049-f46a-4802-a36e-f5f7c37530e1-1.jpg"
+    ],
+    "species": [
+      "large-bee-probable-carpenter-or-bumble-bee",
+      "broad-tailed-hummingbird"
+    ],
+    "provenance": {
+      "environment": "production",
+      "contractVersion": "4.4.0",
+      "baselineCommit": "1029039d633ed5401ceeae9925fb9023358b2425",
+      "recordClass": "garden-brain-managed"
+    },
+    "updatedAt": "2026-08-15T23:34:36.325Z"
+  },
   {
     "id": "2026-07-07-53f8effa-ed4e-46a5-b0cd-993d3d5f93e2",
     "date": "2026-07-07",
